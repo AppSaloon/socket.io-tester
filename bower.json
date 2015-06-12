@@ -1,0 +1,14 @@
+{
+  "name": "socket.io-tester",
+  "version": "0.1.0",
+  "homepage": "https://github.com/AppSaloon/chrome-app_socket.io-tester",
+  "authors": [
+    "Jo Jordens <jo@appsaloon.be>"
+  ],
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "react": "~0.13.3",
+    "jquery": "~2.1.4"
+  }
+}

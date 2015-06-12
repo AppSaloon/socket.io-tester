@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "socket app",
+  "description": "Socket App",
+  "version": "0.1.0",
+  "author": "Jo Jordens",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": {
+    "128": "socketIO.png"
+  },
+  "permissions": [
+    "storage"
+  ]
+}
