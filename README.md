@@ -4,7 +4,13 @@ certain topic and/or lets you send socket messages to the server
 
 ---
 
-babel is needed to run the grunt tasks
+## Install your dev tools
 ````
-$ npm install -g babel
+	npm install
+	npm install -g babel //install babel to support es6
+	bower install
+````
+## Run grunt Watcher and builder
+````
+	grunt
 ````

@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "socket app",
-  "description": "Socket App",
-  "version": "0.1.0",
+  "name": "Socket.io tester",
+  "description": "This app lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
+  "version": "0.0.1",
   "author": "Jo Jordens",
   "app": {
     "background": {

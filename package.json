@@ -1,7 +1,7 @@
 {
   "name": "socket.io-tester",
-  "version": "0.1.0",
-  "description": "# chrome-app_socket.io-tester\nA chrome app that lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server\n---\nbabel is needed to run the grunt tasks\n````\n$ npm install -g babel\n````\n",
+  "version": "0.0.1",
+  "description": "A chrome app that lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
   "main": "index.html",
   "dependencies": {
   },
