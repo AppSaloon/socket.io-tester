@@ -5,7 +5,7 @@
   "authors": [
     "Jo Jordens <jo@appsaloon.be>"
   ],
-  "license": "GNU GENERAL PUBLIC LICENSE",
+  "license": "GPL-2.0",
   "dependencies": {
     "bootstrap": "~3.3.4",
     "react": "~0.13.3",

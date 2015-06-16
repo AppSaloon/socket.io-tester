@@ -40,9 +40,21 @@ module.exports = function(grunt) {
 			compiled: 'src/compiled'
 		},
 
-		shell: {
-			babel: {
-				command: 'babel src/js/ --out-dir src/compiled/'
+		// shell: {
+		// 	babel: {
+		// 		command: 'babel src/js/ --out-dir src/compiled/'
+		// 	}
+		// },
+
+		babel: {
+			compile: {
+				files: [{
+					expand: true,
+					cwd: 'src/js',
+					src: '*.es6.js',
+					dest: 'src/compiled',
+					ext: '.js'
+				}]
 			}
 		},
 
@@ -75,7 +87,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['build:dev', 'shell', 'browserify:app']);
+	grunt.registerTask('default', ['build:dev', 'babel', 'browserify:app']);
 	grunt.registerTask('build:dev', ['clean', 'copy']);
 
 };

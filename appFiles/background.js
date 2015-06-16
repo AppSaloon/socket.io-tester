@@ -5,5 +5,4 @@ chrome.app.runtime.onLaunched.addListener(function() {
       'height': 1000
     }
   });
-  // chrome.app.window.localStorage = chrome.storage.local;
 });

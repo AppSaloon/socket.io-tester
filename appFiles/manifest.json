@@ -13,6 +13,7 @@
     "128": "socketIO.png"
   },
   "permissions": [
+    "https://www.google-analytics.com/",
     "storage"
   ]
 }
