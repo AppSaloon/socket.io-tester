@@ -9,7 +9,6 @@ touch build/js/app.js
 
 cp src/index.html build/index.html
 cp -r src/fonts build/fonts
-cp -r src/images build/images
 
 echo "starting watchify" &
 node_modules/.bin/watchify -e src/js/app.js -o "build/js/app.js" -d -v -t [ babelify --presets [ es2015 react ] ] &
