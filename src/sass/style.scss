@@ -1,0 +1,470 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min';
+@import '../../node_modules/jquery-ui/themes/black-tie/jquery-ui';
+
+body {
+	font-family: "helvetica";
+}
+
+html, body {
+	height: 100%;
+}
+
+.header {
+	position: fixed;
+	z-index: 1;
+	background-color: #E6E6E6;
+	height: 30px;
+	width: 100%;
+}
+
+.tabselected {
+	background-color: #7A54A8;
+	border: 1px solid transparent;
+}
+
+.tab {
+	border: 1px solid #BABABA;
+	border-left: none;
+}
+
+.tabselected, .tab {
+	position: relative;
+	height: 25px;
+	width: 160px;
+	top: 5px;
+	display: inline-block;
+	margin-bottom: -5px;
+}
+
+
+.tab:hover {
+	background-color: #F2F2F2;
+}
+
+.tabselectedText, .tabText {
+	font-size: 12px;
+	margin-top: 7px;
+	margin-left: 10px;
+	text-overflow: ellipsis;
+	width: 125px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+}
+
+.tabselectedText, .closeX {
+	color: #E6E6E6;
+}
+
+.tabselectedText:hover {
+	cursor: default;
+}
+
+.tabText {
+	color: #7A54A8;
+	margin-top: 6px;
+}
+.closeBorder{
+	border:1px solid red;
+	border-radius: 100%;
+	width:10px;
+	height:10px;
+}
+
+.closeX {
+	float: right;
+	margin-top: 10px;
+	margin-right: 9px;
+	font-size: 10px;
+}
+.closeX:hover{
+	width: 14px;
+	height: 14px;
+	margin-right: 5px;
+	margin-top: 9px;
+	text-align: center;
+	border:1px solid #D14349;
+	border-radius: 100%;
+	background-color:#DB7B7F;
+}
+
+.fa-plus-square:hover {
+	color: #000;
+	cursor: default;
+}
+
+.fa-plus-square {
+	position: relative;
+	top: 5px;
+	margin-left: 5px;
+	font-size: 16px;
+	color: #BFBFBF;
+}
+
+.search {
+	position: fixed;
+	z-index: 1;
+	background-color: #7A54A8;
+	top:30px;
+	padding: 5px 0px 5px 10px;
+	width: 100%;
+}
+
+.searchBar {
+	background-color: white;
+	margin-left: 30px;
+ 	padding: 5px 0px 5px 5px;
+ 	width: 90%;
+ 	height: 30px;
+ 	border: 1px solid #A3A3A3;
+}
+
+.searchfield {
+	position: absolute;
+	top: 5px;
+	left: 60px;
+	width: 90%;
+	height: 30px;
+	border: 1px solid #A3A3A3;
+	border-left: none;
+	outline: none
+}
+
+.glyphicon-repeat {
+	font-size: 20px;
+	float: left;
+	padding-top: 5px;
+}
+
+.close {
+	-webkit-transform: translateX(-250px);
+	transform: translateX(-250px);
+}
+
+.open {
+	-webkit-transform: translateX(0%);
+	transform: translateX(0%);
+}
+
+.left {
+	position: relative;
+	background-color: #E6E6E6;
+	top: 70px;
+	width: 260px;
+	height: 1000px;
+	float: left;
+	-webkit-transition: -webkit-transform .3s linear;
+    transition: transform .3s linear;
+}
+
+.right {
+	float: left;
+	margin-left: 10px;
+	margin-top: 70px;
+	width: 75%;
+}
+
+.fa-long-arrow-up {
+	margin-left: 10%;
+	font-size: 22px;
+	margin-top: 5px;
+}
+
+.fa-long-arrow-left {
+	float:left;
+	font-size: 22px;
+	margin-right: 5px;
+}
+
+.searchInfo {
+	top: 95px;
+	margin-left: 70px;
+	margin-bottom: 5px;
+}
+
+.messageInfo {
+	margin-bottom: 95px;
+}
+
+.eventInfoContainer {
+	margin-top: 165px;
+}
+
+.eventInfo {
+	margin-top: 40px;
+}
+
+.listenEvent, .sendMessage{
+	float:left;
+	width:240px;
+}
+
+.hideBar {
+	float:right;
+	height:100%;
+	width:10px;
+	margin-top: -290px;
+	background-color: #7A54A8;
+	cursor: pointer;
+}
+
+h3, input[type=text], textarea, .button, .check{
+	margin-left: 10px;
+}
+
+h3 {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+.ui-state-focus {
+	background: none !important;
+	background-color: #7A54A8 !important;
+	border: none !important;
+}
+
+::-webkit-input-placeholder {
+    color:    #D6C5EB;
+}
+
+.textareaType {
+	margin: 5px 0 5px 10px;
+}
+
+.button {
+	background-color: #7A54A8;
+	width: 220px;
+	height: 30px;
+	text-align: left;
+	color: white;
+	font-size: 18px;
+	border: 1px solid #A3A3A3;
+}
+
+.button:hover {
+	background-color: #7046A3;
+}
+
+.errorMessage, .errorMessageName {
+	margin-bottom: -5px;
+	color: red;
+	font-weight: bold;
+}
+
+.errorMessageName {
+	text-align: center;
+	margin-left: -10px;
+}
+
+.errorTextarea, .errorTextarea:hover, .errorEvent {
+	border: 1px solid red;
+	box-shadow: 0 0 2px red;
+}
+
+.errorEvent {
+	padding-left: 5px;
+	width: 145px;
+}
+
+.glyphicon-collapse-down {
+	margin-left: -20px;
+	color: #D6C5EB;
+	pointer-events: none;
+}
+
+.event, textarea {
+	border: 1px solid #C9AEEB;
+	padding-left: 5px;
+	width: 220px;
+}
+
+.event, .eventInput, .errorEvent {
+	height: 30px;
+}
+
+.event, .errorEvent {
+	position: relative;
+	background-color: white;
+	border-radius: 0;
+}
+
+.eventInput {
+	border: 1px solid #C9AEEB;
+	padding-left: 5px;
+	width: 145px;
+}
+
+.eventList {
+	position: absolute;
+	left: 10px;
+	width: 220px;
+	background-color: white;
+	border: 1px solid #C9AEEB;
+}
+
+.list-unstyled {
+	margin-left: 5px;
+}
+
+select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-color: transparent;
+   width: 50px;
+   margin: 5px 0px 5px 10px;
+   border: none;
+   background-size: 14px;
+}
+
+textarea {
+	resize: none;
+}
+
+input[type=checkbox], .button {
+	margin-top: 10px;
+}
+
+.check {
+	background-color: white;
+	width: 220px;
+	margin-bottom: 10px;
+}
+
+.checkline {
+	border-bottom: 1px solid #F0F0F0;
+	padding: 5px 0px 5px 5px;
+}
+
+.glyphicon-check, .glyphicon-unchecked {
+	margin-left: 5px;
+	margin-right: 5px;
+	color: #D8D5DB;
+}
+
+.borderdelete {
+	border: none;
+	margin-bottom: -5px;
+}
+
+.checkremove {
+	float: right;
+	margin: 3px 10px 0px -25px;
+	display:none;
+}
+
+.colorEvent {
+	float: right;
+	width: 5px;
+	height: 30px;
+	margin-top: -5px;
+}
+
+.check:hover .checkremove {
+	display:initial;
+}
+
+textarea:hover, .event:hover, .eventInput:hover {
+	border: 1px solid #7A54A8;
+}
+
+.ownJsColor {
+	position: absolute;
+	height: 30px;
+	font-size: 12px;
+	left: 155px;
+	border: none;
+	width: 75px;
+	text-align: center;
+	padding-top: 5px;
+	outline: none;
+}
+
+.messageContainerMe, .messageContainerSocket {
+	position: relative;
+	background-color: #E6E6E6;
+	top: 70px;
+	margin-top: -40px;
+	margin-bottom: 70px;
+	width: 500px;
+	height: 100%;
+}
+
+.messageColorMe, .messageColorSocket {
+	position: absolute;
+	width: 10px;
+	height: 100%;
+	top: 0;
+}
+
+.messageBoxSocket {
+	margin: 5px 0px 5px 20px;
+}
+
+.messageBoxMe {
+	margin: 5px 20px 5px 10px;
+}
+
+.messageContainerMe{
+	float: right;
+}
+
+.messageColorMe {
+	left:490px;
+}
+
+.messageContainerSocket{
+	float: left;
+}
+
+.messageColorSocket {
+	right:490px;
+}
+
+.textMessage {
+	margin-top: 5px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	width: 470px;
+	word-wrap: break-word;
+}
+
+.error, .info {
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+}
+
+.info {
+	background-color: #FFFFD5;
+	border: 1px solid #EBEB00;
+}
+
+.error {
+	background-color: #FCD9D9;
+	border: 1px solid #F50000;
+}
+
+.message {
+	margin: 5px;
+}
+
+.messageRemove {
+	float: right;
+	font-size: 12px;
+}
+
+.noConnectPage {
+	position: fixed;
+	top: 50px;
+	left: 25%;
+	width: 600px;
+	padding: 0 5px 0 5px;
+	margin-top: 30px;
+}
+
+.bordertest {
+	border: 1px solid black;
+
+}

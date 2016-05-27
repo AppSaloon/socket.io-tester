@@ -4,10 +4,11 @@
   "description": "A chrome app that lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
   "main": "index.html",
   "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.4",
     "jquery-ui": "^1.10.5",
-    "react": "^15.1.0",
     "socket.io": "^1.4.6"
   },
   "devDependencies": {
