@@ -7,10 +7,5 @@ certain topic and/or lets you send socket messages to the server
 ## Install your dev tools
 ````
 	npm install
-	npm install -g babel //install babel to support es6
-	bower install
-````
-## Run grunt Watcher and builder
-````
-	grunt
+	npm run dev
 ````
