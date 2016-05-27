@@ -21,7 +21,8 @@
     "load-grunt-tasks": "^3.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bash ./bin/dev"
   },
   "author": "Jo Jordens",
   "license": "GPL-2.0"
