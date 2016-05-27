@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 export const SendMessage = React.createClass({
 	getInitialState : function () {

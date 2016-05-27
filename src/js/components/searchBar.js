@@ -1,21 +1,21 @@
-import React,{Component} from 'React';
+import React,{Component} from 'react';
 
 export class SearchBar extends Component{
 	constructor(props) {
     	super(props);
+    	this.state = {
+    		value: props.selectedTab.url
+    	}
     	this.changeUrl = this.changeUrl.bind(this);
     	this.enter = this.enter.bind(this);
     	this.refresh = this.refresh.bind(this);
 	}
-	changeUrl () {
-		console.log(this.refs);
+	changeUrl (e) {
 		var val = this.refs.url.value;
 		this.props.changeUrl(val);
 	}
 	enter (e) {
 		if (e.key === 'Enter') {
-		console.log(React.findDOMNode(this.refs.url))
-
 			var url = this.refs.url.value;
 			this.props.submitSocket(url);
 		}
@@ -33,8 +33,8 @@ export class SearchBar extends Component{
 					<input 
 						className="searchfield"
 						type="text"
-						ref="url"
-						value={this.props.selectedTab.url} 
+						ref='url'
+						value={this.state.value} 
 						onChange={this.changeUrl}
 						onKeyPress={this.enter}
 					/>

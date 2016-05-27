@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 export const TabBar = React.createClass({
 	selectTab: function (e,item) {

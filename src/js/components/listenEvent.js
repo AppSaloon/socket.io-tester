@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 export var ListenEvent = React.createClass({
 	getInitialState: function(){

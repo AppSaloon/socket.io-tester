@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 export var RightSide = React.createClass({
 	message: function(message,index){
