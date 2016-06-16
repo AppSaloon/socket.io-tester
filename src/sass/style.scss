@@ -1,17 +1,26 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min';
 @import '../../node_modules/jquery-ui/themes/black-tie/jquery-ui';
+@import '../../node_modules/react-color-picker/index';
+@import '../../node_modules/font-awesome/css/font-awesome';
 
 body {
 	font-family: "helvetica";
 }
 
 html, body {
-	height: 100%;
+	height: 1000px;
+}
+
+input {
+	width: 220px;
+	height: 30px;
+	padding-left: 5px;
+	border: 1px solid #C9AEEB;
 }
 
 .header {
 	position: fixed;
-	z-index: 1;
+	z-index: 3;
 	background-color: #E6E6E6;
 	height: 30px;
 	width: 100%;
@@ -43,7 +52,7 @@ html, body {
 
 .tabselectedText, .tabText {
 	font-size: 12px;
-	margin-top: 7px;
+	margin-top: 5px;
 	margin-left: 10px;
 	text-overflow: ellipsis;
 	width: 125px;
@@ -57,13 +66,12 @@ html, body {
 	color: #E6E6E6;
 }
 
-.tabselectedText:hover {
+.tabselectedText:hover, :tabText:hover {
 	cursor: default;
 }
 
 .tabText {
 	color: #7A54A8;
-	margin-top: 6px;
 }
 .closeBorder{
 	border:1px solid red;
@@ -74,19 +82,20 @@ html, body {
 
 .closeX {
 	float: right;
-	margin-top: 10px;
+	margin-top: 8px;
 	margin-right: 9px;
 	font-size: 10px;
 }
+
 .closeX:hover{
 	width: 14px;
 	height: 14px;
 	margin-right: 5px;
-	margin-top: 9px;
+	margin-top: 7px;
 	text-align: center;
-	border:1px solid #D14349;
+	border:1px solid #C45454;
 	border-radius: 100%;
-	background-color:#DB7B7F;
+	background-color:#DB6E6E;
 }
 
 .fa-plus-square:hover {
@@ -104,7 +113,7 @@ html, body {
 
 .search {
 	position: fixed;
-	z-index: 1;
+	z-index: 3;
 	background-color: #7A54A8;
 	top:30px;
 	padding: 5px 0px 5px 10px;
@@ -128,6 +137,7 @@ html, body {
 	height: 30px;
 	border: 1px solid #A3A3A3;
 	border-left: none;
+	padding: 0;
 	outline: none
 }
 
@@ -135,6 +145,14 @@ html, body {
 	font-size: 20px;
 	float: left;
 	padding-top: 5px;
+}
+
+.fa-rss {
+	position: absolute;
+	left: 48px;
+	top: 12px;
+	font-size: 16px;
+	color: #3FBD00
 }
 
 .close {
@@ -201,12 +219,36 @@ html, body {
 }
 
 .hideBar {
-	float:right;
+	position: absolute;
+	left: 250px;
+	top: 290px;
 	height:100%;
 	width:10px;
 	margin-top: -290px;
 	background-color: #7A54A8;
 	cursor: pointer;
+}
+
+.autocompleteContainer {
+	width: 222px;
+	margin-left: 10px;
+}
+
+.autocompleteContainer:hover input {
+	border: 1px solid black;
+}
+
+.autocompleteItem, .autocompleteItemSelected {
+	width: 220px;
+	height: 25px;
+	font-size: 16px;
+	padding-left: 5px;
+	padding-top: 2px;
+}
+
+.autocompleteItemSelected{
+	background-color: #7A54A8;
+	color: white;
 }
 
 h3, input[type=text], textarea, .button, .check{
@@ -216,12 +258,6 @@ h3, input[type=text], textarea, .button, .check{
 h3 {
 	margin-bottom: 5px;
 	margin-top: 10px;
-}
-
-.ui-state-focus {
-	background: none !important;
-	background-color: #7A54A8 !important;
-	border: none !important;
 }
 
 ::-webkit-input-placeholder {
@@ -250,6 +286,7 @@ h3 {
 	margin-bottom: -5px;
 	color: red;
 	font-weight: bold;
+	margin-left: 10px;
 }
 
 .errorMessageName {
@@ -257,7 +294,7 @@ h3 {
 	margin-left: -10px;
 }
 
-.errorTextarea, .errorTextarea:hover, .errorEvent {
+.errorTextarea, .errorTextarea:hover, .errorEvent, .errorEventMessage input{
 	border: 1px solid red;
 	box-shadow: 0 0 2px red;
 }
@@ -267,10 +304,9 @@ h3 {
 	width: 145px;
 }
 
-.glyphicon-collapse-down {
-	margin-left: -20px;
-	color: #D6C5EB;
-	pointer-events: none;
+.errorEventMessage {
+	width: 222px;
+	margin-left: 10px;
 }
 
 .event, textarea {
@@ -303,21 +339,6 @@ h3 {
 	border: 1px solid #C9AEEB;
 }
 
-.list-unstyled {
-	margin-left: 5px;
-}
-
-select {
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
-   background-color: transparent;
-   width: 50px;
-   margin: 5px 0px 5px 10px;
-   border: none;
-   background-size: 14px;
-}
-
 textarea {
 	resize: none;
 }
@@ -337,21 +358,26 @@ input[type=checkbox], .button {
 	padding: 5px 0px 5px 5px;
 }
 
+.checkline:hover i {
+	display: initial;
+}
+
 .glyphicon-check, .glyphicon-unchecked {
 	margin-left: 5px;
 	margin-right: 5px;
 	color: #D8D5DB;
+	cursor: pointer;
 }
 
-.borderdelete {
-	border: none;
-	margin-bottom: -5px;
+.glyphicon-check {
+	color: rgba(0, 0, 0, 0.7);
 }
 
 .checkremove {
+	display: none;
 	float: right;
 	margin: 3px 10px 0px -25px;
-	display:none;
+	cursor: pointer;
 }
 
 .colorEvent {
@@ -359,10 +385,6 @@ input[type=checkbox], .button {
 	width: 5px;
 	height: 30px;
 	margin-top: -5px;
-}
-
-.check:hover .checkremove {
-	display:initial;
 }
 
 textarea:hover, .event:hover, .eventInput:hover {
@@ -450,9 +472,64 @@ textarea:hover, .event:hover, .eventInput:hover {
 	margin: 5px;
 }
 
-.messageRemove {
-	float: right;
-	font-size: 12px;
+.objectContainer {
+	background-color: #FAFAFA;
+	margin-top: 5px;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #D9D9D9;
+}
+
+.react-color-picker__saturation-black, 
+.react-color-picker__saturation-white, 
+.react-color-picker__saturation-spectrum {
+	width: 200px;
+	height: 200px;
+}
+
+.react-color-picker__saturation-spectrum {
+	border: 1px solid #C2C2C2;
+}
+
+.react-color-picker__hue-spectrum {
+	position: absolute;
+	left: 200px;
+}
+
+.colorPicker {
+	display: none;
+}
+
+.colorPickerButton {
+	float:right;
+	margin-right: 10px;
+	color: white;
+	border: none;
+	height: 30px;
+	width: 75px;
+	font-size: 12px
+}
+
+.colorPickerContainerBorder {
+	background-color: white;
+	top: 400px;
+	position: absolute;
+	left: 230px;
+	width: 262px;
+	height: 222px;
+	z-index: 2;
+	border-radius: 10px;
+	border: 1px solid #C2C2C2;
+	box-shadow: 0 5px 10px #D1D1D1
+}
+
+.colorPickerContainer {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 240px;
+	height: 200px;
+	z-index: 2;
 }
 
 .noConnectPage {
@@ -462,9 +539,4 @@ textarea:hover, .event:hover, .eventInput:hover {
 	width: 600px;
 	padding: 0 5px 0 5px;
 	margin-top: 30px;
-}
-
-.bordertest {
-	border: 1px solid black;
-
 }

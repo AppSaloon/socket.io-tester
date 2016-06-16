@@ -16,11 +16,13 @@ export var SocketIOApp = React.createClass({
 				{
 					name: 'chat message',
 					checked : true,
-					color: 'blue'
+					color: 'blue',
+					hover: false
 				},{
 					name: 'test', 
 					checked: false,
-					color: 'red'
+					color: 'red',
+					hover: false
 				}
 			],
 			webSocket: null,
@@ -29,6 +31,35 @@ export var SocketIOApp = React.createClass({
 		return {
 			tabs : [emptyTab]
 		}
+	},
+	componentDidMount () {
+		document.addEventListener(`colorChange`, this.eventListener);
+	},
+	componentWillUnmount () {
+		document.removeEventListener(`colorChange`, this.eventListener);
+	},
+	eventListener (e) {
+		const detail = e.detail;
+		let tabs = this.state.tabs.slice();
+		const tab = Object.assign({}, this.getSelectedTab());
+		let events = tab.events.slice();
+		events.forEach(function (event, i) {
+			event = Object.assign({}, event);
+			if ( event.name === detail.name ) {
+				event.color = detail.newColor;
+			}
+			events[i] = event;
+		});
+		tab.events = events;
+		tabs = tabs.map(function (origTab) {
+			if ( origTab.url === tab.url ) {
+				origTab = tab;
+			}
+			return origTab;
+		});
+		this.setState({
+			tabs
+		});
 	},
 	selectTab: function(i){
 		var tabs = this.state.tabs;
@@ -53,11 +84,13 @@ export var SocketIOApp = React.createClass({
 				{
 					name: 'chat message',
 					checked : true,
-					color: 'blue'
+					color: 'blue',
+					hover: false
 				},{
 					name: 'test', 
 					checked: false,
-					color: 'red'
+					color: 'red',
+					hover: false
 				}
 			],
 			webSocket: null,
@@ -65,8 +98,12 @@ export var SocketIOApp = React.createClass({
 		}
 		var tabs = this.state.tabs;
 		// alle tabs uitzetten
-		tabs = this.deSelectTabs(tabs);
-		tabs.push(emptyTab);
+		if (tabs.length < 7) {
+			tabs = this.deSelectTabs(tabs);
+			tabs.push(emptyTab);
+		} else {
+			alert("Maximum amount of tabs reached")
+		}
 		this.setState({
 			tabs: tabs
 		})
@@ -75,12 +112,31 @@ export var SocketIOApp = React.createClass({
 		var tabs = this.state.tabs.slice(0); //Slice tabs Array with 0 to copy
 		var tabWasSelected = tabs[tabIndex].selected === true;
 
+		if (this.getSelectedTab().webSocket !== null) {
+			this.getSelectedTab().webSocket.destroy()
+		}
 		tabs.splice(tabIndex, 1);
 
 		if (tabs.length === 0) {
 			tabs.push({
 				url: '',
-				selected: true
+				selected: true,
+				messages: [],
+				events: [
+					{
+						name: 'chat message',
+						checked : true,
+						color: 'blue',
+						hover: false
+					},{
+						name: 'test', 
+						checked: false,
+						color: 'red',
+						hover: false
+					}
+				],
+				webSocket: null,
+				error: null
 			});
 		}
 
@@ -145,9 +201,11 @@ export var SocketIOApp = React.createClass({
 			color: color
 		}
 
-		var tabs = this.state.tabs.map(function(tab,index){
+		this.emitMessage(newMessage);
+
+		var tabs = this.state.tabs.map((tab,index) => {
 			if (tab.selected){
-				tab.messages.push(newMessage)
+				this.pushMessage(tab, newMessage);
 			}
 			return tab
 		})
@@ -155,15 +213,21 @@ export var SocketIOApp = React.createClass({
 			tabs: tabs
 		})
 	},
+	emitMessage (message) {
+		const socket = this.getSelectedTab().webSocket;
+		socket.emit(message.event, message.message);
+	},
 	addEvent: function(name, color){
 		var newEvent = {
 			name: name,
 			checked: true,
 			color: color,
+			hover: false
 		}
-		var tabs = this.state.tabs.map(function(tab,index){
+		var tabs = this.state.tabs.map((tab,index) => {
 			if(tab.selected){
-				tab.events.push(newEvent)		
+				tab.events.push(newEvent)
+				tab.webSocket.on(name, this.addSocketMessage.bind(this, name, tab.url));
 			}
 			return tab
 		})
@@ -242,15 +306,23 @@ export var SocketIOApp = React.createClass({
 			author: 'Socket.IO',
 			color: color
 		}
-		var tabs = this.state.tabs.map(function(tab,index){
+		var tabs = this.state.tabs.map((tab,index) => {
 			if (tab.url === url){
-				tab.messages.push(newMessage)
+				this.pushMessage(tab, newMessage);
 			}
 			return tab
 		})
 		this.setState({
 			tabs: tabs
 		})
+	},
+	pushMessage (tab, message) {
+		const messages = tab.messages.slice();
+		if ( messages.length > 99 ) {
+			messages.shift();
+		}
+		messages.push(message);
+		tab.messages = messages;
 	},
 	addError: function(url, error, e){
 		var tabs = this.state.tabs.map(function(tab,index){
@@ -270,6 +342,7 @@ export var SocketIOApp = React.createClass({
 			if (tab.selected){
 				if (tab.webSocket !== null){
 					tab.webSocket.destroy()
+					tab.webSocket = null
 				}
 				var socket = io(url)
 				for(var i = 0; i < tab.events.length; i++){
@@ -294,6 +367,10 @@ export var SocketIOApp = React.createClass({
 					})
 					socket.on('reconnect', function(){
 						console.log("reconnect")
+						tab.webSocket = socket
+						that.setState({
+							tabs: tabs
+						})
 					})
 					socket.on('reconnect_attempt', function(){
 						console.log("reconnect attempt")
@@ -334,16 +411,21 @@ export var SocketIOApp = React.createClass({
 		})
 		return filterdMessageList;
 	},
-	refresh: function(url){
+	refresh: function(url, e){
 		var that = this
 		var tabs = this.state.tabs.map(function(tab,index){
 			if (tab.selected){
 				var socket = tab.webSocket
-				socket.removeAllListeners();
-				socket.destroy()
-				tab.messages = [];
-				tab.webSocket = null;
-				that.submitSocket(url);
+				if (socket === null) {
+					var error = "Can not refresh when not connected to a socket"
+					that.addError(tab.url, error, e)
+				} else {
+					socket.removeAllListeners();
+					socket.destroy()
+					tab.messages = [];
+					tab.webSocket = null;
+					that.submitSocket(url);
+				}
 			}
 			return tab
 		})
@@ -359,25 +441,28 @@ export var SocketIOApp = React.createClass({
 		}
 	},
 	render: function () {
+		const selectedTab = this.getSelectedTab();
 		return (
 			<div>
 				<TabBar tabs={this.state.tabs} addTab={this.addTab} selectTab={this.selectTab} deleteTab={this.deleteTab}/>
-				<SearchBar selectedTab={this.getSelectedTab()} changeUrl={this.changeUrl} submitSocket={this.submitSocket} refresh={this.refresh} />
-				{(this.getSelectedTab().webSocket)?
+				<SearchBar selectedTab={selectedTab} changeUrl={this.changeUrl} submitSocket={this.submitSocket} refresh={this.refresh} />
+				{(selectedTab.webSocket)?
 					<div>
 						<div className={"left " + this.state.slideClass}>
-							<SendMessage addMessage={this.addMessage} selectedTab={this.getSelectedTab()} changeEvent={this.changeEvent} events={this.getSelectedTab().events}/>
-							<ListenEvent events={this.getSelectedTab().events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
+							<SendMessage addMessage={this.addMessage} selectedTab={selectedTab} changeEvent={this.changeEvent} events={selectedTab.events}/>
+							<ListenEvent url={selectedTab.url} events={selectedTab.events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
 							<div className="hideBar" onClick={this.slideLeftSide}></div>
 						</div>
-						<RightSide messages={this.getFilteredMessagesForTab()} />
+						<RightSide events={selectedTab.events} url={selectedTab.url} messages={this.getFilteredMessagesForTab()} />
 					</div>
 					:
 					<div className="noConnectPage">
 						<h1>Welcome to Chrome Socket.io tester</h1>
-						{(this.getSelectedTab().error)?
+						<h2 style={{marginLeft: '30px'}}>Please enter a url in the search bar and</h2>
+						<h2 style={{marginLeft: '220px', marginTop: '-10px'}}>press enter</h2>
+						{(selectedTab.error)?
 							<div className="error">
-								<h3><i className="fa fa-exclamation-triangle" aria-hidden="true"></i> {this.getSelectedTab().error}</h3>
+								<h3><i className="fa fa-exclamation-triangle" aria-hidden="true"></i> {selectedTab.error}</h3>
 							</div>
 							:
 							null

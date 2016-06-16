@@ -1,25 +1,22 @@
 import React from 'react';
 
-export const TabBar = React.createClass({
-	selectTab: function (e,item) {
-		var index = item.split('$')[1]
+export var TabBar = React.createClass({
+	selectTab: function (index) {
 		this.props.selectTab(index);
 	},
-	deleteTab: function (e,item){
+	deleteTab: function (index, e){
 		e.stopPropagation();
-		var index = parseInt(item.split('$')[1].split('.')[0])
-		
 		this.props.deleteTab(index);
 	},
 	tab: function (tab,index) {
 		return (
 			<div 
-				onClick={this.selectTab} 
+				onClick={this.selectTab.bind(this, index)} 
 				index={index} 
 				key={index} 
 				className={tab.selected? 'tabselected':'tab'}
 			>
-				<p className={tab.selected? 'tabselectedText':'tabText'}>{(tab.url.length === 0)? 'New tab':tab.url} </p><i className="closeX fa fa-times" onClick={this.deleteTab}></i>
+				<p className={tab.selected? 'tabselectedText':'tabText'}>{(tab.url.length === 0)? 'New tab':tab.url} </p><i className="closeX fa fa-times" onClick={this.deleteTab.bind(this, index)}></i>
 			</div>
 		)
 	},

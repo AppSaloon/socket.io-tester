@@ -1,106 +1,93 @@
 import React from 'react';
+import ColorPicker from 'react-color-picker';
+import {ListenForm} from './listenForm';
 
 export var ListenEvent = React.createClass({
-	getInitialState: function(){
-		return {}
-	},
-	handleClick: function(e,item){
-		var index = parseInt(item.split('$')[1].split('.')[0])
-		this.props.checkEvent(index)
-	},
-	updateAutocomplete: function(){
-		var source = this.props.events.map(function (event) {
-			return event.name
-		})
-		$( "#qsd" ).autocomplete({
-	      source: source
-	    });
-	},
-	checkError: function(name, check){
-		this.setState({errorEvent: 'eventInput'})
-		if (name === '' || !check) {
-			this.setState({errorEvent: 'errorEvent'})
-		}
-	},
-	checkArrayEvents: function(){
-		var name = this.refs.addEventText.value;
-		var events = this.props.events;
-		var arrayLength = events.length;
-		for (var i = 0; i < arrayLength; i++){
-			if (events[i].name === name){
-				return false
-			}
-		}
-	},
-	addEvent: function(e){
-		e.preventDefault();
-		var errorMaxEvents ="You can't add more than 4 events "
-		if (this.props.events.length < 4){
-			var name = this.refs.addEventText.value;
-			var color = this.refs.colorValue.value;
-			var errorMessage = "Please fill in an event name!"
-			var errorSameValue ="There already is an event called"
-			var check = this.checkArrayEvents()
-			if (name !== '' && check !== false) {
-				this.props.addEvent(name, color);
-				this.updateAutocomplete();
-				this.setState({errorMessage: null, name: null, errorEvent: 'eventInput'})
-				
-			} else {
-				if (name === ''){
-					this.setState({errorMessage: errorMessage})
-					this.checkError(name);	
-				} else {
-					this.setState({errorMessage: errorSameValue, name: "'"+name+"'"})
-					this.checkError(name, check)
-				}
-			}
-		} else {
-			this.setState({errorMessage: errorMaxEvents})
-		}
-		this.refs.form.reset();
-	},
-	deleteEvent: function(e,item){
-		e.stopPropagation();
-		var index = parseInt(item.split('$')[1].split('.')[0])
-		this.props.deleteEvent(index)
-		this.updateAutocomplete();
-		this.setState({errorMessage: null})
-	},
-	event: function (event,index){
-		var checkedClass = event.checked? "glyphicon glyphicon-check":"glyphicon glyphicon-unchecked"
-		var color = {backgroundColor: event.color}
-		return (
-			<div 
-				className="checkline"
-				key={index}
-			>
-				<span className={checkedClass} index={index} onClick={this.handleClick}></span>{event.name}
-				<i className="glyphicon glyphicon-remove checkremove" onClick={this.deleteEvent}></i>
-				<div className="colorEvent" style={color}></div>
-			</div>
-		)
-	},
-	componentDidMount: function () {
-		new jscolor($('.ownJsColor')[0],{position:'right',closable:true,valueElement:'valueColor',value:'7A54A8', hash:true})
-	},
 	render: function(){
 		return (
 			<div className="listenEvent">
 				<div>
 					<h3>Listen for events</h3>
 				</div>
-				<form ref="form" onSubmit={this.addEvent}>
-					<div className="check">
-						{this.props.events.map(this.event)}
+				<div className="check">
+					{this.props.events.map((event,index) => {
+						return (
+							// <EventItem url={this.props.url} key={index} checkEvent={this.props.checkEvent} deleteEvent={this.props.deleteEvent} event={event} index={index} />
+							<EventItem url={this.props.url} key={index} checkEvent={this.props.checkEvent} deleteEvent={this.props.deleteEvent} event={Object.assign({}, event)} index={index} />
+						)
+					})}
+				</div>
+				<ListenForm events={this.props.events} addEvent={this.props.addEvent} />
+			</div>
+		)
+	}
+})
+
+var EventItem = React.createClass({
+	getInitialState: function(){
+		return {
+			showRemove: false,
+			hideColorPicker: 'none',
+			color : this.props.event.color
+		}
+	},
+	componentWillReceiveProps (newProps) {
+		if ( this.state.color !== newProps.event.color ) {
+			this.setState({
+				color: newProps.event.color
+			});
+		}
+	},
+	handleClick: function(index){
+		this.props.checkEvent(index)
+	},
+	deleteEvent: function(index, e){
+		e.stopPropagation();
+		this.props.deleteEvent(index)
+		this.setState({errorMessage: null})
+	},
+	onDrag: function(color){
+		this.props.event.color = color;
+		this.setState({
+			color: color
+		})
+	},
+	toggleColorPicker: function(){
+		if(this.state.hideColorPicker === 'none') {
+			this.setState({
+				hideColorPicker: 'inline'
+			})
+		} else {
+			this.setState({
+				hideColorPicker: 'none'
+			})
+		}
+	},
+	handleOnColorChange (newColor) {
+		document.dispatchEvent(new CustomEvent(`colorChange`, {detail: {newColor, name: this.props.event.name}}));
+		// document.dispatchEvent(new CustomEvent(`colorChange_${this.props.url}_${this.props.event.name.replace(' ', '-')}`, {detail: {newColor, name: this.props.event.name}}));
+	},
+	render: function () {
+		var checkedClass = this.props.event.checked? "glyphicon glyphicon-check":"glyphicon glyphicon-unchecked"
+		var color = {backgroundColor: this.state.color}
+		return (
+			<div className="checkline">
+				<span className={checkedClass}  onClick={this.handleClick.bind(this, this.props.index)}></span>
+				<span style={(this.props.event.checked)? null:{checkColor: '#D8D5DB'}}>{this.props.event.name}</span>
+				<i className="glyphicon glyphicon-remove checkremove" onClick={this.deleteEvent.bind(this, this.props.index)}></i>
+				<div className="colorEvent" style={color} onClick={this.toggleColorPicker}>
+				</div>
+				<div className="colorPickerContainerBorder" style={{display: this.state.hideColorPicker}}>
+					<div className="colorPickerContainer" >
+						<ColorPicker
+							saturationWidth={200}
+							saturationHeight={200}
+							value={this.state.color}
+							onDrag={this.onDrag}
+							onChange={this.handleOnColorChange}
+						/>
 					</div>
-					<input className={this.state.errorEvent || 'eventInput'} type="text" ref="addEventText" placeholder="Event name" maxLength="25"/>
-					<button className="ownJsColor">Pick a color</button>
-					<p className="errorMessage">{this.state.errorMessage}</p>
-					<p className="errorMessageName">{this.state.name}</p>
-					<button className="button" type="button" onClick={this.addEvent}>Add event</button>
-					<input type="hidden" id="valueColor" ref="colorValue"/>
-				</form>
+				</div>
 			</div>
 		)
 	}

@@ -1,40 +1,31 @@
-import React,{Component} from 'react';
+import React from 'react';
 
-export class SearchBar extends Component{
-	constructor(props) {
-    	super(props);
-    	this.state = {
-    		value: props.selectedTab.url
-    	}
-    	this.changeUrl = this.changeUrl.bind(this);
-    	this.enter = this.enter.bind(this);
-    	this.refresh = this.refresh.bind(this);
-	}
-	changeUrl (e) {
+export var SearchBar = React.createClass({
+	changeUrl: function() {
 		var val = this.refs.url.value;
 		this.props.changeUrl(val);
-	}
-	enter (e) {
+	},
+	enter: function(e) {
 		if (e.key === 'Enter') {
 			var url = this.refs.url.value;
 			this.props.submitSocket(url);
 		}
-	}
-	refresh (){
+	},
+	refresh: function(){
 		var url = this.refs.url.value;
 		this.props.refresh(url);
-	}
-	render (){
+	},
+	render: function(){
 		return (
 			<div id="searchContent" className="search">
-				<i className="glyphicon glyphicon-repeat" onClick={this.refresh}></i>
+				<i className="glyphicon glyphicon-repeat" style={(this.props.selectedTab.webSocket === null)?{color:"#E6E6E6", opacity:"0.2"}: null} onClick={(this.props.selectedTab.webSocket !== null)? this.refresh: null}></i>
 				<div className="searchBar">
-					<i className="glyphicon glyphicon-search"></i>
+					<i className={(this.props.selectedTab.webSocket === null)?"glyphicon glyphicon-search": "fa fa-rss"}></i>
 					<input 
 						className="searchfield"
 						type="text"
 						ref='url'
-						value={this.state.value} 
+						value={this.props.selectedTab.url} 
 						onChange={this.changeUrl}
 						onKeyPress={this.enter}
 					/>
@@ -42,4 +33,4 @@ export class SearchBar extends Component{
 			</div>
 		)
 	}
-}
+})

@@ -1,21 +1,17 @@
 import React from 'react';
+import Autocomplete from 'react-autocomplete'
 
 export const SendMessage = React.createClass({
 	getInitialState : function () {
-		return {}
-	},
-	componentDidMount: function() {
-		var source = this.props.events.map(function (event) {
-			return event.name
-		})
-		$( "#qsd" ).autocomplete({
-	      source: source
-	    });
+		return {
+			value: "",
+			errorEvent: "autocompleteContainer"
+		}
 	},
 	checkError: function(event, message, tab){
-		this.setState({errorEvent: 'event', errorTextarea: null})
+		this.setState({errorEvent: 'autocompleteContainer', errorTextarea: null})
 		if (event === '') {
-			this.setState({errorEvent: 'errorEvent'})
+			this.setState({errorEvent: 'errorEventMessage'})
 			if (message === ''){
 				this.setState({errorTextarea: 'errorTextarea'})
 			}
@@ -25,16 +21,17 @@ export const SendMessage = React.createClass({
 	},
 	addMessage: function (e) {
 		e.preventDefault();
-		var event = this.refs.eventText.value;
+		var event = this.state.value;
 		var message = this.refs.textOfMessage.value;
 		var type = this.state.messageType;
-		var errorMessage = "Please fill in all form fields!"
+		var errorMessage = "Please fill in all form fields!";
 		if (event != '' && message != '') {
 			this.props.addMessage(event, message, type);
+			this.state.value = "";
 			this.refs.form.reset();
-			this.setState({errorMessage: null, errorTextarea: null, errorEvent: 'event', messageType: '--'})
+			this.setState({errorMessage: null, errorTextarea: null, errorEvent: 'autocompleteContainer', messageType: '--'});
 		} else {
-			this.setState({errorMessage: errorMessage})
+			this.setState({errorMessage: errorMessage});
 			this.checkError(event, message);
 		}
 	},
@@ -59,20 +56,23 @@ export const SendMessage = React.createClass({
 			<div className="sendMessage">
 				<h3>Send Message</h3>
 				<form ref='form' onSubmit={this.addMessage}>
-					<div>
-						<input 
-							className={this.state.errorEvent || 'event'}
-							type="text"
-							ref="eventText" 
-							id="qsd"
-							placeholder="Event name"	
-							size="30"
+					<div className={this.state.errorEvent}>
+						<Autocomplete
+							value={this.state.value}
+							items={this.props.selectedTab.events}
+							getItemValue={(item) => item.name}
+							onChange={(event, value) => this.setState({value})}
+          					onSelect={value => this.setState({value})}
+							renderItem={(item, isHighlighted) => (
+            					<div className={isHighlighted ? "autocompleteItemSelected" : "autocompleteItem"}>
+									{item.name}
+								</div>
+         					)}
 						/>
-						<span className="glyphicon glyphicon-collapse-down"></span>
 					</div>
 					<p className="textareaType">{this.state.messageType || '--'}</p>
 					<textarea 
-						name="message" 
+						name="message"
 						className={this.state.errorTextarea}
 						rows="7" 
 						cols="30" 

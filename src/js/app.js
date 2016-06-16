@@ -3,7 +3,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import $ from 'jquery';
-//import ui from 'jquery-ui';
+import ui from 'jquery-ui';
 
 // export for others scripts to use
 window.$ = $;

@@ -5,10 +5,10 @@
   "main": "index.html",
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "jquery": "^2.2.4",
-    "jquery-ui": "^1.10.5",
     "react": "^15.1.0",
+    "react-autocomplete": "^1.0.0-rc6",
     "react-dom": "^15.1.0",
+    "font-awesome": "^4.6.3",
     "socket.io-client": "^1.4.6"
   },
   "devDependencies": {
