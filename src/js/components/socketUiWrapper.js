@@ -100,19 +100,7 @@ export var SocketIOApp = React.createClass({
 				url: '',
 				selected: true,
 				messages: [],
-				events: [
-					{
-						name: 'chat message',
-						checked : true,
-						color: 'blue',
-						hover: false
-					},{
-						name: 'test', 
-						checked: false,
-						color: 'red',
-						hover: false
-					}
-				],
+				events: [],
 				webSocket: null,
 				error: null
 			});
