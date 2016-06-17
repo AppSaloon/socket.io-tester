@@ -7,6 +7,7 @@ touch build/css/style.css
 mkdir build/js
 touch build/js/app.js
 
+cp appFiles/socket.io.js build
 cp src/index.html build/index.html
 cp -r src/fonts build/fonts
 

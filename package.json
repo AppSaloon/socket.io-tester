@@ -1,14 +1,18 @@
 {
   "name": "socket.io-tester",
-  "version": "2.0.1",
+  "version": "0.1.0",
   "description": "A chrome app that lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
   "main": "index.html",
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.0.0",
+    "jquery-ui": "^1.10.5",
     "react": "^15.1.0",
     "react-autocomplete": "^1.0.0-rc6",
+    "react-color-picker": "^3.1.0",
     "react-dom": "^15.1.0",
-    "font-awesome": "^4.6.3",
+    "react-object-inspector": "^0.2.1",
     "socket.io-client": "^1.4.6"
   },
   "devDependencies": {
@@ -16,12 +20,14 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.3.0",
     "browser-sync": "^2.12.8",
+    "browserify": "^13.0.1",
     "node-sass": "^3.7.0",
     "watchify": "^3.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bash ./bin/dev"
+    "dev": "bash ./bin/dev",
+    "build": "bash ./bin/build"
   },
   "repository": {
     "type": "git",

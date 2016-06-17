@@ -4,7 +4,8 @@ import {SearchBar} from './searchBar';
 import {SendMessage} from './sendMessage';
 import {ListenEvent} from './listenEvent';
 import {RightSide} from './rightSide';
-import io from 'socket.io-client'
+
+// import io from 'socket.io-client';
 
 export var SocketIOApp = React.createClass({
 	getInitialState : function () {
@@ -335,7 +336,16 @@ export var SocketIOApp = React.createClass({
 			tabs: tabs
 		})
 	},
+	formatUrl (url) {
+		const result = url.match(/^(https?:\/\/)(?:\w+\.)?\w+(?:\.\w+)+\/?/);
+		let newUrl;
+		if ( !result ) {
+			newUrl = 'http://'+url;
+		}
+		return newUrl || url;
+	},
 	submitSocket: function(url){
+		url = this.formatUrl(url);
 		var that = this;
 		var tabs = this.state.tabs.slice();
 		tabs = tabs.map(function(tab,index){
@@ -363,7 +373,7 @@ export var SocketIOApp = React.createClass({
 					socket.on('connect_timeout', function(e){
 						var error = "Connection timeout"
 						that.addError(tab.url, error, e);
-						console.log("connect timeout")	
+						console.log("connect timeout")
 					})
 					socket.on('reconnect', function(){
 						console.log("reconnect")

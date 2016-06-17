@@ -9,3 +9,10 @@ certain topic and/or lets you send socket messages to the server
 	npm install
 	npm run dev
 ````
+
+
+
+## build app for chrome
+`$ npm run build`
+
+unfortunately socket.io.js had to be modified
