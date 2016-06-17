@@ -336,8 +336,10 @@ export var SocketIOApp = React.createClass({
 				if (tab.webSocket !== null){
 					tab.webSocket.destroy()
 					tab.webSocket = null
+					tab.error = null;
 				}
 				var socket = io(url)
+				tab.webSocket = socket
 				if ( !tab.events.length ) {
 					tab.events = [{}];
 				}
@@ -348,10 +350,7 @@ export var SocketIOApp = React.createClass({
 					}
 					socket.on('connect', function(){
 						console.log("connect")
-						tab.webSocket = socket
-						that.setState({
-							tabs: tabs
-						})
+						tab.error = null;
 					})
 					socket.on('connect_error', function(e){
 						var error = "No sockets found"
@@ -365,10 +364,7 @@ export var SocketIOApp = React.createClass({
 					})
 					socket.on('reconnect', function(){
 						console.log("reconnect")
-						tab.webSocket = socket
-						that.setState({
-							tabs: tabs
-						})
+						tab.error = null;
 					})
 					socket.on('reconnect_attempt', function(){
 						console.log("reconnect attempt")
@@ -451,20 +447,13 @@ export var SocketIOApp = React.createClass({
 							<ListenEvent url={selectedTab.url} events={selectedTab.events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
 							<div className="hideBar" onClick={this.slideLeftSide}></div>
 						</div>
-						<RightSide events={selectedTab.events} url={selectedTab.url} messages={this.getFilteredMessagesForTab()} />
+						<RightSide error={selectedTab.error} events={selectedTab.events} url={selectedTab.url} messages={this.getFilteredMessagesForTab()} />
 					</div>
 					:
 					<div className="noConnectPage">
 						<h1>Welcome to Chrome Socket.io tester</h1>
 						<h2 style={{marginLeft: '30px'}}>Please enter a url in the search bar and</h2>
 						<h2 style={{marginLeft: '220px', marginTop: '-10px'}}>press enter</h2>
-						{(selectedTab.error)?
-							<div className="error">
-								<h3><i className="fa fa-exclamation-triangle" aria-hidden="true"></i> {selectedTab.error}</h3>
-							</div>
-							:
-							null
-						}
 					</div>
 				}
 			</div>

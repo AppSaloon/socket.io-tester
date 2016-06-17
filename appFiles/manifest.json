@@ -4,7 +4,7 @@
   "description": "This app lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
   "version": "0.1.0",
   "version_name": "v1 beta (0.1.0)",
-  "author": "Jo Jordens",
+  "author": "Jo Jordens, Toon Nelissen, Jordy Polders",
   "app": {
     "background": {
       "scripts": ["background.js"]

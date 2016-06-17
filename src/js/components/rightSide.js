@@ -9,12 +9,24 @@ export var RightSide = React.createClass({
 		return <MessageDiv url={this.props.url} color={color} key={index} message={message}/>;
 	},
 	render: function(){
-		return (
-			(this.props.messages.length !== 0)?
+		let content;
+		const error = this.props.error;
+		if ( error ) {
+			content = (
+				<div className="right">
+					<div className="error">
+						<h3><i className="fa fa-exclamation-triangle" aria-hidden="true"></i> {error}</h3>
+					</div>
+				</div>
+			);
+		} else if ( this.props.messages.length !== 0 ) {
+			content = (
 				<div className="right">
 					 {this.props.messages.map(this.message).reverse()}
 				</div>
-			:
+			);
+		} else {
+			content = (
 				<div className="right">
 					<div>
 						<i className="fa fa-long-arrow-up"></i>
@@ -41,7 +53,9 @@ export var RightSide = React.createClass({
 						</div>
 					</div>
 				</div>
-		)
+			);
+		}
+		return content;
 	}
 })
 

@@ -34,5 +34,6 @@
     "url": "git+https://github.com/AppSaloon/chrome-app_socket.io-tester.git"
   },
   "author": "Jo Jordens",
+  "contributors": ["Toon Nelissen", "Jordy Polders"],
   "license": "GPL-2.0"
 }
