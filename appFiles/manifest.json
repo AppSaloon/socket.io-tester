@@ -16,5 +16,6 @@
   "permissions": [
     "https://www.google-analytics.com/",
     "storage"
-  ]
+  ],
+  "homepage_url": "https://appsaloon.be/lab/socket-io-tester-chrome-app/"
 }
