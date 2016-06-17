@@ -4,15 +4,15 @@ certain topic and/or lets you send socket messages to the server
 
 ---
 
-## Install your dev tools
-````
-	npm install
-	npm run dev
-````
+##### Install node modules
+`$ npm install`
 
+##### Build for development
+`$ npm run dev`
 
-
-## build app for chrome
+##### build app for chrome
 `$ npm run build`
+
+---
 
 unfortunately socket.io.js had to be modified
