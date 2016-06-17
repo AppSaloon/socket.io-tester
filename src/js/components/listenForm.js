@@ -27,36 +27,31 @@ export var ListenForm = React.createClass({
 	},
 	addEvent: function(e){
 		e.preventDefault();
-		var errorMaxEvents ="You can't add more than 4 events "
-		if (this.props.events.length < 4){
-			var name = this.refs.addEventText.value;
-			var color = this.state.color
-			var errorMessage = "Please fill in an event name!"
-			var errorSameValue ="There already is an event called"
-			var check = this.checkArrayEvents()
-			if (name !== '' && check !== false) {
-				this.props.addEvent(name, color);
-				if (this.state.hideColorPicker !== 'none'){ 
-					this.toggleColorPicker();
-				}
-				this.setState({
-					errorMessage: null,
-					name: null,
-					errorEvent: 'eventInput',
-					color: '#7A54A8',
-					buttonColorText: 'white'
-				})
-			} else {
-				if (name === ''){
-					this.setState({errorMessage: errorMessage})
-					this.checkError(name);	
-				} else {
-					this.setState({errorMessage: errorSameValue, name: "'"+name+"'"})
-					this.checkError(name, check)
-				}
+		var name = this.refs.addEventText.value;
+		var color = this.state.color
+		var errorMessage = "Please fill in an event name!"
+		var errorSameValue ="There already is an event called"
+		var check = this.checkArrayEvents()
+		if (name !== '' && check !== false) {
+			this.props.addEvent(name, color);
+			if (this.state.hideColorPicker !== 'none'){ 
+				this.toggleColorPicker();
 			}
+			this.setState({
+				errorMessage: null,
+				name: null,
+				errorEvent: 'eventInput',
+				color: '#7A54A8',
+				buttonColorText: 'white'
+			})
 		} else {
-			this.setState({errorMessage: errorMaxEvents})
+			if (name === ''){
+				this.setState({errorMessage: errorMessage})
+				this.checkError(name);	
+			} else {
+				this.setState({errorMessage: errorSameValue, name: "'"+name+"'"})
+				this.checkError(name, check)
+			}
 		}
 		this.refs.form.reset();
 	},

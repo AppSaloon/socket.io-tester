@@ -11,10 +11,11 @@ export var ListenEvent = React.createClass({
 				</div>
 				<div className="check">
 					{this.props.events.map((event,index) => {
-						return (
-							// <EventItem url={this.props.url} key={index} checkEvent={this.props.checkEvent} deleteEvent={this.props.deleteEvent} event={event} index={index} />
-							<EventItem url={this.props.url} key={index} checkEvent={this.props.checkEvent} deleteEvent={this.props.deleteEvent} event={Object.assign({}, event)} index={index} />
-						)
+						if ( event.name ) {
+							return (
+								<EventItem url={this.props.url} key={index} checkEvent={this.props.checkEvent} deleteEvent={this.props.deleteEvent} event={Object.assign({}, event)} index={index} />
+							)
+						}
 					})}
 				</div>
 				<ListenForm events={this.props.events} addEvent={this.props.addEvent} />
@@ -83,7 +84,6 @@ var EventItem = React.createClass({
 	},
 	handleOnColorChange (newColor) {
 		document.dispatchEvent(new CustomEvent(`colorChange`, {detail: {newColor, name: this.props.event.name}}));
-		// document.dispatchEvent(new CustomEvent(`colorChange_${this.props.url}_${this.props.event.name.replace(' ', '-')}`, {detail: {newColor, name: this.props.event.name}}));
 	},
 	render: function () {
 		var checkedClass = this.props.event.checked? "glyphicon glyphicon-check":"glyphicon glyphicon-unchecked"

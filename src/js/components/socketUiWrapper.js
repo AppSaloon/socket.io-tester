@@ -10,22 +10,10 @@ import {RightSide} from './rightSide';
 export var SocketIOApp = React.createClass({
 	getInitialState : function () {
 		var emptyTab = {
-			url: 'localhost:3150',
+			url: '',
 			selected: true,
 			messages: [],
-			events: [
-				{
-					name: 'chat message',
-					checked : true,
-					color: 'blue',
-					hover: false
-				},{
-					name: 'test', 
-					checked: false,
-					color: 'red',
-					hover: false
-				}
-			],
+			events: [],
 			webSocket: null,
 			error: null
 		}
@@ -82,19 +70,7 @@ export var SocketIOApp = React.createClass({
 			url: '',
 			selected: true,
 			messages: [],
-			events: [
-				{
-					name: 'chat message',
-					checked : true,
-					color: 'blue',
-					hover: false
-				},{
-					name: 'test', 
-					checked: false,
-					color: 'red',
-					hover: false
-				}
-			],
+			events: [],
 			webSocket: null,
 			error: null
 		}
@@ -293,7 +269,7 @@ export var SocketIOApp = React.createClass({
 	addSocketMessage: function(eventName, url, message, type){
 		if ( Object.prototype.toString.apply(message).slice(8, -1) === 'Object' ) {
 			message = JSON.stringify(message);
-			type = 'Json';
+			type = 'Object';
 		} else {
 			try{
 				var x = JSON.parse(message);
@@ -343,7 +319,8 @@ export var SocketIOApp = React.createClass({
 		})
 	},
 	formatUrl (url) {
-		const result = url.match(/^(https?:\/\/)(?:\w+\.)?\w+(?:\.\w+)+\/?/);
+		const result = url.match(/^(https?:\/\/)/);
+		// const result = url.match(/^(https?:\/\/)(?:\w+\.)?\w+(?:\.\w+)+\/?/);
 		let newUrl;
 		if ( !result ) {
 			newUrl = 'http://'+url;
@@ -361,9 +338,14 @@ export var SocketIOApp = React.createClass({
 					tab.webSocket = null
 				}
 				var socket = io(url)
+				if ( !tab.events.length ) {
+					tab.events = [{}];
+				}
 				for(var i = 0; i < tab.events.length; i++){
-					var eventName = tab.events[i].name
-					socket.on(eventName, that.addSocketMessage.bind(that,eventName,tab.url))
+					var eventName = tab.events[i].name;
+					if ( eventName ) {
+						socket.on(eventName, that.addSocketMessage.bind(that,eventName,tab.url))
+					}
 					socket.on('connect', function(){
 						console.log("connect")
 						tab.webSocket = socket

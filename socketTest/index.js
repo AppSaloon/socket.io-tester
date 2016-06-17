@@ -11,38 +11,36 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 	});
-});
-
-io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
 		console.log('message: ' + msg);
-	});
-});
-
-io.on('connection', function(socket){
-	socket.on('chat message', function(msg){
 		io.emit('chat message', msg);
 	});
 });
 
-io.emit('some event', { for: 'everyone' });
-
-io.on('connection', function(socket){
-	setInterval(function () {
-		var date = new Date()
-		socket.emit('test','test' + date.valueOf());
-	},20000)
-});
-
 http.listen(3150, function(){
 	console.log('listening on *:3150');
-	startInterval();
+	startIntervals();
 });
 
-var x = 0;
-function startInterval () {
+var x = 0,
+	y = 0;
+function startIntervals () {
 	setInterval(function () {
 		x++;
 		io.emit('test', 'A - message'+x);
 	}, 3000);
+
+	setInterval(function () {
+		y++;
+		nsp.emit('test', 'nsp - message'+x);
+	}, 3000);
 }
+
+var nsp = io.of('/asd');
+nsp.on('connection', function(socket){
+	console.log('someone connected');
+	socket.on('chat message', function(msg){
+		console.log('message: ' + msg);
+		nsp.emit('chat message', msg);
+	});
+});

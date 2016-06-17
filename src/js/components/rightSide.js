@@ -46,33 +46,11 @@ export var RightSide = React.createClass({
 })
 
 class MessageDiv extends Component {
-	// constructor(props) {
-	// 	super(props);
-
-		// this.state = {
-		// 	color: props.message.color
-		// };
-
-	// 	this.eventListener = this.eventListener.bind(this);
-	// }
-	// componentDidMount () {
-	// 	document.addEventListener(`colorChange_${this.props.url}_${this.props.message.event.replace(' ', '-')}`, this.eventListener);
-	// }
-	// componentWillUnmount () {
-	// 	document.removeEventListener(`colorChange_${this.props.url}_${this.props.message.event.replace(' ', '-')}`, this.eventListener);
-	// }
-	// eventListener (e) {
-	// 	console.log('someelistener');
-	// 	this.setState({
-	// 		color: e.detail.newColor
-	// 	});
-	// }
 	render () {
 		const message = this.props.message;
 		const color = {backgroundColor: this.props.color};
-		// const color = {backgroundColor: this.state.color};
 		let data;
-		if (message.type === 'Json') {
+		if (message.type === 'Json'||message.type === 'Object') {
 			data = JSON.parse(message.message);
 		}
 		return (
@@ -86,7 +64,7 @@ class MessageDiv extends Component {
 					</div>
 					<div className="messageText">
 						<b>Message: </b>
-						<p className="textMessage" style={(message.type === 'Json')?{display: "none"}:null}>{message.message}</p>
+						<p className="textMessage" style={(message.type === 'Json'||message.type === 'Object')?{display: "none"}:null}>{message.message}</p>
 						<div className="objectContainer" style={(message.type === 'String')? {display: 'none'}: null}>
 							<ObjectInspector data={data} />
 						</div>
