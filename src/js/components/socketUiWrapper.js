@@ -30,7 +30,8 @@ export var SocketIOApp = React.createClass({
 			error: null
 		}
 		return {
-			tabs : [emptyTab]
+			tabs : [emptyTab],
+			slideClass: 'open'
 		}
 	},
 	componentDidMount () {

@@ -52,8 +52,26 @@ var EventItem = React.createClass({
 			color: color
 		})
 	},
+	eventListener (e) {
+		const path = e.path;
+		let className,
+			eventIsInsideColorPicker = false;
+		path.forEach(function(a){
+			className = a.className || '';
+			if ( className.match('colorPickerContainer') ) {
+				eventIsInsideColorPicker = true;
+			}
+		});
+		if ( !eventIsInsideColorPicker ) {
+			document.removeEventListener(`click`, this.eventListener);
+			this.setState({
+				hideColorPicker: 'none'
+			});
+		}
+	},
 	toggleColorPicker: function(){
 		if(this.state.hideColorPicker === 'none') {
+			document.addEventListener(`click`, this.eventListener);
 			this.setState({
 				hideColorPicker: 'inline'
 			})
