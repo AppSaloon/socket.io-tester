@@ -339,6 +339,9 @@ export var SocketIOApp = React.createClass({
 					socket.on('connect', function(){
 						console.log("connect")
 						tab.error = null;
+						that.setState({
+							tabs: tabs
+						})
 					})
 					socket.on('connect_error', function(e){
 						var error = "No sockets found"
@@ -353,6 +356,9 @@ export var SocketIOApp = React.createClass({
 					socket.on('reconnect', function(){
 						console.log("reconnect")
 						tab.error = null;
+						that.setState({
+							tabs: tabs
+						})
 					})
 					socket.on('reconnect_attempt', function(){
 						console.log("reconnect attempt")
