@@ -339,6 +339,9 @@ export var SocketIOApp = React.createClass({
 					socket.on('connect', function(){
 						console.log("connect")
 						tab.error = null;
+						that.setState({
+							tabs: tabs
+						})
 					})
 					socket.on('connect_error', function(e){
 						var error = "No sockets found"
@@ -353,6 +356,9 @@ export var SocketIOApp = React.createClass({
 					socket.on('reconnect', function(){
 						console.log("reconnect")
 						tab.error = null;
+						that.setState({
+							tabs: tabs
+						})
 					})
 					socket.on('reconnect_attempt', function(){
 						console.log("reconnect attempt")
@@ -432,7 +438,7 @@ export var SocketIOApp = React.createClass({
 					<div className="content-container">
 						<div className={"left " + this.state.slideClass}>
 							<div className="scroller">
-								<SendMessage addMessage={this.addMessage} selectedTab={selectedTab} changeEvent={this.changeEvent} events={selectedTab.events}/>
+								<SendMessage addMessage={this.addMessage} changeEvent={this.changeEvent} events={selectedTab.events}/>
 								<ListenEvent url={selectedTab.url} events={selectedTab.events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
 							</div>
 							<div className="hideBar" onClick={this.slideLeftSide}></div>
