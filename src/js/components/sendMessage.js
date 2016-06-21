@@ -51,6 +51,13 @@ export const SendMessage = React.createClass({
 		}
 		this.setState({messageType: messageType})
 	},
+	getEventList() {
+		let events = this.props.events || [{}];
+		if ( events.length === 1 && !events[0].name ) {
+			events = [];
+		}
+		return events;
+	},
 	render: function(){
 		return (
 			<div className="sendMessage">
@@ -59,7 +66,7 @@ export const SendMessage = React.createClass({
 					<div className={this.state.errorEvent}>
 						<Autocomplete
 							value={this.state.value}
-							items={this.props.selectedTab.events}
+							items={this.getEventList()}
 							getItemValue={(item) => item.name}
 							onChange={(event, value) => this.setState({value})}
           					onSelect={value => this.setState({value})}

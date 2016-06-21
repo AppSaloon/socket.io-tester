@@ -437,7 +437,7 @@ export var SocketIOApp = React.createClass({
 				{(selectedTab.webSocket)?
 					<div>
 						<div className={"left " + this.state.slideClass}>
-							<SendMessage addMessage={this.addMessage} selectedTab={selectedTab} changeEvent={this.changeEvent} events={selectedTab.events}/>
+							<SendMessage addMessage={this.addMessage} changeEvent={this.changeEvent} events={selectedTab.events}/>
 							<ListenEvent url={selectedTab.url} events={selectedTab.events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
 							<div className="hideBar" onClick={this.slideLeftSide}></div>
 						</div>
