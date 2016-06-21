@@ -62,14 +62,14 @@ export var RightSide = React.createClass({
 class MessageDiv extends Component {
 	render () {
 		const message = this.props.message;
-		const color = {backgroundColor: this.props.color};
+		const color = {borderColor: this.props.color};
 		let data;
 		if (message.type === 'Json'||message.type === 'Object') {
 			data = JSON.parse(message.message);
 		}
 		return (
 			<div className={(message.author === 'Me')?'messageContainerMe':'messageContainerSocket'}>
-				<div className={(message.author === 'Me')?'messageBoxMe':'messageBoxSocket'}>
+				<div className={(message.author === 'Me')?'messageBoxMe':'messageBoxSocket'} style={color}>
 					<div className="messageEvent">
 						<b>Event: </b><span className="messageEventText">{message.event}</span>
 					</div>
@@ -83,8 +83,6 @@ class MessageDiv extends Component {
 							<ObjectInspector data={data} />
 						</div>
 					</div>
-				</div>
-				<div className={(message.author === 'Me')?'messageColorMe':'messageColorSocket'} style={color}>
 				</div>
 			</div>
 		);

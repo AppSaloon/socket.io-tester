@@ -425,14 +425,16 @@ export var SocketIOApp = React.createClass({
 	render: function () {
 		const selectedTab = this.getSelectedTab();
 		return (
-			<div>
+			<div className="main-container">
 				<TabBar tabs={this.state.tabs} addTab={this.addTab} selectTab={this.selectTab} deleteTab={this.deleteTab}/>
 				<SearchBar selectedTab={selectedTab} changeUrl={this.changeUrl} submitSocket={this.submitSocket} refresh={this.refresh} />
 				{(selectedTab.webSocket)?
-					<div>
+					<div className="content-container">
 						<div className={"left " + this.state.slideClass}>
-							<SendMessage addMessage={this.addMessage} selectedTab={selectedTab} changeEvent={this.changeEvent} events={selectedTab.events}/>
-							<ListenEvent url={selectedTab.url} events={selectedTab.events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
+							<div className="scroller">
+								<SendMessage addMessage={this.addMessage} selectedTab={selectedTab} changeEvent={this.changeEvent} events={selectedTab.events}/>
+								<ListenEvent url={selectedTab.url} events={selectedTab.events} addEvent={this.addEvent} checkEvent={this.checkEvent} deleteEvent={this.deleteEvent} removeSocket={this.removeSocket} />
+							</div>
 							<div className="hideBar" onClick={this.slideLeftSide}></div>
 						</div>
 						<RightSide error={selectedTab.error} events={selectedTab.events} url={selectedTab.url} messages={this.getFilteredMessagesForTab()} />

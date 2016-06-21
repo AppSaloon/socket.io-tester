@@ -12,7 +12,7 @@ window.jQuery = $;
 import {SocketIOApp} from './components/socketUIWrapper';
 
 render(
-	<div>
+	<div className="app">
 		<SocketIOApp />
 	</div>
 	, document.getElementById('socketIOApp')

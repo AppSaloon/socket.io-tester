@@ -70,11 +70,11 @@ var EventItem = React.createClass({
 			});
 		}
 	},
-	toggleColorPicker: function(){
+	toggleColorPicker: function(e){
 		if(this.state.hideColorPicker === 'none') {
 			document.addEventListener(`click`, this.eventListener);
 			this.setState({
-				hideColorPicker: 'inline'
+				hideColorPicker: 'block'
 			})
 		} else {
 			this.setState({
@@ -87,15 +87,15 @@ var EventItem = React.createClass({
 	},
 	render: function () {
 		var checkedClass = this.props.event.checked? "glyphicon glyphicon-check":"glyphicon glyphicon-unchecked"
-		var color = {backgroundColor: this.state.color}
+		var color = {backgroundColor: this.state.color};
+
 		return (
 			<div className="checkline">
 				<span className={checkedClass}  onClick={this.handleClick.bind(this, this.props.index)}></span>
 				<span style={(this.props.event.checked)? null:{checkColor: '#D8D5DB'}}>{this.props.event.name}</span>
 				<i className="glyphicon glyphicon-remove checkremove" onClick={this.deleteEvent.bind(this, this.props.index)}></i>
 				<div className="colorEvent" style={color} onClick={this.toggleColorPicker}>
-				</div>
-				<div className="colorPickerContainerBorder" style={{display: this.state.hideColorPicker}}>
+					<div className="colorPickerContainerBorder" style={{display: this.state.hideColorPicker}}>
 					<div className="colorPickerContainer" >
 						<ColorPicker
 							saturationWidth={200}
@@ -105,6 +105,7 @@ var EventItem = React.createClass({
 							onChange={this.handleOnColorChange}
 						/>
 					</div>
+				</div>
 				</div>
 			</div>
 		)
