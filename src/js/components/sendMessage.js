@@ -52,12 +52,33 @@ export const SendMessage = React.createClass({
 		this.setState({messageType: messageType})
 	},
 	getEventList() {
-		let events = this.props.events || [{}];
-		if ( events.length === 1 && !events[0].name ) {
-			events = [];
+		let events = this.props.events.slice();
+		if ( !events[0].name ) {
+			events[0] = {name:''};
+		}
+		if ( events.length !== 1 && !events[0].name ) {
+			events = events.slice(1);
 		}
 		return events;
 	},
+
+
+	matchStateToTerm (state, value) {
+		console.log(arguments)
+	  	return (
+		    state.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+	  	)
+	},
+
+	sortStates (a, b, value) {
+		console.log(arguments)
+	  	return (
+		    a.name.toLowerCase().indexOf(value.toLowerCase()) >
+		    b.name.toLowerCase().indexOf(value.toLowerCase()) ? 1 : -1
+	  	)
+	},
+
+
 	render: function(){
 		return (
 			<div className="sendMessage">
@@ -66,15 +87,23 @@ export const SendMessage = React.createClass({
 					<div className={this.state.errorEvent}>
 						<Autocomplete
 							value={this.state.value}
+							inputProps={{name: "name", id: "test-autocomplete"}}
 							items={this.getEventList()}
 							getItemValue={(item) => item.name}
+          					shouldItemRender={this.matchStateToTerm}
+          					sortItems={this.sortStates}
 							onChange={(event, value) => this.setState({value})}
           					onSelect={value => this.setState({value})}
 							renderItem={(item, isHighlighted) => (
-            					<div className={isHighlighted ? "autocompleteItemSelected" : "autocompleteItem"}>
+            					<div
+            						className={isHighlighted ? "autocompleteItemSelected" : "autocompleteItem"}
+              						key={item.name}
+          						>
 									{item.name}
 								</div>
          					)}
+
+
 						/>
 					</div>
 					<p className="textareaType">{this.state.messageType || '--'}</p>

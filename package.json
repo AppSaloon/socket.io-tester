@@ -7,12 +7,12 @@
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.6.3",
     "jquery": "^3.0.0",
-    "jquery-ui": "^1.10.5",
-    "react": "^15.1.0",
-    "react-autocomplete": "^1.0.0-rc6",
+    "jquery-ui": "1.10.5",
+    "react": "15.1.0",
+    "react-autocomplete": "^1.0.1",
     "react-color-picker": "^3.1.0",
-    "react-dom": "^15.1.0",
-    "react-object-inspector": "^0.2.1",
+    "react-dom": "15.1.0",
+    "react-inspector": "^1.0.1",
     "socket.io-client": "^1.4.6"
   },
   "devDependencies": {
@@ -34,6 +34,9 @@
     "url": "git+https://github.com/AppSaloon/chrome-app_socket.io-tester.git"
   },
   "author": "Jo Jordens",
-  "contributors": ["Toon Nelissen", "Jordy Polders"],
+  "contributors": [
+    "Toon Nelissen",
+    "Jordy Polders"
+  ],
   "license": "GPL-2.0"
 }

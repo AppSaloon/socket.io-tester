@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ObjectInspector from 'react-object-inspector';
+import ObjectInspector from 'react-inspector';
 
 export var RightSide = React.createClass({
 	message: function(message, index){
@@ -79,9 +79,11 @@ class MessageDiv extends Component {
 					<div className="messageText">
 						<b>Message: </b>
 						<p className="textMessage" style={(message.type === 'Json'||message.type === 'Object')?{display: "none"}:null}>{message.message}</p>
-						<div className="objectContainer" style={(message.type === 'String')? {display: 'none'}: null}>
-							<ObjectInspector data={data} />
-						</div>
+						{data?
+							<div className="objectContainer">
+								<ObjectInspector data={data} />
+							</div>
+						:null}
 					</div>
 				</div>
 			</div>
