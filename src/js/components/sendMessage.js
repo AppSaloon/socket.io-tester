@@ -64,14 +64,12 @@ export const SendMessage = React.createClass({
 
 
 	matchStateToTerm (state, value) {
-		console.log(arguments)
 	  	return (
 		    state.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
 	  	)
 	},
 
 	sortStates (a, b, value) {
-		console.log(arguments)
 	  	return (
 		    a.name.toLowerCase().indexOf(value.toLowerCase()) >
 		    b.name.toLowerCase().indexOf(value.toLowerCase()) ? 1 : -1
@@ -86,8 +84,20 @@ export const SendMessage = React.createClass({
 				<form ref='form' onSubmit={this.addMessage}>
 					<div className={this.state.errorEvent}>
 						<Autocomplete
+							menuStyle={{
+								left: 10,
+								top: 70,
+								minWidth: 220,
+								borderRadius: 3,
+								boxShadow: "rgba(0, 0, 0, 0.0980392) 0px 2px 12px",
+								padding: "2px 0px",
+								fontSize: "90%",
+							    position: "fixed",
+							    overflow: "auto",
+							    maxHeight: "50%",
+							    background: "rgba(255, 255, 255, 0.901961)"
+							}}
 							value={this.state.value}
-							inputProps={{name: "name", id: "test-autocomplete"}}
 							items={this.getEventList()}
 							getItemValue={(item) => item.name}
           					shouldItemRender={this.matchStateToTerm}
