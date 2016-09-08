@@ -5,7 +5,9 @@ export const SendMessage = React.createClass({
 	getInitialState : function () {
 		return {
 			value: "",
-			errorEvent: "autocompleteContainer"
+			errorEvent: "autocompleteContainer",
+			messageType: '--',
+			message: ''
 		}
 	},
 	checkError: function(event, message, tab){
@@ -22,37 +24,44 @@ export const SendMessage = React.createClass({
 	addMessage: function (e) {
 		e.preventDefault();
 		var event = this.state.value;
-		var message = this.refs.textOfMessage.value;
+		var message = this.state.message.slice();
 		var type = this.state.messageType;
 		if ( type === 'JSON' ) {
 			message = JSON.parse(message)
 		}
 		var errorMessage = "Please fill in all form fields!";
-		if (event != '' && message != '') {
+		if ( event && message ) {
 			this.props.addMessage(event, message, type);
-			this.state.value = "";
-			this.refs.form.reset();
-			this.setState({errorMessage: null, errorTextarea: null, errorEvent: 'autocompleteContainer', messageType: '--'});
+			this.setState({errorMessage: null, errorTextarea: null, errorEvent: 'autocompleteContainer'});
 		} else {
 			this.setState({errorMessage: errorMessage});
 			this.checkError(event, message);
 		}
 	},
-	changeType: function () {
-		var message = this.refs.textOfMessage.value;
-		var messageType = this.props.type;
-		if(message != ''){
+
+	changeMessage (e) {
+		const message = e.target.value
+		const messageType = this.getNewType(message)
+		this.setState({
+			message,
+			messageType
+		})
+	},
+
+	getNewType (message) {
+		let result
+		if ( message !== '' ) {
 			try {
-				var x = JSON.parse(message);
-				messageType = 'JSON';
+				JSON.parse(message);
+				result = 'JSON';
 			}
 			catch(err){
-				messageType = 'String';
+				result = 'String';
 			}
 		} else {
-			messageType = '--'
+			result = '--'
 		}
-		this.setState({messageType: messageType})
+		return result
 	},
 	getEventList() {
 		let events = this.props.events.slice();
@@ -79,12 +88,20 @@ export const SendMessage = React.createClass({
 	  	)
 	},
 
+	clearTextField (e) {
+		e.preventDefault()
+		return this.setState({
+			message: '',
+			messageType: '--'
+		});
+	},
+
 
 	render: function(){
 		return (
 			<div className="sendMessage">
 				<h3>Send Message</h3>
-				<form ref='form' onSubmit={this.addMessage}>
+				<form onSubmit={this.addMessage}>
 					<div className={this.state.errorEvent}>
 						<Autocomplete
 							menuStyle={{
@@ -119,19 +136,19 @@ export const SendMessage = React.createClass({
 
 						/>
 					</div>
-					<p className="textareaType">{this.state.messageType || '--'}</p>
+					<p className="textareaType">{this.state.messageType} <span><button className="button" onClick={this.clearTextField}>Clear</button></span></p>
 					<textarea 
 						name="message"
 						className={this.state.errorTextarea}
 						rows="7" 
 						cols="30" 
 						placeholder="String, JSON" 
-						ref="textOfMessage" 
-						onChange={this.changeType}
+						value={this.state.message}
+						onChange={this.changeMessage}
 					>
 					</textarea>
 					<p className="errorMessage">{this.state.errorMessage}</p>
-					<button className="button" type="button" onClick={this.addMessage}>Send message</button>
+					<input className="button" type="submit" value="Send message" />
 				</form>
 			</div>
 		)

@@ -88,10 +88,11 @@ export var SocketIOApp = React.createClass({
 	},
 	deleteTab: function(tabIndex){
 		var tabs = this.state.tabs.slice(0); //Slice tabs Array with 0 to copy
-		var tabWasSelected = tabs[tabIndex].selected === true;
+		var currentTab = tabs[tabIndex]
+		var tabWasSelected = currentTab.selected === true;
 
-		if (this.getSelectedTab().webSocket !== null) {
-			this.getSelectedTab().webSocket.destroy()
+		if (currentTab.webSocket !== null) {
+			currentTab.webSocket.destroy()
 		}
 		tabs.splice(tabIndex, 1);
 
@@ -107,8 +108,8 @@ export var SocketIOApp = React.createClass({
 		}
 
 		if (tabWasSelected) {
-			if (tabs[tabIndex]) {
-				tabs[tabIndex].selected = true;
+			if (currentTab) {
+				currentTab.selected = true;
 			} else {
 				tabs[tabIndex-1].selected = true;
 			}
