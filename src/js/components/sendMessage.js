@@ -24,6 +24,9 @@ export const SendMessage = React.createClass({
 		var event = this.state.value;
 		var message = this.refs.textOfMessage.value;
 		var type = this.state.messageType;
+		if ( type === 'JSON' ) {
+			message = JSON.parse(message)
+		}
 		var errorMessage = "Please fill in all form fields!";
 		if (event != '' && message != '') {
 			this.props.addMessage(event, message, type);
@@ -41,7 +44,7 @@ export const SendMessage = React.createClass({
 		if(message != ''){
 			try {
 				var x = JSON.parse(message);
-				messageType = 'Json';
+				messageType = 'JSON';
 			}
 			catch(err){
 				messageType = 'String';
@@ -122,7 +125,7 @@ export const SendMessage = React.createClass({
 						className={this.state.errorTextarea}
 						rows="7" 
 						cols="30" 
-						placeholder="String, json" 
+						placeholder="String, JSON" 
 						ref="textOfMessage" 
 						onChange={this.changeType}
 					>

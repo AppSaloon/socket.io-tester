@@ -26,8 +26,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bash ./bin/dev",
-    "build": "bash ./bin/build"
+    "dev": "bash ./bin/dev.sh",
+    "build": "bash ./bin/build.sh"
   },
   "repository": {
     "type": "git",

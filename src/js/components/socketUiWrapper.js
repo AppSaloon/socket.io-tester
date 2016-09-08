@@ -149,13 +149,13 @@ export var SocketIOApp = React.createClass({
 		})
 	},
 	addMessage: function(event, message, type) {
-		try{
-			var x = JSON.parse(message);
-			type = 'Json';
-		}
-		catch(err){
-			type = 'String';
-		}
+		// try{
+		// 	var x = JSON.parse(message);
+		// 	type = 'Json';
+		// }
+		// catch(err){
+		// 	type = 'String';
+		// }
 
 		var color = this.addMessageColor(event);
 
