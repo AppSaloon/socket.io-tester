@@ -4,6 +4,10 @@ export var SearchBar = React.createClass({
 	componentDidMount() {
 	    document.getElementById('searchField').focus()
 	},
+	componentWillUpdate(nextProps, nextState) {
+	    if ( !nextProps.selectedTab.url && this.props.selectedTab.url )
+	    	document.getElementById('searchField').focus()
+	},
 	changeUrl: function() {
 		var val = this.refs.url.value;
 		this.props.changeUrl(val);
