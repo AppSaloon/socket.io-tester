@@ -81,9 +81,17 @@ class MessageDiv extends Component {
 		const message = this.props.message;
 		const color = {borderColor: this.props.color};
 		let data;
-		if (message.type === 'Json'||message.type === 'Object') {
-			data = JSON.parse(message.message);
+		const showObject = message.type === 'JSON'||message.type === 'Object'
+		if (showObject) {
+			try {
+				data = JSON.parse(message.message);
+			}
+			catch (error) {
+				data = message.message
+			}
 		}
+		console.log(message)
+		console.log(data)
 		return (
 			<div className={(message.author === 'Me')?'messageContainerMe':'messageContainerSocket'}>
 				<div className={(message.author === 'Me')?'messageBoxMe':'messageBoxSocket'} style={color}>
@@ -95,7 +103,7 @@ class MessageDiv extends Component {
 					</div>
 					<div className="messageText">
 						<b>Message: </b>
-						<p className="textMessage" style={(message.type === 'Json'||message.type === 'Object')?{display: "none"}:null}>{message.message}</p>
+						<p className="textMessage" style={(showObject)?{display: "none"}:null}>{!showObject?message.message:null}</p>
 						{data?
 							<div className="objectContainer">
 								<ObjectInspector data={data} />

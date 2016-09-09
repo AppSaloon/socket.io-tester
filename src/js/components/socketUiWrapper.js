@@ -150,7 +150,7 @@ export var SocketIOApp = React.createClass({
 	addMessage: function(event, message, type) {
 		// try{
 		// 	var x = JSON.parse(message);
-		// 	type = 'Json';
+		// 	type = 'JSON';
 		// }
 		// catch(err){
 		// 	type = 'String';
@@ -260,7 +260,7 @@ export var SocketIOApp = React.createClass({
 		} else {
 			try{
 				var x = JSON.parse(message);
-				type = 'Json';
+				type = 'JSON';
 			}
 			catch(err){
 				type = 'String';
