@@ -293,6 +293,7 @@ export var SocketIOApp = React.createClass({
 		if ( messages.length > 99 ) {
 			messages.shift();
 		}
+		message.id = new Date().getTime()
 		messages.push(message);
 		tab.messages = messages;
 	},

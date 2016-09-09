@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import ObjectInspector from 'react-inspector';
 
 export var RightSide = React.createClass({
-	message: function(message, index){
-		const color = this.props.events.find(function(e){
-			return e.name === message.event;
-		}).color;
-		return <MessageDiv url={this.props.url} color={color} key={index} message={message}/>;
-	},
 	render: function(){
 		let content;
 		const error = this.props.error;
@@ -20,11 +14,7 @@ export var RightSide = React.createClass({
 				</div>
 			);
 		} else if ( this.props.messages.length !== 0 ) {
-			content = (
-				<div className="right">
-					 {this.props.messages.map(this.message).reverse()}
-				</div>
-			);
+			content = <Messages url={this.props.url} events={this.props.events} messages={this.props.messages} />
 		} else {
 			content = (
 				<div className="right">
@@ -59,7 +49,34 @@ export var RightSide = React.createClass({
 	}
 })
 
+class Messages extends Component {
+	constructor (props) {
+		super(props)
+
+		this.message = this.message.bind(this)
+	}
+
+	message (message, index) {
+		const color = this.props.events.find(function(e){
+			return e.name === message.event;
+		}).color;
+		return <MessageDiv url={this.props.url} color={color} key={message.id} message={message}/>;
+	}
+
+	render () {
+		const messagesToRender = this.props.messages
+		return (
+			<div className="right">
+				{messagesToRender.map(this.message).reverse()}
+			</div>
+		)
+	}
+}
+
 class MessageDiv extends Component {
+	shouldComponentUpdate(nextProps, nextState) {
+	    return false;
+	}
 	render () {
 		const message = this.props.message;
 		const color = {borderColor: this.props.color};
