@@ -136,7 +136,11 @@ export const SendMessage = React.createClass({
 
 						/>
 					</div>
-					<p className="textareaType">{this.state.messageType} <span><button className="button" onClick={this.clearTextField}>Clear</button></span></p>
+					<p className="textareaType">{this.state.messageType} 
+						<span>
+							<button className="clear_button" onClick={this.clearTextField}>Clear</button>
+						</span>
+					</p>
 					<textarea 
 						name="message"
 						className={this.state.errorTextarea}
