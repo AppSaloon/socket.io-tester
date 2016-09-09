@@ -108,12 +108,10 @@ export var SocketIOApp = React.createClass({
 		}
 
 		if (tabWasSelected) {
-			if (currentTab) {
-				currentTab.selected = true;
-			} else {
-				tabs[tabIndex-1].selected = true;
-			}
-			
+			if ( tabs[tabIndex] )
+				tabs[tabIndex].selected = true
+			else
+				tabs[tabIndex-1].selected = true
 		}
 
 		this.setState({
