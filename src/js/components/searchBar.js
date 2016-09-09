@@ -1,6 +1,9 @@
 import React from 'react';
 
 export var SearchBar = React.createClass({
+	componentDidMount() {
+	    document.getElementById('searchField').focus()
+	},
 	changeUrl: function() {
 		var val = this.refs.url.value;
 		this.props.changeUrl(val);
@@ -23,6 +26,7 @@ export var SearchBar = React.createClass({
 					<i className={(this.props.selectedTab.webSocket === null)?"glyphicon glyphicon-search": "fa fa-rss"}></i>
 					<input 
 						className="searchfield"
+						id="searchField"
 						type="text"
 						ref='url'
 						value={this.props.selectedTab.url} 
