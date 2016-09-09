@@ -90,8 +90,6 @@ class MessageDiv extends Component {
 				data = message.message
 			}
 		}
-		console.log(message)
-		console.log(data)
 		return (
 			<div className={(message.author === 'Me')?'messageContainerMe':'messageContainerSocket'}>
 				<div className={(message.author === 'Me')?'messageBoxMe':'messageBoxSocket'} style={color}>

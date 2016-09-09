@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "Socket.io tester",
   "description": "This app lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
-  "version": "0.1.0",
-  "version_name": "v1 beta (0.1.0)",
+  "version": "1.0.0",
+  "version_name": "v1 (1.0.0)",
   "author": "Jo Jordens, Toon Nelissen, Jordy Polders",
   "app": {
     "background": {

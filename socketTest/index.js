@@ -11,6 +11,10 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 	});
+	socket.on('a', (msg) => {
+		console.log(msg)
+		console.log(Object.prototype.toString.apply(msg).slice(8, -1))
+	})
 	socket.on('chat message', function(msg){
 		console.log('message: ' + msg);
 		io.emit('chat message', msg);
@@ -27,8 +31,9 @@ var x = 0,
 function startIntervals () {
 	setInterval(function () {
 		x++;
-		io.emit('test', 'A - message'+x);
-	}, 3000);
+		io.emit('test', {message: x});
+		// io.emit('test', 'A - message'+x);
+	}, 500);
 
 	setInterval(function () {
 		y++;
