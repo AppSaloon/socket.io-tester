@@ -39,6 +39,3 @@ start test server by running `node socketTest/index.js`
 
 
 
-
-
-socket.io.js had to be modified to run inside app (not since electron version)
