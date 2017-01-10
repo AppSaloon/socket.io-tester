@@ -5,13 +5,16 @@ certain topic and/or lets you send socket messages to the server
 ---
 
 ##### Install node modules
-`$ npm install`
+`$ yarn install`
 
 ##### Build for development
-`$ npm run dev`
+`$ yarn run dev`
 
-##### build app for chrome
-`$ npm run build`
+##### build app for electron
+* build
+`$ yarn run build`
+* and run electron
+`$ node_modules/.bin/electron .`
 
 ---
 
@@ -38,4 +41,4 @@ start test server by running `node socketTest/index.js`
 
 
 
-socket.io.js had to be modified to run inside app
+socket.io.js had to be modified to run inside app (not since electron version)

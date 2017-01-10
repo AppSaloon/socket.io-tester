@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    font-family: helvetica;
+    // height: 100%;
+    // min-height: 100vh;
+    color: #333;
+    // display: flex;
+    overflow: hidden;
+}
+
+// #app {
+//     flex: 1;
+// }
+
+.container {
+    // height: 100%;
+    // display: flex;
+    // flex-flow: column;
+}
+
+.container-body {
+    display: flex;
+    // flex: 1;
+}
+
+.divider {
+    background-color: #7a54a8;
+    width: 10px
+}
+
+.hidden {
+    display: none;
+}
+
+// .clickable {
+//     cursor: pointer;
+// }
+
+.colorpicker {
+    z-index: 10;
+    position: absolute;
+    left: 12%;
+}

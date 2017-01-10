@@ -36,6 +36,11 @@ function startIntervals () {
 	}, 500);
 
 	setInterval(function () {
+		x++;
+		io.emit('test2', true);
+	}, 2000);
+
+	setInterval(function () {
 		y++;
 		nsp.emit('test', 'nsp - message'+x);
 	}, 3000);
