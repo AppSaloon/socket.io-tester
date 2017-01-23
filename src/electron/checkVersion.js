@@ -21,8 +21,8 @@ function getRelease () {
 
             res.on("end", function () {
                 const body = Buffer.concat(chunks)
-                if ( res.statusCode !== 200 ) return reject(body.toString())
-                return resolve(body.toString())
+                if ( res.statusCode !== 200 ) return reject(JSON.parse(body.toString()))
+                return resolve(JSON.parse(body.toString()))
             })
         })
 
@@ -37,16 +37,11 @@ async function checkVersion (appWindow) {
     win = appWindow
     try {
         const release = await getRelease()
-        if ( Object.prototype.toString.apply(release).slice(8, -1) === 'Object' && release.name === version )
-            sendMessageToWindow({channel: 'showUpdateNotification'})
+        if ( Object.prototype.toString.apply(release).slice(8, -1) === 'Object' && release.name !== `v${version}` )
+            sendMessageToWindow({channel: 'showUpdateNotification', message: release.name})
     }
     catch (error) {
-        let parsedError = error
-        try {
-            parsedError = JSON.parse(error)
-        }
-        catch (error) {}
-        sendMessageToWindow({channel: 'showUpdateErrorNotification', message: parsedError})
+        sendMessageToWindow({channel: 'showUpdateErrorNotification', message: error})
     }
 }
 

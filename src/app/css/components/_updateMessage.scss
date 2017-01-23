@@ -6,9 +6,15 @@
     justify-content: center;
     align-items: center;
     top: 0;
-    span {
+    > span {
         border-radius: 5px;
         padding: 10px;
-        background-origin: #e6e6e6;
+        background-color: #e6e6e6;
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        a {
+            color: blue;
+        }
     }
 }
