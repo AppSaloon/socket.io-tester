@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MessageViewer from './MessageViewer'
+import MessageView from './MessageView'
 
 const Message = ({message}) =>
     <div className={`message ${message.right ? 'message-right' : ''}`}>
@@ -14,7 +14,7 @@ const Message = ({message}) =>
             <span className="message-text-title">Type:</span>
             <span className="message-text-content">{message.isJson ? 'JSON' : message.messageType}</span>
         </div>
-        <MessageViewer message={message} />
+        <MessageView message={message} />
     </div>
 
 export default Message

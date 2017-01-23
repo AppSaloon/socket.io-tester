@@ -5,6 +5,7 @@ import Head from        './head/Head'
 import Message from     './messages/Messages'
 import Search from      './search/Search'
 import ColorPicker from './ColorPicker'
+import UpdateMessage from './UpdateMessage'
 
 const App = () =>
     <div className="container">
@@ -16,6 +17,7 @@ const App = () =>
             <Message />
         </div>
         <ColorPicker />
+        <UpdateMessage />
     </div>
 
 export default App

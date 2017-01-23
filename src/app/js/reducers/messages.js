@@ -26,6 +26,9 @@ function addMessage (state, action) {
 
     eventMessages.push({message: action.message, timestamp: new Date().getTime()})
 
+    if ( eventMessages.length > 60 )
+        eventMessages.shift()
+
     socketCollection[eventName] = eventMessages
 
     return Object.assign({}, state, {[id]: socketCollection})

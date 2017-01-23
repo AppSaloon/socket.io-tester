@@ -47,6 +47,7 @@ class MessageSender extends Component {
     }
 
     handleMessageChange (newValue) {
+        console.log(newValue)
         this.setState({
             message: newValue,
             messageIsJson: this.jsonOrText(newValue)

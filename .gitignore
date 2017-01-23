@@ -1,4 +1,4 @@
 node_modules/
-build/
-app/
-electron/
+/build/
+/app/
+/electron/

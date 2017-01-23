@@ -2,6 +2,9 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 
+import createMenu from './menu'
+import checkVersion from './checkVersion'
+
 let win
 
 function createWindow () {
@@ -21,9 +24,19 @@ function createWindow () {
     win.on('closed', () => {
         win = null
     })
+
+    win.webContents.openDevTools()
+
+    win.webContents.once('did-finish-load', () => {
+        win.isReady = true
+    })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+    createWindow()
+    createMenu()
+    checkVersion(win)
+})
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {

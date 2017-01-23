@@ -1,3 +1,4 @@
 {
-    "presets": [ "latest", "react" ]
+    "plugins": [ "transform-es2015-modules-commonjs", "transform-regenerator" ],
+    "presets": [ "react" ]
 }

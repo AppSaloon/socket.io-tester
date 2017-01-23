@@ -73,3 +73,20 @@
     top: 10px;
     right: 10px;
 }
+
+.messages-top-buttons {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-bottom: 60px;
+    .messages-top-buttons-spacer {
+        flex: 0 0 2%;
+    }
+    .messages-top-buttons-button {
+        cursor: pointer;
+        background-color: #7a54a8;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+}

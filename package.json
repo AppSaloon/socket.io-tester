@@ -1,22 +1,25 @@
 {
   "name": "_electronapp",
   "version": "1.0.0",
-  "main": "app/electron.js",
+  "main": "app/index.js",
   "license": "GPL-2.0",
   "scripts": {
     "dev": "bash .bin/dev.sh",
-    "build": "bash .bin/build.sh"
+    "build": "bash .bin/build.sh",
+    "electron": "node_modules/.bin/electron ."
   },
   "devDependencies": {
     "asar": "0.12.4",
     "babel-cli": "6.18.0",
-    "babel-preset-latest": "6.16.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-regenerator": "^6.18.0",
     "babel-preset-react": "6.16.0",
+    "babelify": "^7.3.0",
     "browser-sync": "2.18.5",
     "browserify": "13.3.0",
     "node-sass": "4.1.1",
-    "watchify": "3.8.0",
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^2.7.5",
+    "watchify": "3.8.0"
   },
   "dependencies": {
     "codemirror": "5.22.0",
