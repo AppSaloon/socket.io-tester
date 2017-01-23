@@ -27,7 +27,8 @@ http.listen(3150, function(){
 });
 
 var x = 0,
-	y = 0;
+	y = 0,
+	z = 0;
 function startIntervals () {
 	setInterval(function () {
 		x++;
@@ -36,9 +37,19 @@ function startIntervals () {
 	}, 500);
 
 	setInterval(function () {
+		x++;
+		io.emit('test2', true);
+	}, 2000);
+
+	setInterval(function () {
 		y++;
 		nsp.emit('test', 'nsp - message'+x);
 	}, 3000);
+
+	setInterval(function () {
+		z++;
+		io.emit('testfast', z);
+	}, 80);
 }
 
 var nsp = io.of('/asd');

@@ -1,0 +1,92 @@
+.messages {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    overflow: auto;
+    height: calc(100vh - 70px);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.message {
+    position: relative;
+    background-color: #eee;
+    width: 600px;
+    padding: 10px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    &.message-right {
+        align-self: flex-end;
+    }
+}
+
+.message-sidebar {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+}
+
+.message-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-text-title {
+    width: 10%;
+    font-weight: 600;
+}
+
+.message-text-content {
+    flex: 1
+}
+
+.message-preview {
+    .message-text {
+        margin-bottom: 10px;
+    }
+    .message-preview-toggle {
+        color: white;
+        border: none;
+        outline: none;
+        background-color: #7a54a8;
+    }
+    .CodeMirror {
+        height: 80px;
+    }
+}
+
+.message-text-date {
+    color: grey;
+    font-size: small;
+}
+
+.message-remove-all-button {
+    color: white;
+    background-color: #7a54a8;
+    align-self: flex-end;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.messages-top-buttons {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-bottom: 60px;
+    .messages-top-buttons-spacer {
+        flex: 0 0 2%;
+    }
+    .messages-top-buttons-button {
+        cursor: pointer;
+        background-color: #7a54a8;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+}

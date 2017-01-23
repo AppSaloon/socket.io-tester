@@ -1,42 +1,37 @@
 {
-  "name": "socket.io-tester",
-  "version": "0.1.0",
-  "description": "A chrome app that lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server",
-  "main": "index.html",
-  "dependencies": {
-    "bootstrap": "^3.3.6",
-    "font-awesome": "^4.6.3",
-    "jquery": "^3.0.0",
-    "jquery-ui": "1.10.5",
-    "react": "15.1.0",
-    "react-autocomplete": "^1.0.1",
-    "react-color-picker": "^3.1.0",
-    "react-dom": "15.1.0",
-    "react-inspector": "^1.0.1",
-    "socket.io-client": "^1.4.6"
+  "name": "_electronapp",
+  "version": "1.0.0",
+  "main": "app/index.js",
+  "license": "GPL-2.0",
+  "scripts": {
+    "dev": "bash .bin/dev.sh",
+    "build": "bash .bin/build.sh",
+    "electron": "node_modules/.bin/electron ."
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "asar": "0.12.4",
+    "babel-cli": "6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-regenerator": "^6.18.0",
+    "babel-preset-react": "6.16.0",
     "babelify": "^7.3.0",
-    "browser-sync": "^2.12.8",
-    "browserify": "^13.0.1",
-    "node-sass": "^3.7.0",
-    "watchify": "^3.7.0"
+    "browser-sync": "2.18.5",
+    "browserify": "13.3.0",
+    "node-sass": "4.1.1",
+    "uglify-js": "^2.7.5",
+    "watchify": "3.8.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bash ./bin/dev.sh",
-    "build": "bash ./bin/build.sh"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AppSaloon/chrome-app_socket.io-tester.git"
-  },
-  "author": "Jo Jordens",
-  "contributors": [
-    "Toon Nelissen",
-    "Jordy Polders"
-  ],
-  "license": "GPL-2.0"
+  "dependencies": {
+    "codemirror": "5.22.0",
+    "electron": "1.4.13",
+    "react": "15.4.1",
+    "react-autosuggest": "7.1.0",
+    "react-codemirror": "0.3.0",
+    "react-color": "2.10.0",
+    "react-dom": "15.4.1",
+    "react-inspector": "1.1.2",
+    "react-redux": "5.0.1",
+    "redux": "3.6.0",
+    "socket.io-client": "1.7.2"
+  }
 }

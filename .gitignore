@@ -1,5 +1,4 @@
-node_modules
-bower_components
-build/
-src/compiled
-build_app
+node_modules/
+/build/
+/app/
+/electron/
