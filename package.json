@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "bash .bin/dev.sh",
     "build": "bash .bin/build.sh",
-    "electron": "node_modules/.bin/electron ."
+    "electron": "node_modules/.bin/electron .",
+    "electron-build": "bash .bin/electron-build.sh"
   },
   "devDependencies": {
     "asar": "0.12.4",

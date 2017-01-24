@@ -8,6 +8,7 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
 	console.log('a user connected');
+	// socket.join('testRoom')
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 	});
@@ -33,6 +34,7 @@ function startIntervals () {
 	setInterval(function () {
 		x++;
 		io.emit('test', {message: x});
+		// io.to('testRoom').emit('test', x);
 		// io.emit('test', 'A - message'+x);
 	}, 500);
 
