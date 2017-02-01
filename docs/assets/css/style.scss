@@ -39,3 +39,11 @@ background: -ms-linear-gradient(top,  #d12d00 36%,#aa2000 100%);
 background: linear-gradient(top,  #d12d00 36%,#aa2000 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12d00', endColorstr='#aa2000',GradientType=0 );
 }
+button{
+      border: 0;
+    padding: 0;
+    background: transparent;
+}
+a:hover{
+  text-decoration: none;
+}
