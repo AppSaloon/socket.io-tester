@@ -4,58 +4,66 @@
 @import "{{ site.theme }}";
 @keyframes fly_in_from_right {
   0% {
-    transform: translate(350px,0);
-    -webkit-transform: translate(350px,0);
-    -o-transform: translate(350px,0);
-    -moz-transform: translate(350px,0);
+    transform: translate(50px,0);
+    -webkit-transform: translate(50px,0);
+    -o-transform: translate(50px,0);
+    -moz-transform: translate(50px,0);
+     opacity: 0.5;
   }
   100% {
    transform: translate(0,0);
     -webkit-transform: translate(0,0);
     -o-transform: translate(0,0);
     -moz-transform: translate(0,0); 
+     opacity: 1.0;
   }
 }
 @-webkit-keyframes fly_in_from_right {
   0% {
-    transform: translate(350px,0);
-    -webkit-transform: translate(350px,0);
-    -o-transform: translate(350px,0);
-    -moz-transform: translate(350px,0);
+    transform: translate(50px,0);
+    -webkit-transform: translate(50px,0);
+    -o-transform: translate(50px,0);
+    -moz-transform: translate(50px,0);
+     opacity: 0.5;
   }
   100% {
    transform: translate(0,0);
     -webkit-transform: translate(0,0);
     -o-transform: translate(0,0);
     -moz-transform: translate(0,0); 
+     opacity: 1.0;
   }
 }
 @keyframes fly_in_from_left {
   0% {
-    transform: translate(-350px,0);
-    -webkit-transform: translate(-350px,0);
-    -o-transform: translate(-350px,0);
-    -moz-transform: translate(-350px,0);
+    transform: translate(-50px,0);
+    -webkit-transform: translate(-50px,0);
+    -o-transform: translate(-50px,0);
+    -moz-transform: translate(-50px,0);
+     opacity: 0.5;
   }
   100% {
    transform: translate(0,0);
     -webkit-transform: translate(0,0);
     -o-transform: translate(0,0);
     -moz-transform: translate(0,0); 
+     opacity: 1.0;
   }
 }
 @-webkit-keyframes fly_in_from_left {
   0% {
-    transform: translate(-350px,0);
-    -webkit-transform: translate(-350px,0);
-    -o-transform: translate(-350px,0);
-    -moz-transform: translate(-350px,0);
+    transform: translate(-50px,0);
+    -webkit-transform: translate(-50px,0);
+    -o-transform: translate(-50px,0);
+    -moz-transform: translate(-50px,0);
+     opacity: 0.5;
   }
   100% {
    transform: translate(0,0);
     -webkit-transform: translate(0,0);
     -o-transform: translate(0,0);
     -moz-transform: translate(0,0); 
+     opacity: 1.0;
   }
 }
 button a {
