@@ -9,4 +9,4 @@ An electron app that lets you connect to a socket.io server and subscribe to a c
 ### More info:
 - [release page](https://github.com/AppSaloon/socket.io-tester/releases)
 - [sourcecode](https://github.com/AppSaloon/socket.io-tester)
-- [appsaloon](https://appsaloon.be/)
+- [AppSaloon](https://appsaloon.be/)
