@@ -47,3 +47,10 @@ button{
 a:hover{
   text-decoration: none;
 }
+.inner {
+    max-width: 1024px;
+}
+.content-left, .content-right{
+  width: 50%;
+  float: left;
+}
