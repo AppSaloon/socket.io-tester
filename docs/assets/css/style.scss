@@ -2,6 +2,62 @@
 ---
 
 @import "{{ site.theme }}";
+@keyframes fly_in_from_right {
+  0% {
+    transform: translate(350px,0);
+    -webkit-transform: translate(350px,0);
+    -o-transform: translate(350px,0);
+    -moz-transform: translate(350px,0);
+  }
+  100% {
+   transform: translate(0,0);
+    -webkit-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -moz-transform: translate(0,0); 
+  }
+}
+@-webkit-keyframes fly_in_from_right {
+  0% {
+    transform: translate(350px,0);
+    -webkit-transform: translate(350px,0);
+    -o-transform: translate(350px,0);
+    -moz-transform: translate(350px,0);
+  }
+  100% {
+   transform: translate(0,0);
+    -webkit-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -moz-transform: translate(0,0); 
+  }
+}
+@keyframes fly_in_from_left {
+  0% {
+    transform: translate(-350px,0);
+    -webkit-transform: translate(-350px,0);
+    -o-transform: translate(-350px,0);
+    -moz-transform: translate(-350px,0);
+  }
+  100% {
+   transform: translate(0,0);
+    -webkit-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -moz-transform: translate(0,0); 
+  }
+}
+@-webkit-keyframes fly_in_from_left {
+  0% {
+    transform: translate(-350px,0);
+    -webkit-transform: translate(-350px,0);
+    -o-transform: translate(-350px,0);
+    -moz-transform: translate(-350px,0);
+  }
+  100% {
+   transform: translate(0,0);
+    -webkit-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -moz-transform: translate(0,0); 
+  }
+}
 button a {
   display: block;
   height: 50px;
@@ -49,8 +105,34 @@ a:hover{
 }
 .inner {
     max-width: 1024px;
+  min-width: 100px;
 }
 .content-left, .content-right{
   width: 50%;
   float: left;
+  padding: 15px;
+  box-sizing: border-box;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.6s;
+}
+.content-left{
+  animation-name: fly_in_from_left;
+
+}
+.content-right{
+  animation-name: fly_in_from_right;
+}
+.content-right img{
+  width: 100%;
+}
+.clear{
+  clear: both;
+}
+
+@media screen and (max-width: 992px){
+  .content-left, .content-right{
+  width: 100%;
+  float: none;
+}
 }
