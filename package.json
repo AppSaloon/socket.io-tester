@@ -7,7 +7,8 @@
     "dev": "bash .bin/dev.sh",
     "build": "bash .bin/build.sh",
     "electron": "node_modules/.bin/electron .",
-    "electron-build": "bash .bin/electron-build.sh"
+    "electron-build": "bash .bin/electron-build.sh",
+    "package": "bash .bin/package.sh"
   },
   "devDependencies": {
     "asar": "0.12.4",
@@ -18,6 +19,7 @@
     "babelify": "^7.3.0",
     "browser-sync": "2.18.5",
     "browserify": "13.3.0",
+    "electron-packager": "^8.5.1",
     "node-sass": "4.1.1",
     "uglify-js": "^2.7.5",
     "watchify": "3.8.0"
