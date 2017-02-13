@@ -15,10 +15,11 @@ const TextBar = ({url, originalUrl, changeUrl, setUrl, connected}) =>
 
 function getIcon (url, connected) {
     let result
+    const customStyle = {transform: 'rotate(45deg)', transformOrigin: 'bottom', left: -7, position: 'relative'}
     if ( connected )
-        result = <ConnectionIcon size={20} color={'green'} customStyle={{transform: 'rotate(45deg)', transformOrigin: 'bottom', left: -7, position: 'relative'}} />
+        result = <ConnectionIcon size={20} color={'green'} customStyle={customStyle} />
     else if ( !connected && url )
-        result = <ConnectionIcon size={20} color={'red'} customStyle={{transform: 'rotate(45deg)', transformOrigin: 'bottom', left: -7, position: 'relative'}} />
+        result = <ConnectionIcon size={20} color={'red'} customStyle={customStyle} />
     else
         result = <SearchIcon size={20} color={'#333'} />
     return result
