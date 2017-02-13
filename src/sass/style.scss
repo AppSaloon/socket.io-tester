@@ -35,6 +35,7 @@ input {
 	position: fixed;
 	z-index: 3;
 	background-color: #E6E6E6;
+	top: 50px;
 	height: 30px;
 	width: 100%;
 }
@@ -127,7 +128,7 @@ input {
 	position: fixed;
 	z-index: 3;
 	background-color: #7A54A8;
-	top:30px;
+	top:80px;
 	padding: 5px 0px 5px 10px;
 	width: 100%;
 	i.glyphicon-repeat{
@@ -183,7 +184,7 @@ input {
 .left {
 	position: fixed;
 	background-color: #E6E6E6;
-	top: 70px;
+	top: 120px;
 	width: 260px;
 	height: calc(100% - 70px);
 	min-height: 150px;
@@ -210,7 +211,7 @@ input {
 .right {
 	float: right;
 	margin-right: 20px;
-	margin-top: 70px;
+	margin-top: 120px;
 	width: calc(100% - 300px);
 	z-index: 20;
 }
@@ -558,9 +559,26 @@ textarea:hover, .event:hover, .eventInput:hover {
 
 .noConnectPage {
 	position: fixed;
-	top: 50px;
+	top: 100px;
 	left: 25%;
 	width: 600px;
 	padding: 0 5px 0 5px;
 	margin-top: 30px;
+}
+
+.update-alert {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	color: white;
+	background-color: #da4343;
+	a {
+		color: #133048;
+		text-decoration: underline;
+	}
 }

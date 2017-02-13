@@ -432,6 +432,12 @@ export var SocketIOApp = React.createClass({
 		const selectedTab = this.getSelectedTab();
 		return (
 			<div className="main-container">
+				<h2 className="update-alert">
+					<a href="http://appsaloon.github.io/socket.io-tester/" target="_blank" rel="noopener noreferrer">Download</a>
+					<span>&nbsp;our new&nbsp;</span>
+					<a href="http://appsaloon.github.io/socket.io-tester/" target="_blank" rel="noopener noreferrer">electron socket.io tester app</a>
+					<span>. Google stops supporting this chrome app by the end of 2017.</span>
+				</h2>
 				<TabBar tabs={this.state.tabs} addTab={this.addTab} selectTab={this.selectTab} deleteTab={this.deleteTab}/>
 				<SearchBar selectedTab={selectedTab} changeUrl={this.changeUrl} submitSocket={this.submitSocket} refresh={this.refresh} />
 				{(selectedTab.webSocket)?
