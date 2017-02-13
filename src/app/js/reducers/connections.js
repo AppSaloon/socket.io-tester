@@ -16,10 +16,10 @@ export default function connections (state = defaultState, action) {
         return setUrl(state, action)
 
         case 'SET_CONNECTED':
-        return setConnected(state, action)
+        return setConnected(state, action, true)
 
         case 'SET_DISCONNECTED':
-        return setDisconnected(state, action)
+        return setConnected(state, action, false)
 
         case 'ADD_EVENT':
         return addEvent(state, action)
@@ -94,24 +94,12 @@ function setUrl (state, action) {
     }
 }
 
-function setConnected (state, action) {
+function setConnected (state, action, newValue) {
     const list = state.list.slice()
 
     const id = action.id
 
-    list[state.connections[id].index].connected = true
-    return {
-        connections: state.connections,
-        list
-    }
-}
-
-function setDisconnected (state, action) {
-    const list = state.list.slice()
-
-    const id = action.id
-
-    list[state.connections[id].index].connected = false
+    list[state.connections[id].index].connected = newValue
     return {
         connections: state.connections,
         list
@@ -176,26 +164,21 @@ function changeTabOrders (state, action) {
     const newOrder = action.order
 
     let order
-    let newList
-    if ( originalOrder < newOrder ) {
-        newList = list.map(tab => {
-            order = tab.order
-            if ( tab.id === action.id )
-                tab.order = newOrder
-            else if ( order > originalOrder && order <= newOrder )
-                tab.order--
-            return tab
-        })
-    } else {
-        newList = list.map(tab => {
-            order = tab.order
-            if ( tab.id === action.id )
-                tab.order = newOrder
-            else if ( order < originalOrder && order >= newOrder )
+    const newList = list.map(tab => {
+        order = tab.order
+        if ( tab.id === action.id )
+            tab.order = newOrder
+        else {
+            if ( originalOrder < newOrder ) {
+                if ( order > originalOrder && order <= newOrder )
+                    tab.order--
+            } else if ( order < originalOrder && order >= newOrder )
                 tab.order++
-            return tab
-        })
-    }
+            }
+        }
+
+        return tab
+    })
 
     return {
         connections: state.connections,
