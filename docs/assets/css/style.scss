@@ -134,6 +134,7 @@ a{
   color: #7957a6;
 }
 a:hover{
+  color:#181121;
   text-decoration: none;
 }
 .inner {
@@ -187,6 +188,9 @@ a:hover{
   padding: 15px 10px;
     display: table-cell;
   text-align: center;
+}
+.justify-wrapper ul li a{
+  text-decoration: underline;
 }
 .github-watch{
     background: #8d5ba1;
