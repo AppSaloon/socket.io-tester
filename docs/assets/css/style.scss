@@ -66,16 +66,14 @@
      opacity: 1.0;
   }
 }
-#header_wrap {
-    background: #7957a6;
-    background: -moz-linear-gradient(top, #6C4E95, #7957a6);
-    background: -webkit-linear-gradient(top, #6C4E95, #7957a6);
-    background: -ms-linear-gradient(top, #6C4E95, #7957a6);
-    background: -o-linear-gradient(top, #6C4E95, #7957a6);
-    background: linear-gradient(top, #6C4E95, #7957a6);
+.logo-socket-io, #project_title{
+      display: inline-block;
 }
-#footer_wrap{
-  background: #7957a6;
+.logo-socket-io img{
+    border: 0;
+    box-shadow: 0 0 0;
+    height: 50px;
+    vertical-align: -25px;
 }
 button a {
   display: block;
