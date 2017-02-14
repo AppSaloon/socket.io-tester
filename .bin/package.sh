@@ -7,8 +7,7 @@ echo "installing dependencies"
 yarn add babel-plugin-transform-regenerator@6.22.0
 cd ..
 echo "starting electron-packager"
-# node_modules/.bin/electron-packager app --platform=darwin,linux,win32 --arch=all --asar --icon ./icon.jpg --out packages
-node_modules/.bin/electron-packager app --platform=darwin,linux,win32 --arch=all --asar --icon ./icon.jpg --out packages --electron-version 1.6.0
+node_modules/.bin/electron-packager app --platform=darwin,linux,win32 --arch=all --asar --icon ./icon.jpg --out packages
 echo "packaging asar"
 node_modules/.bin/asar p app app.asar
 echo "copying asar into app buils"
