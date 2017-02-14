@@ -150,7 +150,20 @@ a:hover{
 .clear{
   clear: both;
 }
-
+.center-wrapper{
+  text-align: center;
+}
+.center-wrapper ul{
+  display: inline-block;
+}
+.justify-wrapper ul{
+      width: inherit;
+    display: table-cell;
+}
+.justify-wrapper ul li{
+  padding: 15px;
+    display: table-cell;
+}
 @media screen and (max-width: 992px){
   .content-left, .content-right{
   width: 100%;
