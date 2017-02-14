@@ -93,24 +93,24 @@ button a {
   -webkit-box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
    -moz-box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
         box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-  background: -moz-linear-gradient(top, #ea3300 0%, #c32500 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ea3300), color-stop(100%,#c32500));
-background: -webkit-linear-gradient(top, #ea3300 0%,#c32500 100%);
-background: -o-linear-gradient(top, #ea3300 0%,#c32500 100%);
-background: -ms-linear-gradient(top, #ea3300 0%,#c32500 100%);
-background: linear-gradient(top, #ea3300 0%,#c32500 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea3300', endColorstr='#c32500',GradientType=0 );
+  background: -moz-linear-gradient(top, #6C4E95 0%, #7957a6 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6C4E95), color-stop(100%,#7957a6));
+background: -webkit-linear-gradient(top, #6C4E95 0%,#7957a6 100%);
+background: -o-linear-gradient(top, #6C4E95 0%,#7957a6 100%);
+background: -ms-linear-gradient(top, #6C4E95 0%,#7957a6 100%);
+background: linear-gradient(top, #6C4E95 0%,#7957a6 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6C4E95', endColorstr='#7957a6',GradientType=0 );
 }
 
 button:hover a{
 background: #00b7ea;
-background: -moz-linear-gradient(top,  #d12d00 36%, #aa2000 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(36%,#d12d00), color-stop(100%,#aa2000));
-background: -webkit-linear-gradient(top,  #d12d00 36%,#aa2000 100%);
-background: -o-linear-gradient(top,  #d12d00 36%,#aa2000 100%);
-background: -ms-linear-gradient(top,  #d12d00 36%,#aa2000 100%);
-background: linear-gradient(top,  #d12d00 36%,#aa2000 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d12d00', endColorstr='#aa2000',GradientType=0 );
+background: -moz-linear-gradient(top,  #604584 36%, #543c74 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(36%,#604584), color-stop(100%,#543c74));
+background: -webkit-linear-gradient(top,  #604584 36%,#543c74 100%);
+background: -o-linear-gradient(top,  #604584 36%,#543c74 100%);
+background: -ms-linear-gradient(top,  #604584 36%,#543c74 100%);
+background: linear-gradient(top,  #604584 36%,#543c74 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#604584', endColorstr='#543c74',GradientType=0 );
 }
 button{
       border: 0;
