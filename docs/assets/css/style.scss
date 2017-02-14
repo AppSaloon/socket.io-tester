@@ -66,6 +66,17 @@
      opacity: 1.0;
   }
 }
+#header_wrap {
+    background: #7957a6;
+    background: -moz-linear-gradient(top, #6C4E95, #7957a6);
+    background: -webkit-linear-gradient(top, #6C4E95, #7957a6);
+    background: -ms-linear-gradient(top, #6C4E95, ##7957a6);
+    background: -o-linear-gradient(top, #6C4E95, #7957a6);
+    background: linear-gradient(top, #6C4E95, #7957a6);
+}
+#footer_wrap{
+  background: #7957a6;
+}
 button a {
   display: block;
   height: 50px;
