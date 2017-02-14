@@ -12,7 +12,8 @@ An electron app that lets you connect to a socket.io server and subscribe to a c
             <a href="https://github.com/AppSaloon/socket.io-tester/archive/master.zip">More Info</a>
 </button>
 </div>
-
+ <div class="justify-wrapper">
 - [release page](https://github.com/AppSaloon/socket.io-tester/releases)
 - [sourcecode](https://github.com/AppSaloon/socket.io-tester)
 - [AppSaloon](https://appsaloon.be/)
+</div>
