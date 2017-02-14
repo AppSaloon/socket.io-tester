@@ -75,6 +75,21 @@
     height: 50px;
     vertical-align: -25px;
 }
+#project_title{
+  color: #181121;
+    text-shadow: #111 0 0 1px;
+}
+#header_wrap {
+    background: #7957a6;
+    background: -moz-linear-gradient(top, #ae9ac9, #bcabd2);
+    background: -webkit-linear-gradient(top, #ae9ac9, #bcabd2);
+    background: -ms-linear-gradient(top, #ae9ac9, #bcabd2);
+    background: -o-linear-gradient(top, #ae9ac9, #bcabd2);
+    background: linear-gradient(top, #ae9ac9, #bcabd2);
+}
+#footer_wrap{
+  background: #bcabd2;
+}
 button a {
   display: block;
   height: 50px;
