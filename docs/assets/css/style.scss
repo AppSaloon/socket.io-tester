@@ -113,15 +113,18 @@ background: linear-gradient(top,  #604584 36%,#543c74 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#604584', endColorstr='#543c74',GradientType=0 );
 }
 button{
-      border: 0;
+    border: 0;
     padding: 0;
     background: transparent;
+}
+a{
+  color: #7957a6;
 }
 a:hover{
   text-decoration: none;
 }
 .inner {
-    max-width: 1024px;
+  max-width: 1024px;
   min-width: 100px;
 }
 .content-left, .content-right{
@@ -163,11 +166,14 @@ a:hover{
     width: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box
+    -webkit-box-sizing: border-box;
+   max-width: 270px;
+    margin: 0 auto;
 }
 .justify-wrapper ul li{
-  padding: 15px;
+  padding: 15px 10px;
     display: table-cell;
+  text-align: center;
 }
 @media screen and (max-width: 992px){
   .content-left, .content-right{
