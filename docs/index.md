@@ -8,11 +8,10 @@ An electron app that lets you connect to a socket.io server and subscribe to a c
     <li>send an event</li>
     <li>uses namespaces</li>
   </ul>
-</div>
-
-<button class="download">
+  <button class="download">
             <a href="https://github.com/AppSaloon/socket.io-tester/archive/master.zip">More Info</a>
 </button>
+</div>
 
 - [release page](https://github.com/AppSaloon/socket.io-tester/releases)
 - [sourcecode](https://github.com/AppSaloon/socket.io-tester)
