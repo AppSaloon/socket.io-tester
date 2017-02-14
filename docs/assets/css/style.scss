@@ -157,8 +157,13 @@ a:hover{
   display: inline-block;
 }
 .justify-wrapper ul{
-      width: inherit;
     display: table-cell;
+  padding: 0;
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box
 }
 .justify-wrapper ul li{
   padding: 15px;
