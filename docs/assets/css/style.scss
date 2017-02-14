@@ -130,7 +130,6 @@ a:hover{
 .content-left, .content-right{
   width: 50%;
   float: left;
-  padding: 15px;
   box-sizing: border-box;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
@@ -138,10 +137,11 @@ a:hover{
 }
 .content-left{
   animation-name: fly_in_from_left;
-
+  padding: 15px;
 }
 .content-right{
   animation-name: fly_in_from_right;
+  padding: 0 15px;
 }
 .content-right img{
   width: 100%;
