@@ -174,7 +174,6 @@ function changeTabOrders (state, action) {
                     tab.order--
             } else if ( order < originalOrder && order >= newOrder )
                 tab.order++
-            }
         }
 
         return tab

@@ -24,3 +24,5 @@ cp package.json app/
 node_modules/.bin/babel -o app/index.js src/electron/index.js
 node_modules/.bin/babel -o app/checkVersion.js src/electron/checkVersion.js
 node_modules/.bin/babel -o app/menu.js src/electron/menu.js
+
+echo "done"

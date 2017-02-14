@@ -16,7 +16,7 @@ certain topic and/or lets you send socket messages to the server
 * and run electron
 `$ node_modules/.bin/electron .`
 
-##### build app and run electron
+##### build asar file
 `$ yarn run electron-build`
 
 ##### package all application versions for distribution (win, linux, macos)
