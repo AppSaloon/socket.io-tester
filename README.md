@@ -1,6 +1,7 @@
-# socket.io tester [![GitHub version](https://badge.fury.io/gh/boennemann%2Fbadges.svg)](http://badge.fury.io/gh/boennemann%2Fbadges) [![Dependency Status](https://www.versioneye.com/user/projects/588f5a2f5715cf0034134062/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/588f5a2f5715cf0034134062) [![Code Climate](https://codeclimate.com/github/AppSaloon/socket.io-tester/badges/gpa.svg)](https://codeclimate.com/github/AppSaloon/socket.io-tester) [![Issue Count](https://codeclimate.com/github/AppSaloon/socket.io-tester/badges/issue_count.svg)](https://codeclimate.com/github/AppSaloon/socket.io-tester)
+# ![socket.io tester](https://github.com/AppSaloon/socket.io-tester/raw/master/assets/icon.png) Socket.io tester [![GitHub version](https://badge.fury.io/gh/boennemann%2Fbadges.svg)](http://badge.fury.io/gh/boennemann%2Fbadges) [![Dependency Status](https://www.versioneye.com/user/projects/588f5a2f5715cf0034134062/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/588f5a2f5715cf0034134062) [![Code Climate](https://codeclimate.com/github/AppSaloon/socket.io-tester/badges/gpa.svg)](https://codeclimate.com/github/AppSaloon/socket.io-tester) [![Issue Count](https://codeclimate.com/github/AppSaloon/socket.io-tester/badges/issue_count.svg)](https://codeclimate.com/github/AppSaloon/socket.io-tester)
 Socket.io tester lets you connect to a socket.io server and subscribe to a 
 certain topic and/or lets you send socket messages to the server
+![screenshot socket.io tester app](https://github.com/AppSaloon/socket.io-tester/raw/master/assets/screenshot.png) 
 
 ---
 
