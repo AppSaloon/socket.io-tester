@@ -129,36 +129,52 @@ class Messages extends Component {
         let newVisibleMessages
 
         if ( position === 'top' ) {
-            for ( const index in sortedMessages )
-                if ( sortedMessages[index].timestamp === currentlyVisible[0].timestamp ) {
-                    const indexNum = parseInt(index)
-                    const smallIndex = indexNum - 20 < 0 ? 0 : indexNum - 20
-                    newVisibleMessages = [].concat(sortedMessages.slice(smallIndex, indexNum), currentlyVisible)
-                    if ( parseInt(index) - 20 <= 0 )
-                        this.newestIsVisible = true
-                    if ( newVisibleMessages.length > 60 ) {
-                        this.oldestIsVisible = false
-                        newVisibleMessages = newVisibleMessages.slice(0, 60)
-                    }
-                }
+            newVisibleMessages = this.getNextMessages(sortedMessages, currentlyVisible)
         } else {
-            for ( const index in sortedMessages )
-                if ( sortedMessages[index].timestamp === currentlyVisible.slice(-1)[0].timestamp ) {
-                    const indexNum = parseInt(index)
-                    newVisibleMessages = [].concat(currentlyVisible, sortedMessages.slice(indexNum + 1, indexNum + 21))
-                    if ( parseInt(index) + 21 > sortedMessages.length )
-                        this.oldestIsVisible = true
-                    if ( newVisibleMessages.length > 60 ) {
-                        this.newestIsVisible = false
-                        newVisibleMessages = newVisibleMessages.slice(-60)
-                    }
-                }
+            newVisibleMessages = this.getPreviousMessages(sortedMessages, currentlyVisible)
         }
 
         this.scrollIsBusy = false
         this.setState({
             visibleMessages: newVisibleMessages
         })
+    }
+
+    getNextMessages (sortedMessages, currentlyVisible) {
+        let newVisibleMessages
+
+        for ( const index in sortedMessages )
+            if ( sortedMessages[index].timestamp === currentlyVisible[0].timestamp ) {
+                const indexNum = parseInt(index, 10)
+                const smallIndex = indexNum - 20 < 0 ? 0 : indexNum - 20
+                newVisibleMessages = [].concat(sortedMessages.slice(smallIndex, indexNum), currentlyVisible)
+                if ( parseInt(index, 10) - 20 <= 0 )
+                    this.newestIsVisible = true
+                if ( newVisibleMessages.length > 60 ) {
+                    this.oldestIsVisible = false
+                    newVisibleMessages = newVisibleMessages.slice(0, 60)
+                }
+            }
+
+        return newVisibleMessages
+    }
+
+    getPreviousMessages (sortedMessages, currentlyVisible) {
+        let newVisibleMessages
+
+        for ( const index in sortedMessages )
+            if ( sortedMessages[index].timestamp === currentlyVisible.slice(-1)[0].timestamp ) {
+                const indexNum = parseInt(index, 10)
+                newVisibleMessages = [].concat(currentlyVisible, sortedMessages.slice(indexNum + 1, indexNum + 21))
+                if ( parseInt(index, 10) + 21 > sortedMessages.length )
+                    this.oldestIsVisible = true
+                if ( newVisibleMessages.length > 60 ) {
+                    this.newestIsVisible = false
+                    newVisibleMessages = newVisibleMessages.slice(-60)
+                }
+            }
+
+        return newVisibleMessages
     }
 
     formatMessage (string) {
