@@ -1,7 +1,13 @@
 import React from 'react'
+import TemplateIcon from './TemplateIcon'
 
 const Connection = ({size, color, customStyle}) =>
-    <svg style={Object.assign({height: size, fill: color}, customStyle)} version="1.1" x="0px" y="0px" viewBox="9 9 30 30">
+    <TemplateIcon
+        size={size}
+        color={color}
+        customStyle={customStyle}
+        viewBox="9 9 30 30"
+    >
         <path
             d="M31.848,27.984l-1.941,1.939c-1.382-1.391-3.294-2.254-5.405-2.254c-2.093,0-3.992,0.85-5.371,2.22l-1.94-1.939
                 c1.877-1.867,4.46-3.025,7.31-3.025C27.371,24.925,29.969,26.096,31.848,27.984z M24.502,30.435c-1.331,0-2.538,0.538-3.416,1.409
@@ -10,6 +16,6 @@ const Connection = ({size, color, customStyle}) =>
                 C18.508,13.521,13.072,15.956,9.131,19.891z M24.502,19.14c-4.445,0-8.476,1.806-11.4,4.722l2.134,2.134
                 c2.377-2.368,5.653-3.835,9.266-3.835c3.63,0,6.92,1.479,9.3,3.869l2.133-2.135C33.01,20.959,28.965,19.14,24.502,19.14z"
         />
-    </svg>
+    </TemplateIcon>
 
 export default Connection
