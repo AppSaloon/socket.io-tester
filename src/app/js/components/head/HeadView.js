@@ -39,7 +39,7 @@ class Head extends Component {
     }
 
     dragOverHandler (event) {
-        const targetOrder = parseInt(event.target.style.order)
+        const targetOrder = parseInt(event.target.style.order, 10)
         const targetParentClass = event.target.parentElement.classList
         const targetId = event.target.id
         if ( !this.state.dragging )
@@ -54,7 +54,7 @@ class Head extends Component {
             else
                 newOrder = targetOrder
             if ( newOrder !== currentOrder ) {
-                this.props.setTabOrder(parseInt(dragId), newOrder)
+                this.props.setTabOrder(parseInt(dragId, 10), newOrder)
             }
         }
     }
