@@ -1,17 +1,18 @@
-An electron app that lets you connect to a socket.io server and subscribe to a certain topic and/or lets you send socket messages to the server
+An electron app that lets you connect to a [socket.io](http://socket.io/) server and listen to emited events and/or lets you emit messages to the server
 
  <div class="center-wrapper">
 <h3>The features:</h3>
 <div class="list-wrapper">
   <ul>
-    <li>Connect</li>
-    <li>Listen to an event</li>
+    <li>Connect to socket.io server</li>
+    <li>Listen to events</li>
     <li>Send an event</li>
-    <li>Uses namespaces</li>
+    <li>String or object messages</li>
+    <li>Use namespaces</li>
   </ul>
   </div>
   <button class="download">
-            <a href="https://github.com/AppSaloon/socket.io-tester/archive/master.zip">More Info</a>
+            <a href="https://github.com/AppSaloon/socket.io-tester/releases/download/v1.0.1/socket-io-tester-darwin-x64.zip">Download for OSX</a>
   </button>
 </div>
 <div class="justify-wrapper">
