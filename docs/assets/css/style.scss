@@ -77,6 +77,8 @@
     box-shadow: 0 0 0;
     height: 50px;
     vertical-align: -25px;
+    background-color: rgba(0, 0, 0, 0.69);
+    border-radius: 10px;
 }
 #project_title{
   color: #fff;
@@ -85,6 +87,10 @@
 #header_wrap {
     background: #8d5ba1;
 }
+#header_wrap .inner {
+    padding: 30px 10px 20px 10px;
+}
+
 #footer_wrap{
   background: #181121;
 }
@@ -172,6 +178,7 @@ a:hover{
 }
 .center-wrapper ul{
   display: inline-block;
+  list-style: none;
 }
 .justify-wrapper ul{
     display: table-cell;
@@ -183,6 +190,7 @@ a:hover{
     -webkit-box-sizing: border-box;
    max-width: 300px;
     margin: 0 auto;
+    
 }
 .justify-wrapper ul li{
   padding: 15px 10px;
