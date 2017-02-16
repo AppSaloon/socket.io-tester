@@ -4,10 +4,10 @@ An electron app that lets you connect to a socket.io server and subscribe to a c
 <h3>The features:</h3>
 <div class="list-wrapper">
   <ul>
-    <li>connect</li>
-    <li>listen to an event</li>
-    <li>send an event</li>
-    <li>uses namespaces</li>
+    <li>Connect</li>
+    <li>Listen to an event</li>
+    <li>Send an event</li>
+    <li>Uses namespaces</li>
   </ul>
   </div>
   <button class="download">
