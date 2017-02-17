@@ -1,0 +1,36 @@
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+      - python
+      - php
+    exclude_fingerprints:
+    - e9fdbe71b8650fe846d54e7b056eb59e
+    - 27edb6c1346bd4e05c30049eee9ef73b
+    - a67de773de3d128d9beee28695fa9b63
+    - 87acf030eeb324fbd039f15a5d279172
+    - 045d14fb3f26ab4ed3e9c4d68eb6f089
+    - fc20889bb0000ed8c6057764c0d4b589
+    - 41d7349bf44d19021788a644a62fe296
+    - 2a8e972511cf3bb9e31c49257ce202fe
+    - 45bd0b743014713b348f47c381ff398a
+    - 7026e89de72a47e3be3f5c371f25c621
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+ratings:
+  paths:
+  - "**.inc"
+  - "**.js"
+  - "**.jsx"
+  - "**.module"
+  - "**.php"
+  - "**.py"
+  - "**.rb"
+exclude_paths: 
+  - "socketTest/"
