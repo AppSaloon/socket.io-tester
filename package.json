@@ -11,30 +11,30 @@
     "package": "bash .bin/package.sh"
   },
   "devDependencies": {
-    "asar": "0.12.4",
-    "babel-cli": "6.18.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-    "babel-plugin-transform-regenerator": "^6.18.0",
-    "babel-preset-react": "6.16.0",
+    "asar": "^0.13.0",
+    "babel-cli": "^6.23.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
+    "babel-plugin-transform-regenerator": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
     "babelify": "^7.3.0",
-    "browser-sync": "2.18.5",
-    "browserify": "13.3.0",
+    "browser-sync": "^2.18.5",
+    "browserify": "^13.3.0",
+    "electron": "^1.4.15",
     "electron-packager": "^8.5.1",
-    "node-sass": "4.1.1",
+    "node-sass": "^4.5.0",
     "uglify-js": "^2.7.5",
-    "watchify": "3.8.0"
+    "watchify": "^3.9.0"
   },
   "dependencies": {
-    "codemirror": "5.22.0",
-    "electron": "1.4.13",
-    "react": "15.4.1",
-    "react-autosuggest": "7.1.0",
-    "react-codemirror": "0.3.0",
-    "react-color": "2.10.0",
-    "react-dom": "15.4.1",
-    "react-inspector": "1.1.2",
-    "react-redux": "5.0.1",
-    "redux": "3.6.0",
-    "socket.io-client": "1.7.2"
+    "codemirror": "^5.23.0",
+    "react": "^15.4.2",
+    "react-autosuggest": "^7.1.0",
+    "react-codemirror": "^0.3.0",
+    "react-color": "^2.11.1",
+    "react-dom": "^15.4.2",
+    "react-inspector": "^1.1.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "socket.io-client": "^1.7.2"
   }
 }
