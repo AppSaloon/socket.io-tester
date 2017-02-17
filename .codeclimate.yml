@@ -5,7 +5,7 @@ engines:
     config:
       languages:
       - ruby
-      - javascript
+      - javascript:
           mass_threshold: 60
       - python
       - php
