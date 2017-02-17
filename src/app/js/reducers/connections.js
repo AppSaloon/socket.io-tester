@@ -3,6 +3,7 @@ const defaultState = {
     list: []
 }
 
+/* eslint-disable complexity */
 export default function connections (state = defaultState, action) {
     switch (action.type) {
 
@@ -40,6 +41,7 @@ export default function connections (state = defaultState, action) {
         return state
     }
 }
+/* eslint-enable complexity */
 
 function addConnection (state, action) {
     const connections = Object.assign({}, state.connections)

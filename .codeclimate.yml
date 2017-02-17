@@ -6,6 +6,7 @@ engines:
       languages:
       - ruby
       - javascript
+          mass_threshold: 60
       - python
       - php
     exclude_fingerprints:

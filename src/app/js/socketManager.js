@@ -18,11 +18,17 @@ function createNewConnection (id) {
         events: []
     }
 
+    tryToSubscribeOrRetry(id)
+}
+
+
+function (storedConnections, id) {
     if ( store )
         storedConnections[id].unsubscribe = store.subscribe(listenForChanges.bind(id))
     else
         waitAndRetry(id)
 }
+
 
 function removeConnection (id) {
 
@@ -110,10 +116,7 @@ function compareLists (list1, list2) {
 
 function waitAndRetry (id) {
     setTimeout(function () {
-        if ( store )
-            storedConnections[id].unsubscribe = store.subscribe(listenForChanges.bind(id))
-        else
-            waitAndRetry(id)
+        tryToSubscribeOrRetry(id)
     }, 10)
 }
 

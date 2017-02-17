@@ -92,6 +92,7 @@ class Head extends Component {
             this.setPreviousTabActive()
     }
 
+/* eslint-disable complexity */
     setPreviousTabActive () {
         const id = this.props.activeTab
         const list = this.props.connections.list
@@ -136,6 +137,7 @@ class Head extends Component {
         else
             throw new Error("Unexpectedly ran out of tabs")
     }
+/* eslint-enable complexity */
 
     amIBeingDragged (id) {
         return this.state.dragging === id
