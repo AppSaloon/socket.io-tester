@@ -22,7 +22,7 @@ function createNewConnection (id) {
 }
 
 
-function tryToSubscribeOrRetry (storedConnections, id) {
+function tryToSubscribeOrRetry (id) {
     if ( store )
         storedConnections[id].unsubscribe = store.subscribe(listenForChanges.bind(id))
     else
