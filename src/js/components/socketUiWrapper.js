@@ -432,7 +432,7 @@ export var SocketIOApp = React.createClass({
 		const selectedTab = this.getSelectedTab();
 		return (
 			<div className="main-container">
-				<h2 className="update-alert">
+				<h2 className="update-alert" style={{fontSize: 22}}>
 					<a href="http://appsaloon.github.io/socket.io-tester/" target="_blank" rel="noopener noreferrer">Download</a>
 					<span>&nbsp;our new&nbsp;</span>
 					<a href="http://appsaloon.github.io/socket.io-tester/" target="_blank" rel="noopener noreferrer">electron socket.io tester app</a>
