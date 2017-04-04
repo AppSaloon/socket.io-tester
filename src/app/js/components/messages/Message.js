@@ -1,3 +1,11 @@
+/**
+ * MessageView
+ *
+ * Renders a single message
+ *
+ * @property {Object} message
+ */
+
 import React from 'react'
 
 import MessageView from './MessageView'

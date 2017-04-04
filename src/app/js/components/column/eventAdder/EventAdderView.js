@@ -1,3 +1,10 @@
+/**
+ * EventAdder
+ *
+ * List of events
+ * and input field for making new events
+ */
+
 import React, { Component } from 'react'
 
 import EventsList from './EventsList'
@@ -29,6 +36,13 @@ class EventAdder extends Component {
         })
     }
 
+    /**
+     * Returns active tab
+     * 
+     * @param {Object} props
+     * 
+     * @return {Object}
+     */
     getThisTab (props) {
         const connections = props.connections.connections
         const list = props.connections.list
@@ -37,6 +51,9 @@ class EventAdder extends Component {
         return list[connections[activeTab].index]
     }
 
+    /**
+     * Add new 'event' to redux store
+     */
     handleFormSubmit (e) {
         e.preventDefault()
 
@@ -49,6 +66,11 @@ class EventAdder extends Component {
             this.props.addEvent(this.props.activeTab, {name: newEventName, visible: true, color: this.state.color})
     }
 
+    /**
+     * Toggles an event's messages visibility
+     * 
+     * @param {String} name eventname
+     */
     handleCheckClick (name) {
         let event
         const events = this.state.tab.events
@@ -59,6 +81,9 @@ class EventAdder extends Component {
         this.props.toggleEventVisibility(this.props.activeTab, event.name)
     }
 
+    /**
+     * Show or hide the colorpicker by updating the 'visible' status in the store
+     */
     toggleColorPicker (e) {
         e.preventDefault()
         const currentState = this.state.colorPickerVisible
@@ -87,16 +112,25 @@ class EventAdder extends Component {
             this.addEvents()
     }
 
+    /**
+     * Add events to catch color change and when colorpicker should be closed
+     */
     addEvents () {
         document.addEventListener('click', this.handleDocumentClick)
         document.addEventListener('colorChange', this.handleColorChange)
     }
 
+    /**
+     * Remove eventlisteners added in addEvents()
+     */
     removeEvents () {
         document.removeEventListener('click', this.handleDocumentClick)
         document.removeEventListener('colorChange', this.handleColorChange)
     }
 
+    /**
+     * Closes colorpicker is user clicked outside of the colorpicker element
+     */
     handleDocumentClick (e) {
         if ( !e.target.closest('.colorpicker') ) {
             this.setState({
@@ -107,6 +141,9 @@ class EventAdder extends Component {
         }
     }
 
+    /**
+     * Update color after a new color was selected in the colorpicker
+     */
     handleColorChange ({detail: {rgba: color}}) {
         this.setState({
             color

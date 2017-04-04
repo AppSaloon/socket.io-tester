@@ -1,3 +1,16 @@
+/**
+ * HeadView
+ *
+ * Renders the tabs at the top
+ *
+ * @property {Number} activeTab
+ * @property {Object} connections all connections
+ * @property {Function} addConnection
+ * @property {Function} closeTab
+ * @property {Function} setActiveTab
+ * @property {Function} setTabOrder
+ */
+
 import React, { Component } from 'react'
 
 import RemoveIcon from '../../icons/Remove'
@@ -29,7 +42,7 @@ class Head extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener("dragover", this.dragOverHandler)
+        document.addEventListener('dragover', this.dragOverHandler)
         document.addEventListener('dragend', this.dragEndHandler)
     }
 
@@ -38,6 +51,9 @@ class Head extends Component {
         document.removeEventListener('dragend', this.dragEndHandler)
     }
 
+    /**
+     * Keeps track of where the dragged tab is currently being held over and updates the tab order
+     */
     dragOverHandler (event) {
         const targetOrder = parseInt(event.target.style.order, 10)
         const targetParentClass = event.target.parentElement.classList
@@ -59,12 +75,20 @@ class Head extends Component {
         }
     }
 
+    /**
+     * Sets 'dragging' to null
+     */
     dragEndHandler () {
         this.setState({
             dragging: null
         })
     }
 
+    /**
+     * Sets 'dragging' to id of tab that's being dragged
+     * 
+     * @param {Object} tab
+     */
     dragStart (tab) {
         setTimeout(() =>
             this.setState({
@@ -73,6 +97,9 @@ class Head extends Component {
         , 1)
     }
 
+    /**
+     * Add a new connection to the store, also creates a new tab and sets it as the active tab
+     */
     addConnection () {
         const newId = new Date().getTime()
         createNewConnection(newId)
@@ -80,11 +107,21 @@ class Head extends Component {
         this.props.setActiveTab(newId)
     }
 
+    /**
+     * Sets a new tab as the active tab
+     * 
+     * @param {Number} id
+     */
     setThisTabActive (id) {
         if ( id !== this.props.activeTab )
             this.props.setActiveTab(id)
     }
 
+    /**
+     * Removes a tab and it's connection
+     * 
+     * @param {Number} id
+     */
     closeThisTab (id) {
         this.props.closeTab(id)
         removeConnection(id)
@@ -92,6 +129,9 @@ class Head extends Component {
             this.setPreviousTabActive()
     }
 
+    /**
+     * Sets the previous tab in the list as the active tab
+     */
 /* eslint-disable complexity */
     setPreviousTabActive () {
         const id = this.props.activeTab
@@ -139,6 +179,13 @@ class Head extends Component {
     }
 /* eslint-enable complexity */
 
+    /**
+     * Returns true if the tab with this id is currently being dragged
+     * 
+     * @param  {Number} id
+     * 
+     * @return {Boolean}
+     */
     amIBeingDragged (id) {
         return this.state.dragging === id
     }

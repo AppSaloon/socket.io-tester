@@ -1,3 +1,9 @@
+/**
+ * MessageSender
+ *
+ * MessageSenderView connector
+ */
+
 import { connect } from 'react-redux'
 
 import MessageSenderView from './MessageSenderView'

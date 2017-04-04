@@ -1,3 +1,16 @@
+/**
+ * Messages
+ *
+ * View that displays all received and sent messages
+ *
+ * @property {Number} activeTab id of active tab
+ * @property {Object} connections all socket.io connections
+ * @property {Object} messages all received messages
+ * @property {Array} sentMessages array of all sent messages
+ * @property {Function} deleteAllMessages
+ * @property {Function} deleteAllSentMessages
+ */
+
 import React, { Component } from 'react'
 
 import Message from './Message'
@@ -27,6 +40,11 @@ class Messages extends Component {
         this.getVisibleMessages(nextProps)
     }
 
+    /**
+     * Gets all messages that should be displayed and sets them to the state
+     * 
+     * @param {Object} props
+     */
     getVisibleMessages (props=this.props) {
         if ( this.state.autoScrollIsFrozen )
             return
@@ -42,6 +60,14 @@ class Messages extends Component {
         })
     }
 
+    /**
+     * Attaches appropriate color to message objects
+     * 
+     * @param {Array} messages
+     * @param {Object} event event object with eventname and color
+     *
+     * @return {Array} an array with the modified messages
+     */
     addColor (messages, event) {
         const color = event.color
         const coloredMessages = messages.map(m => Object.assign({}, m))
@@ -51,6 +77,13 @@ class Messages extends Component {
         return coloredMessages
     }
 
+    /**
+     * Returns a combined list of received and sent messages that should be displayed
+     * 
+     * @param {Object} props
+     * 
+     * @return {Array} an array of messages
+     */
     getGroupedMessages (props=this.props) {
         const id = props.activeTab
         const connections = props.connections
@@ -68,6 +101,13 @@ class Messages extends Component {
 
     }
 
+    /**
+     * Returns a sorted list of messages based on timestamp
+     * 
+     * @param {Array} messages
+     * 
+     * @return {Array} an array of sorted messages
+     */
     sortMessages (messages) {
         const sortedMessages = messages.map(m => Object.assign({}, m))
         for ( let x = 0, l = sortedMessages.length - 1; x < l; x++ )
@@ -78,11 +118,19 @@ class Messages extends Component {
         return sortedMessages
     }
 
+    /**
+     * Adds a scroll eventlistener to specified element
+     * 
+     * @param {HTMLElement} element
+     */
     addScrollListener (element) {
         this.refElement = element
         element.addEventListener('scroll', this.handleScroll)
     }
 
+    /**
+     * Sets autoScrollIsFrozen to true if it isn't already
+     */
     freezeAutoScroll () {
         if ( !this.state.autoScrollIsFrozen ) {
             this.setState({
@@ -91,6 +139,9 @@ class Messages extends Component {
         }
     }
 
+    /**
+     * Handles scroll event and makes messages scroll as a result
+     */
     handleScroll (e) {
         if ( this.scrollIsBusy )
             return
@@ -108,6 +159,9 @@ class Messages extends Component {
         }
     }
 
+    /**
+     * Re-enables autoscroll
+     */
     resumeAutoScroll (e) {
         this.scrollIsBusy = false
         this.oldestIsVisible = false
@@ -116,6 +170,11 @@ class Messages extends Component {
         }, this.getVisibleMessages)
     }
 
+    /**
+     * Updates visibleMessages based on position
+     * 
+     * @param {String} position where new messages need to be loaded, can be top or bottom
+     */
     showMoreMessages (position) {
         if ( position === 'top' && this.newestIsVisible )
             return
@@ -140,6 +199,14 @@ class Messages extends Component {
         })
     }
 
+    /**
+     * Returns an array of new messages that should be added to the list of visible messages
+     * 
+     * @param  {Array} sortedMessages
+     * @param  {Array} currentlyVisible
+     * 
+     * @return {Array}
+     */
     getNextMessages (sortedMessages, currentlyVisible) {
         let newVisibleMessages
 
@@ -159,6 +226,14 @@ class Messages extends Component {
         return newVisibleMessages
     }
 
+    /**
+     * Returns an array of older messages that should be added to the list of visible messages
+     * 
+     * @param  {Array} sortedMessages
+     * @param  {Array} currentlyVisible
+     * 
+     * @return {Array}
+     */
     getPreviousMessages (sortedMessages, currentlyVisible) {
         let newVisibleMessages
 
@@ -177,6 +252,13 @@ class Messages extends Component {
         return newVisibleMessages
     }
 
+    /**
+     * Attempts to parse a JSON string and returns the result
+     * 
+     * @param {String} string JSON string
+     * 
+     * @return {Object or String} parsed JSON or original string of invalid
+     */
     formatMessage (string) {
         let result
         try {

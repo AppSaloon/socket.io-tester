@@ -43,6 +43,9 @@ export default function connections (state = defaultState, action) {
 }
 /* eslint-enable complexity */
 
+/**
+ * Adds connection object to the store (this is where the information on a socket.io connection is kept)
+ */
 function addConnection (state, action) {
     const connections = Object.assign({}, state.connections)
 
@@ -72,6 +75,9 @@ function addConnection (state, action) {
     }
 }
 
+/**
+ * Removes a connection from the list
+ */
 function removeConnection (state, action) {
     const connection = state.connections[action.id]
 
@@ -84,6 +90,9 @@ function removeConnection (state, action) {
     }
 }
 
+/**
+ * Updates the url of a connection
+ */
 function setUrl (state, action) {
     const list = state.list.slice()
 
@@ -96,6 +105,9 @@ function setUrl (state, action) {
     }
 }
 
+/**
+ * Updates a connection 'connected' status to newValue
+ */
 function setConnected (state, action, newValue) {
     const list = state.list.slice()
 
@@ -108,6 +120,9 @@ function setConnected (state, action, newValue) {
     }
 }
 
+/**
+ * Adds an event that a connection should listen to
+ */
 function addEvent (state, action) {
     const list = state.list.slice()
 
@@ -120,6 +135,9 @@ function addEvent (state, action) {
     }
 }
 
+/**
+ * Removes an event that a connection should listen to
+ */
 function removeEvent (state, action) {
     const list = state.list.map(t => Object.assign({}, t))
 
@@ -139,6 +157,9 @@ function removeEvent (state, action) {
     }
 }
 
+/**
+ * Sets the event to hidden, messages will stil be received but not shown
+ */
 function toggleEventVisibility (state, action) {
     const list = state.list.slice()
 
@@ -159,6 +180,9 @@ function toggleEventVisibility (state, action) {
     }
 }
 
+/**
+ * Change the order in which the tabs at the top are shown
+ */
 function changeTabOrders (state, action) {
     const list = state.list.map(t => Object.assign({}, t))
 
@@ -187,6 +211,9 @@ function changeTabOrders (state, action) {
     }
 }
 
+/**
+ * Sets the event color
+ */
 function setEventColor (state, action) {
     const list = state.list.map(t => Object.assign({}, t))
 

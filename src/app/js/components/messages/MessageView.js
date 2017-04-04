@@ -1,3 +1,11 @@
+/**
+ * MessageViewer
+ *
+ * Displays the content of the message
+ * 
+ * @property {Object} message
+ */
+
 import React, { Component } from 'react'
 import { ObjectInspector } from 'react-inspector'
 

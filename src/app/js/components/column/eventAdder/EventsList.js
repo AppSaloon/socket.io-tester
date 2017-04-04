@@ -1,3 +1,17 @@
+/**
+ * EventsList
+ *
+ * Renders the list of events
+ *
+ * @property {Number} activeTab
+ * @property {Array} events
+ * @property {Function} changeEventColor
+ * @property {Function} handleCheckClick
+ * @property {Function} removeEvent
+ * @property {Function} removeMessages
+ * @property {Function} setColorPicker
+ */
+
 import React from 'react'
 
 import EventListItem from './EventListItem'

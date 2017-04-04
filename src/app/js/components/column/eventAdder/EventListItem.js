@@ -1,3 +1,9 @@
+/**
+ * EventListItem
+ *
+ * Renders one item in the list of subscribed events
+ */
+
 import React, { Component } from 'react'
 
 import CheckIcon from '../../../icons/Check'
@@ -18,6 +24,9 @@ class EventListItem extends Component {
         this.handleRemoveClick = this.handleRemoveClick.bind(this)
     }
 
+    /**
+     * Show or hide the colorpicker by updating the 'visible' status in the store
+     */
     toggleColorPicker (e) {
         e.preventDefault()
         const currentState = this.state.colorPickerVisible
@@ -46,16 +55,25 @@ class EventListItem extends Component {
             this.addEvents()
     }
 
+    /**
+     * Add events to catch color change and when colorpicker should be closed
+     */
     addEvents () {
         document.addEventListener('click', this.handleDocumentClick)
         document.addEventListener('colorChange', this.handleColorChange)
     }
 
+    /**
+     * Remove eventlisteners added in addEvents()
+     */
     removeEvents () {
         document.removeEventListener('click', this.handleDocumentClick)
         document.removeEventListener('colorChange', this.handleColorChange)
     }
 
+    /**
+     * Closes colorpicker is user clicked outside of the colorpicker element
+     */
     handleDocumentClick (e) {
         if ( !e.target.closest('.colorpicker') ) {
             this.setState({
@@ -66,10 +84,16 @@ class EventListItem extends Component {
         }
     }
 
+    /**
+     * Update color after a new color was selected in the colorpicker
+     */
     handleColorChange ({detail: {rgba: color}}) {
         this.props.changeEventColor(this.props.activeTab, this.props.event.name, color)
     }
 
+    /**
+     * Removes event and all of it's messages from the store
+     */
     handleRemoveClick (e) {
         this.props.removeEvent(this.props.activeTab, this.props.event.name)
         this.props.removeMessages(this.props.activeTab, this.props.event.name)

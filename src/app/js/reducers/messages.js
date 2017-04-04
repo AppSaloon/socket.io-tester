@@ -17,6 +17,9 @@ export default function messages (state = defaultState, action) {
     }
 }
 
+/**
+ * Adds a new message to the store
+ */
 function addMessage (state, action) {
     const id = action.id
     const eventName = action.eventName
@@ -34,6 +37,9 @@ function addMessage (state, action) {
     return Object.assign({}, state, {[id]: socketCollection})
 }
 
+/**
+ * Removes messages from the store
+ */
 function removeMessages (state, action) {
     const newState = Object.assign({}, state)
     const myMessages = Object.assign({}, newState[action.id])

@@ -1,3 +1,13 @@
+/**
+ * Search
+ *
+ * Renders url searchbar at the top
+ *
+ * @property {Number} activeTab id of the currently selected tab
+ * @property {Object} connections all current socket connections
+ * @property {Function} setUrl serUrl dispatcher
+ */
+
 import React, { Component } from 'react'
 
 import RefreshIcon from './RefreshIcon'
@@ -27,6 +37,13 @@ class Search extends Component {
         })
     }
 
+    /**
+     * Returns this tab object
+     * 
+     * @param {Object} props component props
+     * 
+     * @return {Object} the tab object
+     */
     getThisTab (props) {
         const connections = props.connections.connections
         const list = props.connections.list
@@ -35,12 +52,22 @@ class Search extends Component {
         return list[connections[activeTab].index]
     }
 
+    /**
+     * Update url in component state
+     * 
+     * @param {Event} e
+     */
     changeUrl (e) {
         this.setState({
             url: e.target.value
         })
     }
 
+    /**
+     * Save new url to redux store
+     * 
+     * @param {Event} e
+     */
     setUrl (e) {
         e && e.preventDefault()
         const url = this.state.url

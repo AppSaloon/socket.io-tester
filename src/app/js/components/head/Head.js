@@ -1,3 +1,9 @@
+/**
+ * Head
+ *
+ * HeadView connector
+ */
+
 import { connect } from 'react-redux'
 
 import HeadView from './HeadView'

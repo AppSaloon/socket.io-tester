@@ -1,3 +1,9 @@
+/**
+ * EventAdder
+ *
+ * EventAdderView connector
+ */
+
 import { connect } from 'react-redux'
 
 import EventAdderView from './EventAdderView'

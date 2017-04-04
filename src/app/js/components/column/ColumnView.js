@@ -1,3 +1,9 @@
+/**
+ * Column
+ *
+ * Renders message editor and event list
+ */
+
 import React, { Component } from 'react'
 
 import MessageSender from './messageSender/MessageSender'

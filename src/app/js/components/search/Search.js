@@ -1,3 +1,7 @@
+/**
+ * Search component redux connector
+ */
+
 import { connect } from 'react-redux'
 
 import SearchView from './SearchView'
@@ -25,6 +29,13 @@ const Search = connect(mapStateToProps, mapDispatchToProps)(SearchView)
 
 export default Search
 
+/**
+ * Validates url, adds http or https if necessary
+ * 
+ * @param  {String} url url to validate
+ * 
+ * @return {String}     validated url
+ */
 function makeSureItsGotHttp (url) {
     const lowerCaseUrl = url.toLowerCase()
     const hasHttp = lowerCaseUrl.indexOf("http://") === 0

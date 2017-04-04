@@ -1,3 +1,9 @@
+/**
+ * Messages
+ *
+ * Connector for the messages view of the app
+ */
+
 import { connect } from 'react-redux'
 
 import MessagesView from './MessagesView'

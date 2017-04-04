@@ -1,3 +1,9 @@
+/**
+ * MessageSenderView
+ *
+ * Message editor
+ */
+
 import React, { Component } from 'react'
 import CodeMirror from 'react-codemirror'
 import 'codemirror/mode/javascript/javascript'
@@ -32,6 +38,13 @@ class MessageSender extends Component {
         })
     }
 
+    /**
+     * Returns active tab
+     * 
+     * @param {Object} props
+     * 
+     * @return {Object}
+     */
     getThisTab (props) {
         const connections = props.connections.connections
         const list = props.connections.list
@@ -47,13 +60,19 @@ class MessageSender extends Component {
     }
 
     handleMessageChange (newValue) {
-        console.log(newValue)
         this.setState({
             message: newValue,
             messageIsJson: this.jsonOrText(newValue)
         })
     }
 
+    /**
+     * Returns true if string is valid JSON
+     * 
+     * @param {String} string
+     * 
+     * @return {Boolean}
+     */
     jsonOrText (string) {
         let isJson
         try {
@@ -66,6 +85,9 @@ class MessageSender extends Component {
         return isJson
     }
 
+    /**
+     * Saves new message in redux store if name and message are valid
+     */
     handleFormSubmit (e) {
         e.preventDefault()
 
@@ -76,6 +98,9 @@ class MessageSender extends Component {
             this.props.sendMessage(this.props.activeTab, this.state.eventName, this.state.message)
     }
 
+    /**
+     * Clears message
+     */
     handleClearClick (e) {
         e.preventDefault()
 
@@ -84,6 +109,9 @@ class MessageSender extends Component {
         })
     }
 
+    /**
+     * Autocomplete, filter dropdown results
+     */
     onSuggestionsFetchRequested ({value}) {
         const result = []
         const events = this.state.tab.events
@@ -98,6 +126,9 @@ class MessageSender extends Component {
         })
     }
 
+    /**
+     * Auotocomplete, show all event names
+     */
     onSuggestionsClearRequested () {
         this.setState({
             autosuggestResults: this.state.tab.events

@@ -1,3 +1,9 @@
+/**
+ * UpdateMessage
+ *
+ * Shows a message telling the user the app is outdated if the app is out of date
+ */
+
 import React, { Component } from 'react'
 
 class UpdateMessage extends Component {
@@ -21,6 +27,9 @@ class UpdateMessage extends Component {
         })
     }
 
+    /**
+     * Opens url in system default browser
+     */
     openUrl () {
         shell.openExternal("https://github.com/AppSaloon/socket.io-tester/releases")
     }

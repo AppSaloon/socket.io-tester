@@ -1,3 +1,9 @@
+/**
+ * Disabled
+ *
+ * An element that blocks access to an area of the app if rendered
+ */
+
 import React, { Component } from 'react'
 
 const Disabler = () =>
