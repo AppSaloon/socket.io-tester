@@ -18,13 +18,15 @@ class UpdateMessage extends Component {
     }
 
     componentDidMount () {
-        ipcRenderer.on('showUpdateNotification', (event, latest) => {
-            this.setState({visible: true, error: false, latest})
-        })
+        if ( window.ipcRenderer ) {
+            window.ipcRenderer.on('showUpdateNotification', (event, latest) => {
+                this.setState({visible: true, error: false, latest})
+            })
 
-        ipcRenderer.on('showUpdateErrorNotification', (event, error) => {
-            this.setState({visible: true, error})
-        })
+            window.ipcRenderer.on('showUpdateErrorNotification', (event, error) => {
+                this.setState({visible: true, error})
+            })
+        }
     }
 
     /**
