@@ -47,5 +47,9 @@ start test server by running `node socketTest/index.js`
 
 
 
+## When updating
 
+* change version numbers in package.json
+* check icons
+* compress and upload to github
 
