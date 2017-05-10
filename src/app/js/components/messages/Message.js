@@ -18,11 +18,9 @@ const Message = ({message}) =>
             <span className="message-text-content">{message.eventName}</span>
             <span className="message-text-date">{formatDate(message.timestamp)}</span>
         </div>
-        <div className="message-text">
-            <span className="message-text-title">Type:</span>
-            <span className="message-text-content">{message.isJson ? 'JSON' : message.messageType}</span>
-        </div>
-        <MessageView message={message} />
+        {message.message.map( (message, i) =>
+            <MessageView key={i} index={i} message={message} />
+        )}
     </div>
 
 export default Message

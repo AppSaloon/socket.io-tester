@@ -252,24 +252,6 @@ class Messages extends Component {
         return newVisibleMessages
     }
 
-    /**
-     * Attempts to parse a JSON string and returns the result
-     * 
-     * @param {String} string JSON string
-     * 
-     * @return {Object or String} parsed JSON or original string of invalid
-     */
-    formatMessage (string) {
-        let result
-        try {
-            result = JSON.parse(string)
-        }
-        catch (error) {
-            result = string
-        }
-        return result
-    }
-
     render () {
         const messages = this.state.visibleMessages
         return (
@@ -279,18 +261,11 @@ class Messages extends Component {
                     resumeAutoScroll={this.resumeAutoScroll}
                     showMoreMessages={this.showMoreMessages}
                 />
-                {messages.map( (message) => {
-                    const messageType = Object.prototype.toString.apply(message.message).slice(8, -1)
-                    message.parsed = this.formatMessage(message.message)
-                    message.isJson = Object.prototype.toString.apply(message.parsed).slice(8, -1) !== 'String' && messageType === 'String'
-                    message.messageType = messageType
-                    return(
-                        <Message
-                            key={message.timestamp}
-                            message={message}
-                        />
-                    )
-                }
+                {messages.map( message =>
+                    <Message
+                        key={message.timestamp}
+                        message={message}
+                    />
                 )}
                 <RemoveButton deleteMessages={ e => {this.props.deleteAllMessages(); this.props.deleteAllSentMessages()} } />
             </div>

@@ -18,18 +18,22 @@ class MessageSender extends Component {
         this.state = {
             tab: this.getThisTab(props),
             eventName: '',
-            message: '',
+            messageCollection: [''],
+            messageInEditor: 0,
+            // message: '',
             messageIsJson: false,
             autosuggestResults: []
         }
 
-        this.handleFormSubmit = this.handleFormSubmit.bind(this)
+        this.handleMessageSend = this.handleMessageSend.bind(this)
         this.handleEventNameChange = this.handleEventNameChange.bind(this)
         this.handleMessageChange = this.handleMessageChange.bind(this)
         this.handleClearClick = this.handleClearClick.bind(this)
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
         this.getSuggestionValue = this.getSuggestionValue.bind(this)
+        this.addMessageArgument = this.addMessageArgument.bind(this)
+        this.removeMessageArgument = this.removeMessageArgument.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -60,8 +64,12 @@ class MessageSender extends Component {
     }
 
     handleMessageChange (newValue) {
+        const state = this.state
+        const messageCollection = state.messageCollection.slice()
+        messageCollection[state.messageInEditor] = newValue
         this.setState({
-            message: newValue,
+            messageCollection,
+            // message: newValue,
             messageIsJson: this.jsonOrText(newValue)
         })
     }
@@ -88,24 +96,23 @@ class MessageSender extends Component {
     /**
      * Saves new message in redux store if name and message are valid
      */
-    handleFormSubmit (e) {
-        e.preventDefault()
-
+    handleMessageSend () {
         if ( !this.state.tab.connected )
             return
 
-        if ( this.state.eventName && this.state.message )
-            this.props.sendMessage(this.props.activeTab, this.state.eventName, this.state.message)
+        if ( this.state.eventName && this.state.messageCollection.length )
+            this.props.sendMessage(this.props.activeTab, this.state.eventName, this.state.messageCollection)
     }
 
     /**
      * Clears message
      */
-    handleClearClick (e) {
-        e.preventDefault()
-
+    handleClearClick () {
+        const state = this.state
+        const messageCollection = state.messageCollection.slice()
+        messageCollection[state.messageInEditor] = ''
         this.setState({
-            message: ''
+            messageCollection
         })
     }
 
@@ -151,13 +158,36 @@ class MessageSender extends Component {
         return true
     }
 
+    addMessageArgument () {
+        const messageCollection = this.state.messageCollection
+        this.setState({
+            messageCollection: messageCollection.concat(''),
+            messageInEditor: messageCollection.length
+        })
+    }
+
+    removeMessageArgument () {
+        const editing = this.state.messageInEditor
+        const messageCollection = this.state.messageCollection
+
+        if ( messageCollection.length <= 1 ) return // don't remove the last item in the array
+
+        const newMessageCollection = [].concat(messageCollection.slice(0, editing), messageCollection.slice(editing+1))
+        const newMessageInEditor = editing - 1
+        this.setState({
+            messageCollection: newMessageCollection,
+            messageInEditor: ~newMessageInEditor ? newMessageInEditor : 0
+        })
+    }
+
     render () {
         const state = this.state
         const connected = state.tab.connected
+        const messageInEditor = state.messageInEditor
 
         const autosuggestInputProps = {
             placeholder: 'Event name',
-            value: this.state.eventName,
+            value: state.eventName,
             onChange: this.handleEventNameChange
         };
 
@@ -193,7 +223,30 @@ class MessageSender extends Component {
                         />
                     </div>
 
-
+                    <div>
+                        <span>Message arguments</span>
+                        <div className="column-button-row">
+                            {
+                                state.messageCollection.map( (m, i) =>
+                                    <button key={i} className={`column-button-row-button ${ messageInEditor === i ? 'active' : '' }`} onClick={() => this.setState({messageInEditor: i})}>{i+1}</button>
+                                )
+                            }
+                        </div>
+                        <div className="column-button-row">
+                            <button
+                                onClick={this.addMessageArgument}
+                                className="column-button-row-button"
+                            >
+                                Add
+                            </button>
+                            <button
+                                onClick={this.removeMessageArgument}
+                                className="column-button-row-button"
+                            >
+                                Remove
+                            </button>
+                        </div>
+                    </div>
 
                     <div className="column-string">
                         <span>
@@ -206,27 +259,27 @@ class MessageSender extends Component {
                         </span>
                     </div>
 
-                    <input
-                        type="button"
-                        value="Clear"
+                    <button
                         className="column-button"
                         onClick={this.handleClearClick}
-                    />
+                    >
+                        Clear
+                    </button>
 
                     <CodeMirror
                         className="column-editor"
-                        value={this.state.message}
+                        value={state.messageCollection[state.messageInEditor]}
                         onChange={this.handleMessageChange}
                         options={{mode: {name: 'javascript', json: true}}}
                     />
 
-                    <input
-                        type="submit"
+                    <button
                         className="column-button"
                         disabled={!connected}
-                        value="Send message"
-                        onClick={this.handleFormSubmit}
-                    />
+                        onClick={this.handleMessageSend}
+                    >
+                        Send message
+                    </button>
                 </div>
 
             </div>

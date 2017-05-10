@@ -17,9 +17,9 @@ io.on('connection', function(socket){
 		console.log(msg)
 		console.log(Object.prototype.toString.apply(msg).slice(8, -1))
 	})
-	socket.on('chat message', function(msg){
-		console.log('message: ' + msg);
-		io.emit('chat message', msg);
+	socket.on('chat message', function(){
+		console.log('message:', ...[].slice.call(arguments));
+		io.emit('chat message', ...[].slice.call(arguments));
 	});
 });
 

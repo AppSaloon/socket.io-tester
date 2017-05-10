@@ -123,10 +123,10 @@ function listenForChanges () {
  * 
  * @param  {String} id        unique socket id
  * @param  {String} eventName name of the event the message was received on
- * @param  {Mixed} message   received message
+ * @param  {Mixed}  message   received messagem  can be multiple arguments
  */
-function messageHandler (id, eventName, message) {
-    store.dispatch({type: 'ADD_MESSAGE', id, eventName, message})
+function messageHandler (id, eventName/*, message arguments*/) {
+    store.dispatch({type: 'ADD_MESSAGE', id, eventName, message: [].slice.call(arguments, 2)})
 }
 
 /**
@@ -198,7 +198,7 @@ function subscribeSendMessageListener () {
 
             const socket = connection.socket
 
-            socket.emit(newMessage.eventName, newMessage.message)
+            socket.emit(newMessage.eventName, ...newMessage.message)
         }
     })
 }
