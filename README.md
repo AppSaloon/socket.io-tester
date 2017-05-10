@@ -4,7 +4,7 @@
 
 Socket.io tester lets you connect to a socket.io server and subscribe to a 
 certain topic and/or lets you send socket messages to the server
-![screenshot socket.io tester app](https://github.com/AppSaloon/socket.io-tester/raw/master/assets/screenshot.png) 
+![screenshot socket.io tester app](https://github.com/AppSaloon/socket.io-tester/raw/master/assets/screenshotV110.png) 
 
 ---
 
