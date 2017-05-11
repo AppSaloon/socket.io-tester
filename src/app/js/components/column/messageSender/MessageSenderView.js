@@ -225,26 +225,28 @@ class MessageSender extends Component {
 
                     <div>
                         <span>Message arguments</span>
-                        <div className="column-button-row">
-                            {
-                                state.messageCollection.map( (m, i) =>
-                                    <button key={i} className={`column-button-row-button ${ messageInEditor === i ? 'active' : '' }`} onClick={() => this.setState({messageInEditor: i})}>{i+1}</button>
-                                )
-                            }
-                        </div>
-                        <div className="column-button-row">
-                            <button
-                                onClick={this.addMessageArgument}
-                                className="column-button-row-button"
-                            >
-                                Add
-                            </button>
-                            <button
-                                onClick={this.removeMessageArgument}
-                                className="column-button-row-button"
-                            >
-                                Remove
-                            </button>
+                        <div className="message-arguments-button-group">
+                            <div className="message-arguments-buttons">
+                                {
+                                    state.messageCollection.map( (m, i) =>
+                                        <button key={i} className={`message-arguments-buttons-button ${ messageInEditor === i ? 'active' : '' }`} onClick={() => this.setState({messageInEditor: i})}>{i+1}</button>
+                                    )
+                                }
+                            </div>
+                            <div className="message-arguments-buttons">
+                                <button
+                                    onClick={this.addMessageArgument}
+                                    className="message-arguments-buttons-button"
+                                >
+                                    Add
+                                </button>
+                                <button
+                                    onClick={this.removeMessageArgument}
+                                    className="message-arguments-buttons-button"
+                                >
+                                    Remove
+                                </button>
+                            </div>
                         </div>
                     </div>
 
