@@ -288,7 +288,6 @@ class TopButtons extends Component {
         const { frozen, resumeAutoScroll, showMoreMessages } = this.props
         return (
             <div className={`${ frozen ? '' : 'hidden' } messages-top-buttons`}>
-                <span>Autoscroll paused</span>
                 <span
                     className="messages-top-buttons-button"
                     onClick={resumeAutoScroll}
