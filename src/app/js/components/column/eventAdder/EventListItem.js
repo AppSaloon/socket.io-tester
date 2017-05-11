@@ -36,9 +36,14 @@ class EventListItem extends Component {
         })
 
         const pos = e.target.getBoundingClientRect()
+        let colorPickerPosition = pos.top
+        // if colorpicker height + position + 10px > window height
+        if ( 241.75 + pos.top + 10 > window.innerHeight ) {
+            colorPickerPosition = window.innerHeight - 10 - 241.75
+        }
         const colorPickerUpdate = {
             visible: true,
-            top: pos.top,
+            top: colorPickerPosition,
             color: this.props.event.color
         }
 
