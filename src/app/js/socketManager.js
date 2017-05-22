@@ -198,12 +198,20 @@ function subscribeSendMessageListener () {
 
             const socket = connection.socket
 
+            const messageList = []
+            const objectConstructor = {}.constructor;
             Object.keys(newMessage.messageIsJsonCollection).forEach(key => {
               const isJson = newMessage.messageIsJsonCollection[key]
-              newMessage.message[key] = isJson ? JSON.parse(newMessage.message[key]) : newMessage.message[key]
+              const message = newMessage.message[key]
+              if(message === undefined) {
+                delete newMessage.message[key]
+                return
+              }
+              const resultMessage = isJson && message.constructor !== objectConstructor ? JSON.parse(message) : message
+              messageList.push(resultMessage)
             })
             
-            socket.emit(newMessage.eventName, ...newMessage.message)
+            socket.emit(newMessage.eventName, ...messageList)
         }
     })
 }
