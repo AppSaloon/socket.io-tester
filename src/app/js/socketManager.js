@@ -7,7 +7,7 @@ const storedConnections = {}
 /**
  * Returns current store state
  * Returns empty object if store isn't available yet
- * 
+ *
  * @return {Object} store state
  */
 function getState () {
@@ -19,7 +19,7 @@ function getState () {
 
 /**
  * Creates new connection object
- * 
+ *
  * @param  {String} id unique id to keep track of the socket with
  */
 function createNewConnection (id) {
@@ -35,7 +35,7 @@ function createNewConnection (id) {
 /**
  * Subscribes a listener to the store for a specific subscribed socket (the listener will update the socked based on changes made in the app)
  * Retries automaticaly of store in unavailable
- * 
+ *
  * @param  {String} id unique id of the socket
  */
 function tryToSubscribeOrRetry (id) {
@@ -120,7 +120,7 @@ function listenForChanges () {
 
 /**
  * Store a message received on a socket event
- * 
+ *
  * @param  {String} id        unique socket id
  * @param  {String} eventName name of the event the message was received on
  * @param  {Mixed}  message   received messagem  can be multiple arguments
@@ -131,10 +131,10 @@ function messageHandler (id, eventName/*, message arguments*/) {
 
 /**
  * Returns difference between 2 arrays of socket events
- * 
+ *
  * @param  {Array} list1 array of events
  * @param  {Array} list2 array of events
- * 
+ *
  * @return {Array}       list of events not included in 1st array
  */
 function compareLists (list1, list2) {
@@ -156,7 +156,7 @@ function compareLists (list1, list2) {
 
 /**
  * Waits 10ms before retrying tryToSubscribeOrRetry()
- * 
+ *
  * @param  {String} id unique socket id
  */
 function waitAndRetry (id) {
@@ -198,6 +198,11 @@ function subscribeSendMessageListener () {
 
             const socket = connection.socket
 
+            Object.keys(newMessage.messageIsJsonCollection).forEach(key => {
+              const isJson = newMessage.messageIsJsonCollection[key]
+              newMessage.message[key] = isJson ? JSON.parse(newMessage.message[key]) : newMessage.message[key]
+            })
+            
             socket.emit(newMessage.eventName, ...newMessage.message)
         }
     })

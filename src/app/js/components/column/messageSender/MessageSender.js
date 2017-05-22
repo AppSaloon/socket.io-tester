@@ -17,12 +17,13 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
     return {
-        sendMessage (id, eventName, message) {
+        sendMessage (id, eventName, message,messageIsJsonCollection) {
             dispatch({
                 type: 'SEND_MESSAGE',
                 id,
                 eventName,
-                message
+                message,
+                messageIsJsonCollection
             })
         }
     }
