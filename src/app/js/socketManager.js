@@ -186,7 +186,6 @@ function subscribeSendMessageListener () {
 
     store.subscribe(function () {
         const state = store.getState()
-        console.log(state)
 
         const sentMessages = state.sentMessages
 
