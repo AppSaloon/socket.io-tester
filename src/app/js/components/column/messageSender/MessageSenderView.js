@@ -19,7 +19,7 @@ class MessageSender extends Component {
             tab: this.getThisTab(props),
             eventName: '',
             messageCollection: [''],
-            messageIsJsonCollection: [],
+            messageIsJsonCollection: {},
             messageInEditor: 0,
             // message: '',
             messageIsJson: false,
@@ -69,8 +69,8 @@ class MessageSender extends Component {
         const messageCollection = state.messageCollection.slice()
         messageCollection[state.messageInEditor] = newValue
         const messageIsJson = this.jsonOrText(newValue)
-        const messageIsJsonCollection = state.messageIsJsonCollection.slice()
-        messageIsJsonCollection.push(messageIsJson)
+        const messageIsJsonCollection = state.messageIsJsonCollection
+        messageIsJsonCollection[this.props.activeTab] = messageIsJson
         this.setState({
             messageCollection,
             // message: newValue,

@@ -186,6 +186,7 @@ function subscribeSendMessageListener () {
 
     store.subscribe(function () {
         const state = store.getState()
+        console.log(state)
 
         const sentMessages = state.sentMessages
 
@@ -200,17 +201,17 @@ function subscribeSendMessageListener () {
 
             const messageList = []
             const objectConstructor = {}.constructor;
-            Object.keys(newMessage.messageIsJsonCollection).forEach(key => {
-              const isJson = newMessage.messageIsJsonCollection[key]
-              const message = newMessage.message[key]
+            if (newMessage.messageIsJsonCollection[state.activeTab] !== undefined) {
+              const isJson = newMessage.messageIsJsonCollection[state.activeTab]
+              const message = newMessage.message.pop()
               if(message === undefined) {
                 delete newMessage.message[key]
                 return
               }
               const resultMessage = isJson && message.constructor !== objectConstructor ? JSON.parse(message) : message
               messageList.push(resultMessage)
-            })
-            
+            }
+
             socket.emit(newMessage.eventName, ...messageList)
         }
     })
