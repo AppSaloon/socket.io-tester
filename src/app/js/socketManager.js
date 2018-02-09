@@ -189,7 +189,7 @@ function subscribeSendMessageListener () {
 
         const sentMessages = state.sentMessages
 
-        if ( previousState.length !== sentMessages.length && previousState.length < sentMessages.length ) {
+        if ( previousState.length < sentMessages.length ) {
             previousState = sentMessages
 
             const newMessage = sentMessages.slice(-1)[0]
@@ -199,6 +199,10 @@ function subscribeSendMessageListener () {
             const socket = connection.socket
 
             socket.emit(newMessage.eventName, ...newMessage.message)
+
+        } else if (previousState.length > sentMessages.length) {
+            // update the record of sent messages when queue is cleared
+            previousState = store.getState().sentMessages
         }
     })
 }
