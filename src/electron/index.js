@@ -25,7 +25,8 @@ function createWindow () {
         win = null
     })
 
-    // win.webContents.openDevTools()
+    if ( process.env.NODE_ENV === 'development' )
+        win.webContents.openDevTools()
 
     win.webContents.once('did-finish-load', () => {
         win.isReady = true
