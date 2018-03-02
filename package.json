@@ -28,10 +28,10 @@
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "codemirror": "^5.23.0",
+    "codemirror": "^5.35.0",
     "react": "^15.4.2",
     "react-autosuggest": "^9.0.1",
-    "react-codemirror": "^0.3.0",
+    "react-codemirror2": "^4.0.1",
     "react-color": "^2.11.1",
     "react-dom": "^15.4.2",
     "react-inspector": "^1.1.2",

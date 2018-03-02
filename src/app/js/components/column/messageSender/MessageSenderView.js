@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import CodeMirror from 'react-codemirror'
+import { Controlled as CodeMirror } from 'react-codemirror2'
 import 'codemirror/mode/javascript/javascript'
 import Autosuggest from 'react-autosuggest'
 
@@ -27,7 +27,7 @@ class MessageSender extends Component {
 
         this.handleMessageSend = this.handleMessageSend.bind(this)
         this.handleEventNameChange = this.handleEventNameChange.bind(this)
-        this.handleMessageChange = this.handleMessageChange.bind(this)
+        this.handleMessageBeforeChange = this.handleMessageBeforeChange.bind(this)
         this.handleClearClick = this.handleClearClick.bind(this)
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
@@ -63,14 +63,13 @@ class MessageSender extends Component {
         })
     }
 
-    handleMessageChange (newValue) {
+    handleMessageBeforeChange (editor, data, value) {
         const state = this.state
         const messageCollection = state.messageCollection.slice()
-        messageCollection[state.messageInEditor] = newValue
+        messageCollection[state.messageInEditor] = value
         this.setState({
             messageCollection,
-            // message: newValue,
-            messageIsJson: this.jsonOrText(newValue)
+            messageIsJson: this.jsonOrText(value)
         })
     }
 
@@ -271,7 +270,7 @@ class MessageSender extends Component {
                     <CodeMirror
                         className="column-editor"
                         value={state.messageCollection[state.messageInEditor]}
-                        onChange={this.handleMessageChange}
+                        onBeforeChange={this.handleMessageBeforeChange}
                         options={{mode: {name: 'javascript', json: true}}}
                     />
 
