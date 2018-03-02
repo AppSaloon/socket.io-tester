@@ -33,7 +33,7 @@ class UpdateMessage extends Component {
      * Opens url in system default browser
      */
     openUrl () {
-        shell.openExternal("https://github.com/AppSaloon/socket.io-tester/releases")
+        window.shell && window.shell.openExternal("https://github.com/AppSaloon/socket.io-tester/releases")
     }
 
     render () {

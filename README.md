@@ -11,10 +11,10 @@ certain topic and/or lets you send socket messages to the server
 ##### Install node modules
 `$ yarn install`
 
-##### Build for development
+##### Build and open in browser
 `$ yarn run dev`
 
-##### build app for electron
+##### Build and open as electron app
 * build
 `$ yarn run build`
 * and run electron

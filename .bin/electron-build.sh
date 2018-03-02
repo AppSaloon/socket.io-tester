@@ -1,3 +1,5 @@
+#!/bin/bash
+
 bash .bin/build.sh
 
 echo "copying package.json"

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export NODE_ENV=production
 bash .bin/build.sh
 echo "copying package.json"
