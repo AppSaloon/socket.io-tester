@@ -34,6 +34,7 @@ class MessageSender extends Component {
         this.getSuggestionValue = this.getSuggestionValue.bind(this)
         this.addMessageArgument = this.addMessageArgument.bind(this)
         this.removeMessageArgument = this.removeMessageArgument.bind(this)
+        this.noMessageArgument = this.noMessageArgument.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -99,7 +100,7 @@ class MessageSender extends Component {
         if ( !this.state.tab.connected )
             return
 
-        if ( this.state.eventName && this.state.messageCollection.length )
+        if ( this.state.eventName )
             this.props.sendMessage(this.props.activeTab, this.state.eventName, this.state.messageCollection)
     }
 
@@ -157,6 +158,9 @@ class MessageSender extends Component {
         return true
     }
 
+    /**
+     * Add one mesage argument
+     */
     addMessageArgument () {
         const messageCollection = this.state.messageCollection
         this.setState({
@@ -165,6 +169,9 @@ class MessageSender extends Component {
         })
     }
 
+    /**
+     * Remove a specific message argument
+     */
     removeMessageArgument () {
         const editing = this.state.messageInEditor
         const messageCollection = this.state.messageCollection
@@ -176,6 +183,16 @@ class MessageSender extends Component {
         this.setState({
             messageCollection: newMessageCollection,
             messageInEditor: ~newMessageInEditor ? newMessageInEditor : 0
+        })
+    }
+
+    /**
+     * Remove all message content
+     */
+    noMessageArgument () {
+        this.setState({
+            messageCollection: [],
+            messageInEditor: 0
         })
     }
 
@@ -244,6 +261,12 @@ class MessageSender extends Component {
                                     className="message-arguments-buttons-button"
                                 >
                                     Remove
+                                </button>
+                                <button
+                                    onClick={this.noMessageArgument}
+                                    className="message-arguments-buttons-button"
+                                >
+                                    None
                                 </button>
                             </div>
                         </div>
