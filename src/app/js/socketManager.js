@@ -198,7 +198,26 @@ function subscribeSendMessageListener () {
 
             const socket = connection.socket
 
-            socket.emit(newMessage.eventName, ...newMessage.message)
+            socket.emit( newMessage.eventName, ...newMessage.message.map( m => {
+                const value = m.value
+                switch ( m.type ) {
+                    case 'String':
+                    case 'JSON':
+                    return value
+
+                    case 'Boolean':
+                    return value === 'true'
+
+                    case 'Object':
+                    case 'Array':
+                    let evalResult
+                    eval(`evalResult = ${value}`)
+                    return evalResult
+
+                    case 'Number':
+                    return ~~value
+                }
+            } ) )
 
         } else if (previousState.length > sentMessages.length) {
             // update the record of sent messages when queue is cleared

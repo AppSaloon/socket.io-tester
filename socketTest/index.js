@@ -7,15 +7,19 @@ app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+function getTypeOf (value) {
+	return Object.prototype.toString.call(value).slice(8, -1)
+}
+
 io.on('connection', function(socket){
 	console.log('a user connected');
 	// socket.join('testRoom')
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 	});
-	socket.on('a', (msg) => {
-		console.log(msg)
-		console.log(Object.prototype.toString.apply(msg).slice(8, -1))
+	socket.on('a', function () {
+		console.log('all message arguments:', ...[].slice.call(arguments))
+		console.log('types', [].map.call(arguments, arg => getTypeOf(arg)))
 	})
 	socket.on('chat message', function(){
 		console.log('message:', ...[].slice.call(arguments));
@@ -43,6 +47,11 @@ function startIntervals () {
 		x++;
 		io.emit('test2', true);
 	}, 2000);
+
+	setInterval(function () {
+		x++;
+		io.emit('test5', true);
+	}, 5000);
 
 	setInterval(function () {
 		y++;

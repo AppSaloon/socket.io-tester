@@ -139,6 +139,13 @@
     .CodeMirror {
         height: 200px;
     }
+    &.red-border {
+        border-color: red;
+    }
+}
+
+.column-editor-no-border {
+    margin-bottom: 8px;
 }
 
 .column-block-group {

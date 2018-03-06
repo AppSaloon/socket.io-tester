@@ -5,9 +5,8 @@
  */
 
 import React, { Component } from 'react'
-import { Controlled as CodeMirror } from 'react-codemirror2'
-import 'codemirror/mode/javascript/javascript'
 import Autosuggest from 'react-autosuggest'
+import Editor from './Editor'
 
 // import TriangleBottomIcon from '../../../icons/TriangleBottom'
 
@@ -18,16 +17,14 @@ class MessageSender extends Component {
         this.state = {
             tab: this.getThisTab(props),
             eventName: '',
-            messageCollection: [''],
+            messageCollection: [{type: 'String', value: '', isValid: true}],
             messageInEditor: 0,
-            // message: '',
-            messageIsJson: false,
             autosuggestResults: []
         }
 
         this.handleMessageSend = this.handleMessageSend.bind(this)
         this.handleEventNameChange = this.handleEventNameChange.bind(this)
-        this.handleMessageBeforeChange = this.handleMessageBeforeChange.bind(this)
+        this.handleMessageChange = this.handleMessageChange.bind(this)
         this.handleClearClick = this.handleClearClick.bind(this)
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
@@ -35,6 +32,7 @@ class MessageSender extends Component {
         this.addMessageArgument = this.addMessageArgument.bind(this)
         this.removeMessageArgument = this.removeMessageArgument.bind(this)
         this.noMessageArgument = this.noMessageArgument.bind(this)
+        this.changeType = this.changeType.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -64,33 +62,107 @@ class MessageSender extends Component {
         })
     }
 
-    handleMessageBeforeChange (editor, data, value) {
+    /**
+     * Change message type and value if required
+     * @param {event} e - input change event
+     */
+    changeType (e) {
         const state = this.state
         const messageCollection = state.messageCollection.slice()
-        messageCollection[state.messageInEditor] = value
+        const type = e.target.value
+        let isValid = true
+        let value = messageCollection[state.messageInEditor].value
+        switch ( type ) {
+            case 'Boolean':
+            value = 'true'
+            break
+
+            case 'Number':
+            value = ~~value
+            break
+
+            case 'Object':
+            case 'Array':
+            const parsedValue = this.testObjValid(value)
+            if ( parsedValue && Object.prototype.toString.apply(parsedValue).slice(8, -1) === type )
+                isValid = true
+            else
+                isValid = false
+            break
+
+            case 'String':
+            try { // stringify current value in case it's an object or it'll look like "[object Object]", if JSON.parse works it's already a string, so we don't need to change it
+                JSON.parse(value)
+                value = value + '' // convert boolean to string or codemirror throws an error
+            } catch ( e ) { // if it throws we know it's not a JSON string already and we have to stringify it
+                value = JSON.stringify(value)
+            }
+            break
+
+            case 'JSON':
+            try { // if JSON.parse works it's valid JSON
+                JSON.parse(value)
+            } catch ( e ) {
+                isValid = false
+            }
+            break
+        }
+        messageCollection[state.messageInEditor] = {
+            value,
+            type,
+            isValid
+        }
         this.setState({
-            messageCollection,
-            messageIsJson: this.jsonOrText(value)
+            messageCollection
         })
     }
 
     /**
-     * Returns true if string is valid JSON
-     * 
-     * @param {String} string
-     * 
-     * @return {Boolean}
+     * Update message and validation
      */
-    jsonOrText (string) {
-        let isJson
+    handleMessageChange (value) {
+        const state = this.state
+        const messageCollection = state.messageCollection.slice()
+        const messageInEditor = state.messageInEditor
+        const message = messageCollection[messageInEditor]
+
+        const type = message.type
+        let isValid = message.isValid
+
+        switch ( type ) {
+            case 'Object':
+            case 'Array':
+            isValid = !!this.testObjValid(value)
+            break
+
+            case 'JSON':
+            try {
+                JSON.parse(value) // if it doesn't throw it's a valid JSON string
+                isValid = true
+            } catch ( e ) {
+                isValid = false
+            }
+        }
+
+        messageCollection[messageInEditor] = {
+            value,
+            isValid,
+            type
+        }
+        this.setState({
+            messageCollection
+        })
+    }
+
+    testObjValid (value) {
+        let evalResult, JSONResult
         try {
-            JSON.parse(string)
-            isJson = true
-        }
-        catch (error) {
-            isJson = false
-        }
-        return isJson
+            eval(`evalResult = ${value}`) // if it doesn't throw it's a valid array or object
+        } catch ( e ) {}
+        try {
+            JSONResult = JSON.parse(value) // if it doesn't throw it's a valid array or object
+        } catch ( e ) {}
+        return evalResult || JSONResult
     }
 
     /**
@@ -164,7 +236,7 @@ class MessageSender extends Component {
     addMessageArgument () {
         const messageCollection = this.state.messageCollection
         this.setState({
-            messageCollection: messageCollection.concat(''),
+            messageCollection: messageCollection.concat({type: 'String', value: '', isValid: true}),
             messageInEditor: messageCollection.length
         })
     }
@@ -200,12 +272,17 @@ class MessageSender extends Component {
         const state = this.state
         const connected = state.tab.connected
         const messageInEditor = state.messageInEditor
+        const messageInEditorObject = state.messageCollection[state.messageInEditor]
 
         const autosuggestInputProps = {
             placeholder: 'Event name',
             value: state.eventName,
             onChange: this.handleEventNameChange
         };
+
+        let sendIsEnabled = true
+        if ( !connected || !state.eventName || !state.messageCollection.map( m => m.isValid ).reduce( (a, b) => a && b) )
+            sendIsEnabled = false
 
         return (
             <div className="column-block">
@@ -274,12 +351,14 @@ class MessageSender extends Component {
 
                     <div className="column-string">
                         <span>
-                            {
-                                state.messageIsJson ?
-                                    "JSON"
-                                :
-                                    "String"
-                            }
+                            <select value={messageInEditorObject.type} onChange={this.changeType}>
+                                <option value="String">String</option>
+                                <option value="JSON">JSON</option>
+                                <option value="Array">Array</option>
+                                <option value="Object">Object</option>
+                                <option value="Number">Number</option>
+                                <option value="Boolean">Boolean</option>
+                            </select>
                         </span>
                     </div>
 
@@ -290,16 +369,11 @@ class MessageSender extends Component {
                         Clear
                     </button>
 
-                    <CodeMirror
-                        className="column-editor"
-                        value={state.messageCollection[state.messageInEditor]}
-                        onBeforeChange={this.handleMessageBeforeChange}
-                        options={{mode: {name: 'javascript', json: true}}}
-                    />
+                    <Editor message={messageInEditorObject} handleMessageChange={this.handleMessageChange} />
 
                     <button
                         className="column-button"
-                        disabled={!connected}
+                        disabled={!sendIsEnabled}
                         onClick={this.handleMessageSend}
                     >
                         Send message
