@@ -69,11 +69,13 @@ class Messages extends Component {
      * @return {Array} an array with the modified messages
      */
     addColor (messages, event) {
-        const color = event.color
-        const coloredMessages = messages.map(m => Object.assign({}, m))
-        for ( let x = 0, l = coloredMessages.length; x < l; x++ )
-            Object.assign(coloredMessages[x], {color, eventName: event.name})
-
+        const color = event.color,
+              eventName = event.name
+        let coloredMessages = messages.map(m => ({...m}))
+        for ( let x = 0, l = coloredMessages.length; x < l; x++ ) {
+            coloredMessages[x].color = color
+            coloredMessages[x].eventName = eventName
+        }
         return coloredMessages
     }
 
@@ -92,7 +94,7 @@ class Messages extends Component {
         const visibleEvents = events.filter(event => event.visible)
 
         const mySentMessages = props.sentMessages.filter( m => m.socketId === id )
-        const sentMessages = mySentMessages.map( m => Object.assign( {}, m, {right: true} ) )
+        const sentMessages = mySentMessages.map( m => ({ ...m, right: true}) )
 
         const allReceivedMessages = props.messages[id] || {}
         const messages = [].concat(sentMessages, ...visibleEvents.map(event => this.addColor(allReceivedMessages[event.name] || [], event) || []))
@@ -109,7 +111,7 @@ class Messages extends Component {
      * @return {Array} an array of sorted messages
      */
     sortMessages (messages) {
-        const sortedMessages = messages.map(m => Object.assign({}, m))
+        const sortedMessages = messages.map(m => ({...m}))
         for ( let x = 0, l = sortedMessages.length - 1; x < l; x++ )
             for ( let y = x + 1, l = sortedMessages.length; y < l; y++ )
                 if ( sortedMessages[x].timestamp < sortedMessages[y].timestamp )

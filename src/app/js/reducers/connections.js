@@ -47,7 +47,7 @@ export default function connections (state = defaultState, action) {
  * Adds connection object to the store (this is where the information on a socket.io connection is kept)
  */
 function addConnection (state, action) {
-    const connections = Object.assign({}, state.connections)
+    const connections = {...state.connections}
 
     const id = action.id
 
@@ -139,7 +139,7 @@ function addEvent (state, action) {
  * Removes an event that a connection should listen to
  */
 function removeEvent (state, action) {
-    const list = state.list.map(t => Object.assign({}, t))
+    const list = state.list.map(t => ({...t}))
 
     const id = action.id
 
@@ -184,7 +184,7 @@ function toggleEventVisibility (state, action) {
  * Change the order in which the tabs at the top are shown
  */
 function changeTabOrders (state, action) {
-    const list = state.list.map(t => Object.assign({}, t))
+    const list = state.list.map(t => ({...t}))
 
     const originalOrder = list[state.connections[action.id].index].order
     const newOrder = action.order
@@ -215,7 +215,7 @@ function changeTabOrders (state, action) {
  * Sets the event color
  */
 function setEventColor (state, action) {
-    const list = state.list.map(t => Object.assign({}, t))
+    const list = state.list.map(t => ({...t}))
 
     const id = action.id
 

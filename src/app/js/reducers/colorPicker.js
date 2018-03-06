@@ -7,7 +7,10 @@ export default function colorPicker (state = defaultState, action) {
     switch (action.type) {
 
         case 'UPDATE_COLORPICKER':
-        return Object.assign({}, state, action.state)
+        return {
+            ...state,
+            ...action.state
+        }
 
         default:
         return state
