@@ -1,6 +1,5 @@
 import https from 'https'
 import { version } from './package.json'
-import regeneratorRuntime from 'regenerator-runtime/runtime'
 
 function getRelease () {
     return new Promise ((resolve, reject) => {
