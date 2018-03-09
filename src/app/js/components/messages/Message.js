@@ -18,8 +18,8 @@ const Message = ({message}) =>
             <span className="message-text-content">{message.eventName}</span>
             <span className="message-text-date">{formatDate(message.timestamp)}</span>
         </div>
-        {message.message.map( (message, i) =>
-            <MessageView key={i} index={i} message={message} />
+        {message.message.map( (messageContent, i) =>
+            <MessageView key={i} index={i} message={messageContent} isSentMessage={!!message.right} />
         )}
     </div>
 

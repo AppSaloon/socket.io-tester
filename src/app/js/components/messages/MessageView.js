@@ -13,16 +13,24 @@ class MessageViewer extends Component {
     constructor (props) {
         super(props)
 
-        const message = props.message
-        const messageType = Object.prototype.toString.apply(message).slice(8, -1)
-        const parsed = this.formatMessage(message)
-        const isJson = Object.prototype.toString.apply(parsed).slice(8, -1) !== 'String' && messageType === 'String'
+        const state = {}
+
+        if ( props.isSentMessage ) {
+            state.messageType = props.message.type
+            state.parsed = this.parseMessage(props.message.value, props.message.type)
+            state.isJson = state.messageType === 'JSON'
+            state.raw = props.message.value
+        } else {
+            const message = props.message
+            state.messageType = Object.prototype.toString.apply(message).slice(8, -1)
+            state.parsed = this.tryToParseJSONMessage(message)
+            state.isJson = Object.prototype.toString.apply(state.parsed).slice(8, -1) !== 'String' && state.messageType === 'String'
+            state.raw = props.message
+        }
 
         this.state = {
             showRaw: false,
-            messageType,
-            parsed,
-            isJson
+            ...state
         }
 
         this.toggleRaw = this.toggleRaw.bind(this)
@@ -35,7 +43,7 @@ class MessageViewer extends Component {
      * 
      * @return {Object or String} parsed JSON or original string of invalid
      */
-    formatMessage (string) {
+    tryToParseJSONMessage (string) {
         let result
         try {
             result = JSON.parse(string)
@@ -46,6 +54,32 @@ class MessageViewer extends Component {
         return result
     }
 
+    parseMessage (string, type) {
+        console.log('parse', string, type)
+        switch ( type ) {
+            case 'String':
+            return string
+
+            case 'Array':
+            case 'Object':
+            let result
+            eval(`result = ${string}`)
+            return result
+
+            case 'Number':
+            return ~~string
+
+            case 'JSON':
+            return this.tryToParseJSONMessage(string)
+
+            case 'Boolean':
+            return string === 'true'
+
+            default:
+            return string
+        }
+    }
+
     toggleRaw (e) {
         this.setState({
             showRaw: !this.state.showRaw
@@ -53,8 +87,7 @@ class MessageViewer extends Component {
     }
 
     render () {
-        const {isJson, parsed, messageType} = this.state
-        const raw = this.props.message
+        const {isJson, parsed, messageType, raw} = this.state
         const showRaw = this.state.showRaw
         return (
             <div className="message-preview">

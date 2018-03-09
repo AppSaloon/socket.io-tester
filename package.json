@@ -12,10 +12,11 @@
   },
   "devDependencies": {
     "asar": "^0.13.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-preset-react": "^6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "browser-sync": "^2.18.5",
     "browserify": "^16.1.0",

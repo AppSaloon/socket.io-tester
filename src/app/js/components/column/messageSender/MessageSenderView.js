@@ -4,7 +4,7 @@
  * Message editor
  */
 
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Autosuggest from 'react-autosuggest'
 import Editor from './Editor'
 
@@ -264,7 +264,7 @@ class MessageSender extends Component {
     noMessageArgument () {
         this.setState({
             messageCollection: [],
-            messageInEditor: 0
+            messageInEditor: -1
         })
     }
 
@@ -281,7 +281,7 @@ class MessageSender extends Component {
         };
 
         let sendIsEnabled = true
-        if ( !connected || !state.eventName || !state.messageCollection.map( m => m.isValid ).reduce( (a, b) => a && b) )
+        if (  !connected || !state.eventName || ( ~messageInEditor && !state.messageCollection.map( m => m.isValid ).reduce( (a, b) => a && b) ) )
             sendIsEnabled = false
 
         return (
@@ -349,27 +349,32 @@ class MessageSender extends Component {
                         </div>
                     </div>
 
-                    <div className="column-string">
-                        <span>
-                            <select value={messageInEditorObject.type} onChange={this.changeType}>
-                                <option value="String">String</option>
-                                <option value="JSON">JSON</option>
-                                <option value="Array">Array</option>
-                                <option value="Object">Object</option>
-                                <option value="Number">Number</option>
-                                <option value="Boolean">Boolean</option>
-                            </select>
-                        </span>
-                    </div>
+                    { ~messageInEditor ?
+                        <Fragment>
+                            <div className="column-string">
+                                <span>
+                                    <select value={messageInEditorObject.type} onChange={this.changeType}>
+                                        <option value="String">String</option>
+                                        <option value="JSON">JSON</option>
+                                        <option value="Array">Array</option>
+                                        <option value="Object">Object</option>
+                                        <option value="Number">Number</option>
+                                        <option value="Boolean">Boolean</option>
+                                    </select>
+                                </span>
+                            </div>
 
-                    <button
-                        className="column-button"
-                        onClick={this.handleClearClick}
-                    >
-                        Clear
-                    </button>
+                            <button
+                                className="column-button"
+                                onClick={this.handleClearClick}
+                            >
+                                Clear
+                            </button>
 
-                    <Editor message={messageInEditorObject} handleMessageChange={this.handleMessageChange} />
+                            <Editor message={messageInEditorObject} handleMessageChange={this.handleMessageChange} />
+                        </Fragment>
+                        : null
+                    }
 
                     <button
                         className="column-button"
