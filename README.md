@@ -48,8 +48,14 @@ start test server by running `node socketTest/index.js`
 
 
 ## When updating
-
-* change version numbers in package.json
-* update version number in .app `socket-io.tester.app/Contents/Info.plist`
-* compress and upload to github
+* change version numbers in `package.json` AND `build_package.json`
+* create git tag `git tag v1.0.0`
+* push changes `git push`
+* and push tags `git push --tags`
+* create release draft with new tag and version as release name
+* Really important release NAME is the version with the v: `v1.0.0`
+* Really important that `build_package.json` has the correct version without the v: `1.0.0`
+* build with `package` script
+* compress each build in the package dir individually and upload to github
+* release
 
