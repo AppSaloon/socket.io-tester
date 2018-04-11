@@ -1,6 +1,6 @@
 {
   "name": "_electronapp",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "main": "app/index.js",
   "license": "GPL-2.0",
   "scripts": {

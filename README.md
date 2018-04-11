@@ -50,6 +50,6 @@ start test server by running `node socketTest/index.js`
 ## When updating
 
 * change version numbers in package.json
-* update darwin version icon
+* update version number in .app `socket-io.tester.app/Contents/Info.plist`
 * compress and upload to github
 
