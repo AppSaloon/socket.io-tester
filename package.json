@@ -23,7 +23,7 @@
     "electron": "^1.8.3",
     "electron-packager": "^8.5.1",
     "express": "^4.14.1",
-    "node-sass": "^4.5.2",
+    "node-sass": "^4.8.3",
     "socket.io": "^2.0.4",
     "uglify-js": "^3.0.1",
     "watchify": "^3.9.0"
