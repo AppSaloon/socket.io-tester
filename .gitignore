@@ -3,3 +3,5 @@ node_modules/
 /app/
 /electron/
 /packages/
+DS_Store
+idea
