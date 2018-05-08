@@ -16,6 +16,11 @@
         html_url: '{{site.github.latest_release.html_url}}',
         download_url: '{{site.github.latest_release.html_url}}'.replace('tag', 'download')
       };
+      var screenshots = {
+        OSX: "{{ '/assets/images/screenshot_iosx.png'| relative_url}}",
+        Windows: "{{ '/assets/images/screenshot_windows.png'| relative_url}}",
+        Linux: "{{ '/assets/images/screenshot_iosx.png'| relative_url}}"
+      };
     </script>
     <title>{{ site.title | default: site.github.repository_name }}</title>
   </head>

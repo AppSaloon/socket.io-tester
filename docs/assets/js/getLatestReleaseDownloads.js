@@ -1,5 +1,5 @@
 function GetLatestReleaseDownloads () {
-  console.log('latest release: ', window.latest_release.tag)
+  console.info('latest release: ', window.latest_release.tag)
   var downloadBaseUrl = window.latest_release.download_url
   var OSName, downloads
   if (window.navigator.userAgent.indexOf('Windows') != -1) {
@@ -25,14 +25,16 @@ function GetLatestReleaseDownloads () {
   }
 
   if (OSName) {
-
+    if(window.screenshots[OSName]) {
+      $('#screenshot').attr("src", window.screenshots[OSName]);
+    }
     for (var architecture in downloads) {
       var url = downloadBaseUrl.concat(downloads[architecture])
       var button = $('<button></button>')
       button.addClass('download')
       var anchor = $('<a>')
       anchor.attr('href', url)
-      anchor.text('DOWNLOAD FOR ' + OSName + '(' + architecture + ')')
+      anchor.text('DOWNLOAD FOR ' + OSName + ' (' + architecture + ')')
       anchor.appendTo(button)
       button.appendTo('#latest-release-download')
     }
