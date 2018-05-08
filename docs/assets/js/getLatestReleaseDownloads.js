@@ -35,6 +35,11 @@ function GetLatestReleaseDownloads() {
         var anchor = $("<a>");
         anchor.attr("href", url);
         anchor.text('DOWNLOAD FOR ' + OSName + '('+ architecture +')');
+        anchor.css({
+          whiteSpace: 'nowrap',
+          padding: '0 5px',
+          width: 'unset'
+        });
         anchor.appendTo(button)
         button.appendTo("#latest-release-download")
       }
