@@ -27,6 +27,7 @@ function GetLatestReleaseDownloads () {
   if (OSName) {
     if(window.screenshots[OSName]) {
       $('#screenshot').attr("src", window.screenshots[OSName]);
+      $('#screenshot-big').attr("src", window.screenshots[OSName]);
     }
     for (var architecture in downloads) {
       var url = downloadBaseUrl.concat(downloads[architecture])
