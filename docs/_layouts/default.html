@@ -10,6 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js" crossorigin="anonymous"></script>
     <script src="{{ '/assets/js/getLatestReleaseDownloads.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+    <script type="text/javascript">
+      var latest_release = {
+        tag: '{{site.github.latest_release.tag_name}}',
+        html_url: '{{site.github.latest_release.html_url}}'
+      };
+    </script>
     <title>{{ site.title | default: site.github.repository_name }}</title>
   </head>
 
@@ -78,8 +84,6 @@
 
     <script>
       GetLatestReleaseDownloads();
-
-      console.info( {{site.github.latest_release}} );
     </script>
 
 

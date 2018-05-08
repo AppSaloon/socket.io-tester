@@ -1,4 +1,5 @@
 function GetLatestReleaseDownloads() {
+  console.log('latest release: ', window.latest_release)
   $.getJSON('https://api.github.com/repos/appsaloon/socket.io-tester/releases/latest').done(function(release) {
     var asset = release.assets[0];
     var downloadBaseUrl = asset.browser_download_url.substr(0, 1 + asset.browser_download_url.lastIndexOf('/'));
