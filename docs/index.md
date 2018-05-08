@@ -11,9 +11,7 @@ An electron app that lets you connect to a [socket.io](http://socket.io/) server
     <li>Use namespaces</li>
   </ul>
   </div>
-  <button class="download">
-            <a href="https://github.com/AppSaloon/socket.io-tester/releases/download/v1.0.1/socket-io-tester-darwin-x64.zip">Download for OSX</a>
-  </button>
+  <div id="latest-release-download"></div>
 </div>
 <div class="justify-wrapper">
  <ul>
