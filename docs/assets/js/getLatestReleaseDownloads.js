@@ -46,7 +46,7 @@ function GetLatestReleaseDownloads() {
     } else {
         var unavailableDiv = $('<div></div>')
         var unavailableText = $('<p></p>');
-        unavailableText.text('No download for ' + OSName + '.')
+        unavailableText.text('No download for ' + OSName || 'Unknown Operating System' + '.')
         unavailableText.appendTo(unavailableDiv)
         var latestRelease = $('<a>')
         latestRelease.attr('href', 'https://api.github.com/repos/appsaloon/socket.io-tester/releases/latest/')
