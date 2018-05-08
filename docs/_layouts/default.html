@@ -10,8 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ '/assets/fancybox/fancybox/jquery.fancybox-1.3.4.pack.js?v=' | append: site.github.build_revision | relative_url }}" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ '/assets/fancybox/fancybox/jquery.fancybox-1.3.4.css?v=' | append: site.github.build_revision | relative_url }}" type="text/css" media="screen" />
+
+    <!--fancybox-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
+
     <script src="{{ '/assets/js/getLatestReleaseDownloads.js?v=' | append: site.github.build_revision | relative_url }}"></script>
     <script type="text/javascript">
       var latest_release = {
@@ -55,16 +59,9 @@
           {{content}}
         </div>
         <div class="content-right">
-          <a id="screenshot-big" href="{{ '/assets/images/screenshot_iosx.png'| relative_url}}">
+          <a data-fancybox="gallery" id="screenshot-big" href="{{ '/assets/images/screenshot_iosx.png'| relative_url}}">
             <img src="{{ '/assets/images/screenshot_iosx.png'| relative_url}}" alt="screenshot" id="screenshot">
           </a>
-          <script>
-            $(document).ready(function() {
-              $("a#screenshot-big").fancybox({
-                'hideOnContentClick': true
-              });
-            });
-          </script>
         </div>
         <div class="clear"></div>
       </section>
