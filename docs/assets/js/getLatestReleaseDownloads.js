@@ -31,7 +31,7 @@ function GetLatestReleaseDownloads() {
         var url = downloadBaseUrl.concat(downloads[architecture]);
         var button = $('<button></button>');
         button.addClass('download');
-        button.css({marginLeft: '5px'});
+        button.css({marginLeft: '5px', marginBottom: '5px'});
         var anchor = $('<a>');
         anchor.attr('href', url);
         anchor.text('DOWNLOAD FOR ' + OSName + '('+ architecture +')');
