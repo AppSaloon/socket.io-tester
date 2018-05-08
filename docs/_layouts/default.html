@@ -13,7 +13,8 @@
     <script type="text/javascript">
       var latest_release = {
         tag: '{{site.github.latest_release.tag_name}}',
-        html_url: '{{site.github.latest_release.html_url}}'
+        html_url: '{{site.github.latest_release.html_url}}',
+        download_url: '{{site.github.latest_release.html_url}}'.replace('tag', 'download')
       };
     </script>
     <title>{{ site.title | default: site.github.repository_name }}</title>
