@@ -31,15 +31,9 @@ function GetLatestReleaseDownloads() {
         var url = downloadBaseUrl.concat(downloads[architecture]);
         var button = $('<button></button>');
         button.addClass('download');
-        button.css({marginLeft: '5px', marginBottom: '5px'});
         var anchor = $('<a>');
         anchor.attr('href', url);
         anchor.text('DOWNLOAD FOR ' + OSName + '('+ architecture +')');
-        anchor.css({
-          whiteSpace: 'nowrap',
-          padding: '0 5px',
-          width: 'unset'
-        });
         anchor.appendTo(button)
         button.appendTo('#latest-release-download')
       }

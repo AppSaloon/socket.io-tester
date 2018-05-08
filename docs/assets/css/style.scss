@@ -222,3 +222,19 @@ a:hover{
   float: none;
 }
 }
+
+#latest-release-download {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+#latest-release-download > button {
+  margin: 0 0 5px 5px;
+}
+
+
+#latest-release-download > button > a {
+  white-space: nowrap;
+  width: 100%;
+  padding: 0 5px;
+}
