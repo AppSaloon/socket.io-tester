@@ -30,14 +30,18 @@ function GetLatestReleaseDownloads () {
       $('#screenshot-big').attr("href", window.screenshots[OSName]);
     }
     for (var architecture in downloads) {
-      var url = downloadBaseUrl.concat(downloads[architecture])
-      var button = $('<button></button>')
-      button.addClass('download')
-      var anchor = $('<a>')
-      anchor.attr('href', url)
-      anchor.text('DOWNLOAD FOR ' + OSName + ' (' + architecture + ')')
-      anchor.appendTo(button)
-      button.appendTo('#latest-release-download')
+      var url = downloadBaseUrl.concat(downloads[architecture]);
+      var button = $('<button></button>');
+      button.addClass('download');
+      var anchor = $('<a>');
+      anchor.attr('href', url);
+      anchor.text('DOWNLOAD FOR ' + OSName + ' (' + architecture + ')');
+      anchor.appendTo(button);
+      button.appendTo('#latest-release-download');
+      var versionString = $('<p></p>');
+      versionString.addClass('version-string');
+      versionString.text('The latest version is ' + window.latest_release.tag);
+      versionString.appendTo('#latest-release-download');
     }
   } else {
     var unavailableDiv = $('<div></div>')

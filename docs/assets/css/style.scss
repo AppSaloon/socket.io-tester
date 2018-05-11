@@ -239,6 +239,11 @@ a:hover{
   padding: 0 5px;
 }
 
+#latest-release-download .version-string {
+  font-style: italic;
+  color: #666;
+}
+
 #screenshot-big {
   outline: 0;
 }
