@@ -88,21 +88,8 @@ function listenForChanges () {
 
         if ( url ) {
             const parsedURL = new URL(url);
-
-            // parse query string to query object
-            const strs = parsedURL.search
-                .substr(1)
-                .split('=');
-
-            const query = {};
-
-            for (let i = 0; i < strs.length; i += 2) {
-                query[strs[i]] = !strs[i + 1] ? '' : strs[i + 1];
-            }
-
-            socket = io(parsedURL.origin, { 
+            socket = io(parsedURL.origin + parsedURL.search, { 
                 path: parsedURL.pathname === '/' ? '/socket.io' : parsedURL.pathname,
-                query
             });
             storedConnections[id].socket = socket
 
