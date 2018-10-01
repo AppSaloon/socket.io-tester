@@ -45,3 +45,11 @@
     outline: none;
     font-size: initial;
 }
+
+.namespace-text {
+    flex: 0.2;
+
+    input {
+        padding-left: 10px;
+    }
+}

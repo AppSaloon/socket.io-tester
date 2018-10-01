@@ -13,8 +13,8 @@ export default function connections (state = defaultState, action) {
         case 'REMOVE_CONNECTION':
         return removeConnection(state, action)
 
-        case 'SET_URL':
-        return setUrl(state, action)
+        case 'SET_NAMESPACE_AND_URL':
+        return setNamespaceAndUrl(state, action)
 
         case 'SET_CONNECTED':
         return setConnected(state, action, true)
@@ -93,12 +93,21 @@ function removeConnection (state, action) {
 /**
  * Updates the url of a connection
  */
-function setUrl (state, action) {
+function setNamespaceAndUrl (state, action) {
     const list = state.list.slice()
-
     const id = action.id
 
+    // set namespace
+    if(action.namespace) {
+        const namespaceWithLeadingSlash = action.namespace.charAt(0) === '/' ? action.namespace : '/' + action.namespace
+        list[state.connections[id].index].namespace = namespaceWithLeadingSlash
+    } else {
+        list[state.connections[id].index].namespace = ''
+    }
+
+    // set URL
     list[state.connections[id].index].url = action.url
+
     return {
         connections: state.connections,
         list
@@ -114,6 +123,11 @@ function setConnected (state, action, newValue) {
     const id = action.id
 
     list[state.connections[id].index].connected = newValue
+
+    if(!newValue) {
+        list[state.connections[id].index].events = []
+    }
+
     return {
         connections: state.connections,
         list

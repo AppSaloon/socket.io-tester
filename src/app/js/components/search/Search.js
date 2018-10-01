@@ -15,10 +15,11 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
     return {
-        setUrl (id, url) {
+        setNamespaceAndUrl (id, namespace, url) {
             dispatch({
-                type: 'SET_URL',
+                type: 'SET_NAMESPACE_AND_URL',
                 id,
+                namespace,
                 url: makeSureItsGotHttp(url)
             })
         }

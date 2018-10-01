@@ -1,6 +1,9 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var options = {
+	path: '/socket.io', // this is the default path but can be changed to anything
+}
+var io = require('socket.io')(http, options);
 const path = require('path')
 
 app.get('/', function(req, res){
@@ -66,7 +69,7 @@ function startIntervals () {
 
 var nsp = io.of('/asd');
 nsp.on('connection', function(socket){
-	console.log('someone connected');
+	console.log('someone connected on /asd');
 	socket.on('chat message', function(msg){
 		console.log('message: ' + msg);
 		nsp.emit('chat message', msg);

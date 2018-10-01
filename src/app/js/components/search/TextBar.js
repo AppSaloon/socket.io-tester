@@ -7,7 +7,7 @@
  * @property {String} originalUrl the current url of the socket.io connection
  * @property {String} url the current state of the input field
  * @property {Function} changeUrl handle inputchange
- * @property {Function} setUrl confirm url and save in redux store
+ * @property {Function} setNamespaceAndUrl confirm namespace and url and save in redux store
  */
 
 import React from 'react'
@@ -15,13 +15,13 @@ import React from 'react'
 import SearchIcon from '../../icons/Search'
 import ConnectionIcon from '../../icons/Connection'
 
-const TextBar = ({url, originalUrl, changeUrl, setUrl, connected}) =>
+const TextBar = ({url, originalUrl, changeUrl, setNamespaceAndUrl, connected}) =>
     <span className="search-text">
-        <span className="search-text-icon" onClick={setUrl}>
+        <span className="search-text-icon" onClick={setNamespaceAndUrl}>
             {getIcon(originalUrl, connected)}
         </span>
-        <form className="search-text-form" onSubmit={setUrl}>
-            <input onChange={changeUrl} className="search-text-input" type="text" value={url} />
+        <form className="search-text-form" onSubmit={setNamespaceAndUrl}>
+            <input onChange={changeUrl} className="search-text-input" type="text" value={url} placeholder="http://www.example.com/socket.io" />
         </form>
     </span>
 

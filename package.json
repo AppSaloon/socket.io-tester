@@ -8,7 +8,8 @@
     "build": "bash .bin/build.sh",
     "electron": "node_modules/.bin/electron .",
     "electron-build": "bash .bin/electron-build.sh",
-    "package": "bash .bin/package.sh"
+    "package": "bash .bin/package.sh",
+    "server": "node ./socketTest/index.js"
   },
   "devDependencies": {
     "asar": "^0.13.1",
@@ -18,13 +19,13 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.24.7",
     "browserify": "^16.2.0",
     "electron": "^1.8.3",
-    "electron-packager": "^12.0.2",
+    "electron-packager": "^12.1.2",
     "express": "^4.16.3",
-    "node-sass": "^4.8.3",
-    "socket.io": "^2.1.0",
+    "node-sass": "^4.9.3",
+    "socket.io": "^2.1.1",
     "uglify-js": "^3.3.22",
     "watchify": "^3.11.0"
   },
@@ -38,6 +39,6 @@
     "react-inspector": "^2.3.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "socket.io-client": "^2.1.0"
+    "socket.io-client": "^2.1.1"
   }
 }
