@@ -87,7 +87,10 @@ function listenForChanges () {
         }
 
         if ( url ) {
-            socket = io(url)
+            const parsedURL = new URL(url);
+            socket = io(parsedURL.origin + parsedURL.search, { 
+                path: parsedURL.pathname === '/' ? '/socket.io' : parsedURL.pathname,
+            });
             storedConnections[id].socket = socket
 
             socket.on('connect', function () {
