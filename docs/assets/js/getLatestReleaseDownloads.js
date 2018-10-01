@@ -31,12 +31,11 @@ function GetLatestReleaseDownloads () {
     }
     for (var architecture in downloads) {
       var url = downloadBaseUrl.concat(downloads[architecture]);
-      var button = $('<button></button>');
+      var button = $(`<button><a href="javascript: void(0);">DOWNLOAD FOR ${OSName} (${architecture})</a></button>`);
+      button.on('click', function() {
+        window.open(url, 'Download');
+      });
       button.addClass('download');
-      var anchor = $('<a>');
-      anchor.attr('href', url);
-      anchor.text('DOWNLOAD FOR ' + OSName + ' (' + architecture + ')');
-      anchor.appendTo(button);
       button.appendTo('#latest-release-download');
       var versionString = $('<p></p>');
       versionString.addClass('version-string');
