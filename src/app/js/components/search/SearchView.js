@@ -12,6 +12,7 @@ import React, { Component } from 'react'
 
 import RefreshIcon from './RefreshIcon'
 import TextBar from './TextBar'
+import NamespaceTextBar from './NamespaceTextBar'
 
 class Search extends Component {
 
@@ -22,18 +23,21 @@ class Search extends Component {
 
         this.state = {
             tab,
-            url: tab.url || ''
+            url: tab.url || '',
+            namespace: tab.namespace || ''
         }
 
         this.changeUrl = this.changeUrl.bind(this)
-        this.setUrl = this.setUrl.bind(this)
+        this.changeNamespace = this.changeNamespace.bind(this)
+        this.setNamespaceAndUrl = this.setNamespaceAndUrl.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
         const tab = this.getThisTab(nextProps)
         this.setState({
             tab,
-            url: tab.url || ''
+            url: tab.url || '',
+            namespace: tab.namespace || ''
         })
     }
 
@@ -64,15 +68,28 @@ class Search extends Component {
     }
 
     /**
+     * Update namespace in component state
+     * 
+     * @param {Event} e
+     */
+    changeNamespace (e) {
+        this.setState({
+            namespace: e.target.value
+        })
+    }
+
+    /**
      * Save new url to redux store
      * 
      * @param {Event} e
      */
-    setUrl (e) {
+    setNamespaceAndUrl (e) {
         e && e.preventDefault()
         const url = this.state.url
-        if ( url )
-            this.props.setUrl(this.state.tab.id, url)
+        const namespace = this.state.namespace
+        if (url)
+            this.props.setNamespaceAndUrl(this.state.tab.id, namespace, url)
+
     }
 
     render () {
@@ -96,8 +113,9 @@ class Search extends Component {
 
         return (
             <div className="search">
-                <RefreshIcon faded={connected || !tabUrl} setUrl={this.setUrl} />
-                <TextBar url={state.url} originalUrl={tabUrl} changeUrl={this.changeUrl} setUrl={this.setUrl} connected={connected} />
+                <RefreshIcon faded={connected || !tabUrl} setNamespaceAndUrl={this.setNamespaceAndUrl} />
+                <TextBar url={state.url} originalUrl={tabUrl} changeUrl={this.changeUrl} setNamespaceAndUrl={this.setNamespaceAndUrl} connected={connected} />
+                <NamespaceTextBar namespace={state.namespace} changeNamespace={this.changeNamespace} setNamespaceAndUrl={this.setNamespaceAndUrl} />
             </div>
         )
     }

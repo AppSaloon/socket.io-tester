@@ -75,9 +75,12 @@ function listenForChanges () {
     const connection = state.connections.list[state.connections.connections[id].index]
 
     const url = connection.url
-    if ( url !== storedConnections[id].url ) {
+    let namespace = connection.namespace || ''
+
+    if ( url !== storedConnections[id].url || namespace !== storedConnections[id].namespace) {
 
         storedConnections[id].url = url
+        storedConnections[id].namespace = namespace
 
         let socket = storedConnection.socket
 
@@ -88,12 +91,13 @@ function listenForChanges () {
 
         if ( url ) {
             const parsedURL = new URL(url);
-            socket = io(parsedURL.origin + parsedURL.search, { 
-                path: parsedURL.pathname === '/' ? '/socket.io' : parsedURL.pathname,
-            });
+            const path = parsedURL.pathname === '/' ? '/socket.io' : parsedURL.pathname
+            socket = io(parsedURL.origin + namespace, {path});
             storedConnections[id].socket = socket
 
             socket.on('connect', function () {
+                store.dispatch({type: 'REMOVE_ALL_MESSAGES'})
+                store.dispatch({type: 'REMOVE_ALL_SENTMESSAGES'})
                 store.dispatch({type: 'SET_CONNECTED', id})
             })
             socket.on('disconnect', function () {
