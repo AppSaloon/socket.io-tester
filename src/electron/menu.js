@@ -1,4 +1,4 @@
-import { app, Menu } from 'electron'
+const { app, Menu } = require('electron')
 
 const template = [
     {
@@ -107,4 +107,4 @@ function createMenu () {
     Menu.setApplicationMenu(menu)
 }
 
-export default createMenu
+module.exports = createMenu

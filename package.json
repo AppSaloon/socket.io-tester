@@ -6,39 +6,34 @@
   "scripts": {
     "dev": "bash .bin/dev.sh",
     "build": "bash .bin/build.sh",
-    "electron": "node_modules/.bin/electron .",
     "electron-build": "bash .bin/electron-build.sh",
-    "package": "bash .bin/package.sh",
-    "server": "node ./socketTest/index.js"
+    "server": "node ./socketTest/index.js",
+    "electron-builder": "bash .bin/builder.sh"
   },
   "devDependencies": {
-    "asar": "^0.13.1",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
     "browser-sync": "^2.26.3",
-    "browserify": "^16.2.0",
-    "electron": "^1.8.8",
-    "electron-packager": "^12.2.0",
-    "express": "^4.16.3",
-    "node-sass": "^4.9.3",
-    "socket.io": "^2.1.1",
-    "uglify-js": "^3.3.22",
-    "watchify": "^3.11.0"
-  },
-  "dependencies": {
+    "browserify": "^16.2.3",
     "codemirror": "^5.37.0",
-    "react": "^16.3.2",
-    "react-autosuggest": "^9.3.4",
+    "electron": "^3.0.11",
+    "electron-builder": "^20.38.3",
+    "express": "^4.16.3",
+    "node-sass": "^4.11.0",
+    "react": "^16.6.3",
+    "react-autosuggest": "^9.4.2",
     "react-codemirror2": "^4.3.0",
     "react-color": "^2.14.1",
-    "react-dom": "^16.3.2",
-    "react-inspector": "^2.3.0",
+    "react-dom": "^16.6.3",
+    "react-inspector": "^2.3.1",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "socket.io-client": "^2.1.1"
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "watchify": "^3.11.0"
   }
 }

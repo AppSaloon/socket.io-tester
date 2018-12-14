@@ -9,22 +9,17 @@ certain topic and/or lets you send socket messages to the server
 ---
 
 ##### Install node modules
-`$ yarn install`
+`$ npm i`
 
 ##### Build and open in browser
-`$ yarn run dev`
+`$ npm run dev`
 
 ##### Build and open as electron app
 * build
-`$ yarn run build`
-* and run electron
-`$ node_modules/.bin/electron .`
-
-##### build asar file
-`$ yarn run electron-build`
+`$ npm run electron-build`
 
 ##### package all application versions for distribution (win, linux, macos)
-`$ yarn run package`
+`$ npm run package-builder`
 
 ---
 
@@ -35,6 +30,8 @@ certain topic and/or lets you send socket messages to the server
 ## socket.io test server
 
 start test server by running `node socketTest/index.js`
+or
+`npm run server`
 
 ### events
 * 'chat message': echoes mesages

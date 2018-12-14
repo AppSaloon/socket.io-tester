@@ -1,5 +1,5 @@
-import https from 'https'
-import { version } from './package.json'
+const https = require('https')
+const { version } = require('../package.json')
 
 function getRelease () {
     return new Promise ((resolve, reject) => {
@@ -44,7 +44,7 @@ async function checkVersion (appWindow) {
     }
 }
 
-export default checkVersion
+module.exports = checkVersion
 
 function sendMessageToWindow ({channel, message}) {
     if ( win.isReady )

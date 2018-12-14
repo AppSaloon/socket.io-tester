@@ -1,13 +1,7 @@
 #!/bin/bash
 
-bash .bin/build.sh
+bash .bin/builder-js.sh
 
-echo "copying package.json"
-cp build_package.json app/package.json
-cd app
-echo "installing dependencies"
-yarn
-cd ..
-echo "packaging asar"
-node_modules/.bin/asar p app app.asar
-echo "done"
+cp -r src/electron/* app
+
+node_modules/.bin/electron .

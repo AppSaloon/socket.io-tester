@@ -2,8 +2,8 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 
-import createMenu from './menu'
-import checkVersion from './checkVersion'
+const createMenu = require('./menu')
+const checkVersion = require('./checkVersion')
 
 let win
 
