@@ -31,17 +31,17 @@ function GetLatestReleaseDownloads () {
     }
     for (var architecture in downloads) {
       var url = downloadBaseUrl.concat(downloads[architecture]);
-      var button = $(`<button><a href="javascript: void(0);">DOWNLOAD FOR ${OSName} (${architecture})</a></button>`);
-      button.on('click', function() {
-        window.open(url, 'Download');
+      var button = $(`<button data-url="${url}"><a href="javascript: void(0);">DOWNLOAD FOR ${OSName} (${architecture})</a></button>`);
+      button.on('click', function(event) {
+        window.open(event.currentTarget.dataset.url, 'Download');
       });
       button.addClass('download');
       button.appendTo('#latest-release-download');
-      var versionString = $('<p></p>');
-      versionString.addClass('version-string');
-      versionString.text('The latest version is ' + window.latest_release.tag);
-      versionString.appendTo('#latest-release-download');
     }
+    var versionString = $('<p></p>');
+    versionString.addClass('version-string');
+    versionString.text('The latest version is ' + window.latest_release.tag);
+    versionString.appendTo('.center-wrapper');
   } else {
     var unavailableDiv = $('<div></div>')
     var unavailableText = $('<p></p>')
