@@ -3,7 +3,7 @@
 [![GitHub version](https://badge.fury.io/gh/appsaloon%2Fsocket.io-tester.svg)](https://badge.fury.io/gh/appsaloon%2Fsocket.io-tester) 
 [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
-[Try firecamp](https://chrome.google.com/webstore/detail/firecamp-a-campsite-for-d/eajaahbjpnhghjcdaclbkeamlkepinbl)
+[Try Firecamp](https://firecamp.io/socketio) 
 
 ---
 
